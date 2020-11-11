@@ -10,4 +10,4 @@ class User(models.Model):
     email = models.EmailField()
 
     class Meta:
-        verbose_name = 'Users'
+        verbose_name = 'User'
