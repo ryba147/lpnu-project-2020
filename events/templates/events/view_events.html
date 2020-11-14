@@ -11,6 +11,8 @@
         <h4><i>Назва:</i> {{ i.event_name }}</h4>
         <h4><i>Опис:</i> {{ i.event_description }}</h4>
         <h4><i>Дата проведення:</i> {{ i.event_date }}</h4>
+        <img style="max-width: 10%" src="{{ i.event_photo.url }}" alt=""/>
+        <br><i>Фото</i>
         <hr>
     {% endfor %}
     <a href="/login">Log in</a><br>
