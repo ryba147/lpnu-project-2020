@@ -24,7 +24,7 @@ class User(models.Model):
 
     pets = models.CharField(max_length=50, blank=True)
     email = models.EmailField(blank=False, null=False, primary_key=True)
-    organizer = models.BooleanField(default=False, blank=False, null=False)
+    organizer = models.BooleanField(default=False, blank=False, null=True)
 
     def __str__(self):
         return self.first_name
