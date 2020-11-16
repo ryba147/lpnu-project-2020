@@ -32,6 +32,16 @@ def user_api(request, email=""):
         users = User.objects.all()
         users_serializer = UserSerializer(users, many=True)
         return JsonResponse(users_serializer.data, safe=False)
+
+    elif email == "" and request.method == "POST":
+        user_data = JSONParser().parse(request)
+        user_serializer = UserSerializer(data=user_data)
+        if user_serializer.is_valid():
+            user_serializer.save()
+            return JsonResponse("New user was created successfully", safe=False)
+        else:
+            return JsonResponse("Failed to create user", safe=False)
+
     else:
         # search the specified email and return data in json
         if request.method == "GET":
@@ -41,15 +51,6 @@ def user_api(request, email=""):
                 return JsonResponse(user_serializer.data, safe=False)
             except ObjectDoesNotExist:
                 return JsonResponse("User does not exists", safe=False)
-
-        elif request.method == "POST":
-            user_data = JSONParser().parse(request)
-            user_serializer = UserSerializer(data=user_data)
-            if user_serializer.is_valid():
-                user_serializer.save()
-                return JsonResponse("New user was created successfully", safe=False)
-            else:
-                return JsonResponse("Failed to create user", safe=False)
 
         elif request.method == "PUT":
             user_data = JSONParser().parse(request)
