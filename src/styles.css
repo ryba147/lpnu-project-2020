@@ -421,6 +421,11 @@ body {
   border-color: transparent;
 
 }
+/*
+.registration_button:disabled:hover {
+  background: rgb(144, 144, 144);
+}
+*/
 
 .log_in_button {
   margin-top: 43px;

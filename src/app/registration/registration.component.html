@@ -1,47 +1,95 @@
 <main class="main  registration_page">
-  <form action="">
+  <!-- <p>value: {{ form.value | json }}</p> -->
+  <!-- <p>the whole form status: {{ form.status | json }} , {{form.valid}}</p> -->
+  <!-- <p>PASSWORD status: {{ form.get('pword').status | json }} , {{form.get('pword').valid}}</p> -->
+  <!-- <p>errors: {{ form.get('pword').errors | json }}</p> -->
+
+  <form [formGroup]="form" action="">
     <p class="text_registration"> Реєстрація</p>
+
+    <!-- First name -->
     <p class="registration_enter_label">
       <label for="firstname">Ім'я: </label><br><br>
-      <input type="text" id="firstname" name="firstname" class="input_reg"/><br>
+      <input autofocus type="text" id="firstname" formControlName="firstname" class="input_reg"/><br>
     </p>
+    <div *ngIf="f.firstname.touched && f.firstname.errors" >
+      <div *ngIf="f.firstname.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
+    </div>
+    <!--  -->
+
+    <!-- Last name -->
     <p class="registration_enter_label">
       <label for="lastname">Прізвище: </label><br><br>
-      <input type="text" id="lastname" name="lastname" class="input_reg"/><br>
+      <input type="text" id="lastname" formControlName="lastname" class="input_reg"/><br>
     </p>
+    <div *ngIf="f.lastname.touched && f.lastname.errors" >
+      <div *ngIf="f.lastname.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
+    </div>
+    <!--  -->
+
+    <!-- Date of birth -->
     <p class="registration_enter_label">
       <label for="date">Дата народження: </label><br><br>
-      <input type="date" id="date" name="date" class="input_reg"/><br>
+      <input type="date" id="date" formControlName="date" class="input_reg"/><br>
     </p>
+    <!--  -->
+
+    <!-- City -->
     <p class="registration_enter_label">
-      <label for="town">Місто проживання: </label><br><br>
-      <input type="text" id="town" name="town" class="input_reg"/><br>
+      <label for="city">Місто проживання: </label><br><br>
+      <input type="text" id="city" formControlName="city" class="input_reg"/><br>
     </p>
+    <div *ngIf="f.city.touched && f.city.errors" >
+      <div *ngIf="f.city.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
+    </div>
+    <!--  -->
+
+    <!-- Email -->
     <p class="registration_enter_label">
       <label for="email">Електронна адреса: </label><br><br>
-      <input type="email" id="email" name="email" class="input_reg"/><br>
+      <input type="email" id="email" formControlName="email" class="input_reg"/><br>
     </p>
+    <div *ngIf="f.email.touched && f.email.errors">
+      <div class="invalid-data" *ngIf="f.email.errors.required">Це поле обов'язкове для заповнення</div>
+      <div class="invalid-data" *ngIf="f.email.errors.pattern">Неправильний формат</div>
+    </div>
+    <!--  -->
+
+    <!-- Окрема група для паролів, для зручності -->
+    <div formGroupName="pword">
     <p class="registration_enter_label">
       <label for="password">Створіть пароль: </label><br><br>
-      <input type="password" id="password" name="password" class="input_reg"/><br>
+      <input type="password" id="password" formControlName="password" class="input_reg"/><br>
     </p>
+    
+    <div *ngIf="form.get('pword').get('password').touched && form.get('pword').get('password').errors">
+      <div class="invalid-data" *ngIf="form.get('pword').get('password').errors.required">Це поле обов'язкове для заповнення</div>
+    </div>
+
     <p class="registration_enter_label">
-      <label for="password_repeat">Повторіть пароль: </label><br><br>
-      <input type="password" id="password_repeat" name="password_repeat" class="input_reg"/><br>
+      <label for="confirm_password">Введіть пароль повторно: </label><br><br>
+      <input type="password" id="confirm_password" formControlName="confirm_password" class="input_reg"/><br>
     </p>
+    </div>
+    
+    <div class="invalid-data" *ngIf="form.get('pword').errors != null">
+      Паролі повинні співпадати
+    </div>
+    <!--  -->
+
     <p class="registration_enter_label">
       <label for="pets">Чи є у Вас домашні улюбленці,якщо є,то які ?</label><br><br>
-      <input type="text" id="pets" name="pets" class="input_reg"/><br></p>
+      <input type="text" id="pets" formControlName="pets" class="input_reg"/><br></p>
     <p class="registration_enter_label ">
       <label for="family_status">Сімейний стан:</label><br><br>
-      <select id="family_status" name="family_status">
+      <select id="family_status" formControlName="family_status">
         <option value="unmarried">Не одружений/не заміжня</option>
         <option value="married">Одружений/заміжня</option>
         <option value="in_relationship">В стосунках</option>
       </select>
     </p>
     <p class="registration_enter_label">
-      <button type="submit" class=" registration_button registration_page_button">Перейти далі</button>
+      <button type="submit" [disabled]="form.invalid" class=" registration_button registration_page_button">Перейти далі</button>
     </p>
     <br><br>
     <a href="/" class="registration_enter_label">
