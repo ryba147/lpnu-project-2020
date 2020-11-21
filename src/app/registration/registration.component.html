@@ -14,6 +14,7 @@
     </p>
     <div *ngIf="f.firstname.touched && f.firstname.errors" >
       <div *ngIf="f.firstname.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
+      <div class="invalid-data" *ngIf="f.firstname.errors.pattern">Неправильний формат</div>
     </div>
     <!--  -->
 
@@ -24,6 +25,7 @@
     </p>
     <div *ngIf="f.lastname.touched && f.lastname.errors" >
       <div *ngIf="f.lastname.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
+      <div class="invalid-data" *ngIf="f.lastname.errors.pattern">Неправильний формат</div>
     </div>
     <!--  -->
 
@@ -41,6 +43,7 @@
     </p>
     <div *ngIf="f.city.touched && f.city.errors" >
       <div *ngIf="f.city.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
+      <div class="invalid-data" *ngIf="f.city.errors.pattern">Неправильний формат</div>
     </div>
     <!--  -->
 
