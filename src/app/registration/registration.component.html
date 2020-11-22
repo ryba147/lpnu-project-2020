@@ -30,9 +30,9 @@
     <!--  -->
 
     <!-- Date of birth -->
-    <p class="registration_enter_label">
+    <p class="registration_enter_label ">
       <label for="date">Дата народження: </label><br><br>
-      <input type="date" id="date" formControlName="date" class="input_reg"/><br>
+      <input type="date" id="date" formControlName="date" class="input_reg "/><br>
     </p>
     <!--  -->
 
@@ -64,7 +64,7 @@
       <label for="password">Створіть пароль: </label><br><br>
       <input type="password" id="password" formControlName="password" class="input_reg"/><br>
     </p>
-    
+
     <div *ngIf="form.get('pword').get('password').touched && form.get('pword').get('password').errors">
       <div class="invalid-data" *ngIf="form.get('pword').get('password').errors.required">Це поле обов'язкове для заповнення</div>
     </div>
@@ -74,14 +74,14 @@
       <input type="password" id="confirm_password" formControlName="confirm_password" class="input_reg"/><br>
     </p>
     </div>
-    
+
     <div class="invalid-data" *ngIf="form.get('pword').errors != null">
       Паролі повинні співпадати
     </div>
     <!--  -->
 
     <p class="registration_enter_label">
-      <label for="pets">Чи є у Вас домашні улюбленці,якщо є,то які ?</label><br><br>
+      <label for="pets">Чи є у Вас домашні улюбленці, які ?</label><br><br>
       <input type="text" id="pets" formControlName="pets" class="input_reg"/><br></p>
     <p class="registration_enter_label ">
       <label for="family_status">Сімейний стан:</label><br><br>

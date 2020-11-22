@@ -1,13 +1,19 @@
-<main class=" main login_page">
+<main class=" login_page container-fluid">
   <p class="text_login ">Вхід</p>
-  <form action="">
+  <form [formGroup]="userEmails" >
     <p class="registration_enter_label">
-      <label for="login_email">1. Введіть електронну пошту</label><br><br>
-      <input type="email" id="login_email" value="" class="input_login"><br><br>
+      <label >1. Введіть електронну пошту</label><br><br>
+      <input [class.is-invalid] = "userEmails.get('loginEmail').invalid && userEmails.get('loginEmail').touched"
+       type="email" id="login_email"  class="input_login form-control" formControlName="loginEmail"><br><br>
     </p>
+    <div *ngIf="(loginEmail.invalid && loginEmail.touched) || loginEmail.dirty">
+     <small *ngIf="loginEmail.errors?.required" class="text-danger registration_enter_label ">Це поле обов'язкове для заповнення</small>
+     <small *ngIf="loginEmail.errors?.pattern" class="text-danger registration_enter_label">Неправильний формат</small>
+   </div>
+
     <p class="registration_enter_label">
       <label for="login_password">2. Введіть пароль</label><br><br>
-      <input type="password" id="login_password" value="" class="input_login"><br><br>
+      <input type="password" id="login_password"  class="input_login "><br><br>
     </p>
     <button type="submit" class="login_page_button ">Увійти</button>
     <br><br>

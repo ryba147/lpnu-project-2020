@@ -394,183 +394,18 @@ body {
   background: #FDFDFD;
 }
 
-.wrapper {
-  margin: 0 auto;
-  width: 200px;
-
-}
-
-.Main_page {
-  font-family: Montserrat, serif;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
-  padding-top: 240px;
-
-}
-
-.registration_button {
-  font-family: Montserrat, serif;
-  text-align: center;
-  background: #E0EFFC;
-  position: absolute;
-  width: 219px;
-  height: 40px;
-  border-radius: 20px;
-  border-color: transparent;
-
-}
 /*
 .registration_button:disabled:hover {
   background: rgb(144, 144, 144);
 }
 */
 
-.log_in_button {
-  margin-top: 43px;
-  font-family: Montserrat, serif;
-  text-align: center;
-  background: #E0EFFC;
-  position: absolute;
-  width: 219px;
-  height: 40px;
-  border-radius: 20px;
-  border-color: transparent;
-}
-
-.forget_password_button {
-  margin-top: 115px;
-  margin-left: 40px;
-  height: 17px;
-  top: 165px;
-  font-family: Montserrat, serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 17px;
-  text-align: center;
-  border-color: transparent;
-  background-color: transparent;
 
 
-}
 
-.text_registration {
-  margin-top: 35px;
-  font-size: 36px;
-  text-align: center;
 
-}
 
-.text_login {
-  font-style: normal;
-  font-weight: 400;
-  line-height: 44px;
-  text-align: center;
-  font-size: 36px;
-  margin-left: 35px;
-  margin-top: 100px;
-}
 
-.registration_page {
-  margin: 0 auto;
-  width: 369px;
 
-}
 
-.registration_enter_label {
-  margin: 10px;
-  font-size: 14px;
-  padding: 10px;
 
-}
-
-.registration_page_button {
-  position: center;
-  margin-top: 17px;
-  margin-left: 50px;
-  margin-bottom: 30px;
-}
-
-.input_reg {
-  line-height: 1.5;
-  position: absolute;
-  width: 316px;
-  height: 27px;
-  background: #E3F2FF;
-  border-color: transparent;
-  padding: 10px;
-}
-
-select {
-  background: #E3F2FF;
-  width: 316px;
-  height: 27px;
-  border-color: transparent;
-}
-
-.input_login {
-  position: absolute;
-  width: 300px;
-  height: 32px;
-  background: #E0EFFC;
-  border-radius: 20px;
-  border-color: transparent;
-}
-
-.login_page {
-  margin: 0 auto;
-  width: 266px;
-  position: center;
-}
-
-.login_page_button {
-  width: 130px;
-  height: 26px;
-  background: #E0EFFC;
-  border-radius: 20px;
-  border-color: transparent;
-  font-family: Montserrat, serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 17px;
-  text-align: center;
-  position: absolute;
-  margin-left: 100px;
-  margin-top: 24px;
-}
-
-.text_restore_password {
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 44px;
-  margin-top: 40px;
-  margin-bottom: 25px;
-}
-
-.text_restore {
-  font-size: 15px;
-  line-height: 22px;
-}
-
-.input_restore {
-  width: 338px;
-  height: 36px;
-  background: #E0EFFC;
-  border-radius: 20px;
-  border-color: transparent;
-  margin-left: 28px;
-}
-
-.restore_page {
-  margin: 0 auto;
-  width: 401px;
-}
-
-.restore_page_button {
-  margin-top: 35px;
-  margin-left: 85px;
-}
