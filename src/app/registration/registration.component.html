@@ -8,13 +8,13 @@
     <p class="text_registration"> Реєстрація</p>
 
     <!-- First name -->
-    <p class="registration_enter_label">
+    <p class="registration_enter_label ">
       <label for="firstname">Ім'я: </label><br><br>
       <input autofocus type="text" id="firstname" formControlName="firstname" class="input_reg"/><br>
     </p>
     <div *ngIf="f.firstname.touched && f.firstname.errors" >
-      <div *ngIf="f.firstname.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
-      <div class="invalid-data" *ngIf="f.firstname.errors.pattern">Неправильний формат</div>
+      <div *ngIf="f.firstname.errors.required" class="registration_enter_label invalid-data">Це поле обов'язкове для заповнення</div>
+      <div class="registration_enter_label invalid-data" *ngIf="f.firstname.errors.pattern">Неправильний формат</div>
     </div>
     <!--  -->
 
@@ -24,8 +24,8 @@
       <input type="text" id="lastname" formControlName="lastname" class="input_reg"/><br>
     </p>
     <div *ngIf="f.lastname.touched && f.lastname.errors" >
-      <div *ngIf="f.lastname.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
-      <div class="invalid-data" *ngIf="f.lastname.errors.pattern">Неправильний формат</div>
+      <div *ngIf="f.lastname.errors.required" class="registration_enter_label invalid-data">Це поле обов'язкове для заповнення</div>
+      <div class="registration_enter_label invalid-data" *ngIf="f.lastname.errors.pattern">Неправильний формат</div>
     </div>
     <!--  -->
 
@@ -42,8 +42,8 @@
       <input type="text" id="city" formControlName="city" class="input_reg"/><br>
     </p>
     <div *ngIf="f.city.touched && f.city.errors" >
-      <div *ngIf="f.city.errors.required" class="invalid-data">Це поле обов'язкове для заповнення</div>
-      <div class="invalid-data" *ngIf="f.city.errors.pattern">Неправильний формат</div>
+      <div *ngIf="f.city.errors.required" class="registration_enter_label invalid-data">Це поле обов'язкове для заповнення</div>
+      <div class="registration_enter_label invalid-data" *ngIf="f.city.errors.pattern">Неправильний формат</div>
     </div>
     <!--  -->
 
@@ -53,8 +53,8 @@
       <input type="email" id="email" formControlName="email" class="input_reg"/><br>
     </p>
     <div *ngIf="f.email.touched && f.email.errors">
-      <div class="invalid-data" *ngIf="f.email.errors.required">Це поле обов'язкове для заповнення</div>
-      <div class="invalid-data" *ngIf="f.email.errors.pattern">Неправильний формат</div>
+      <div class="registration_enter_label invalid-data" *ngIf="f.email.errors.required">Це поле обов'язкове для заповнення</div>
+      <div class="registration_enter_label invalid-data" *ngIf="f.email.errors.pattern">Неправильний формат</div>
     </div>
     <!--  -->
 
@@ -66,7 +66,7 @@
     </p>
 
     <div *ngIf="form.get('pword').get('password').touched && form.get('pword').get('password').errors">
-      <div class="invalid-data" *ngIf="form.get('pword').get('password').errors.required">Це поле обов'язкове для заповнення</div>
+      <div class="registration_enter_label invalid-data" *ngIf="form.get('pword').get('password').errors.required">Це поле обов'язкове для заповнення</div>
     </div>
 
     <p class="registration_enter_label">
@@ -75,7 +75,7 @@
     </p>
     </div>
 
-    <div class="invalid-data" *ngIf="form.get('pword').errors != null">
+    <div class="registration_enter_label invalid-data" *ngIf="form.get('pword').errors != null">
       Паролі повинні співпадати
     </div>
     <!--  -->

@@ -1,6 +1,4 @@
-.invalid-data {
-    color: red;
-}
+
 .registration_page {
   margin: 0 auto;
   width: 369px;
@@ -49,4 +47,9 @@ select {
   margin-left: 50px;
   margin-bottom: 30px;
 }
-
+.invalid-data {
+color: red;
+font-size:12px;
+border-left:50px;
+padding-top:0px;
+}
