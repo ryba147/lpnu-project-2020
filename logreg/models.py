@@ -8,7 +8,6 @@ class User(models.Model):
     birth_date = models.DateField(blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
     password = models.CharField(max_length=30, blank=False, null=True)
-    rating = models.FloatField(blank=True, null=True)
 
     SEX_CHOICES = (
         (0, 'Male'),
