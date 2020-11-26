@@ -38,7 +38,9 @@ class UserView(View):
             return JsonResponse("Failed to update user information", safe=False)
 
     def post(self, request, email=""):
+        # print(self.kwargs['email'])
         if email == "":
+        # if self.kwargs['email'] == "":
             user_data = JSONParser().parse(request)
             user_serializer = UserSerializer(data=user_data)
             if user_serializer.is_valid():
@@ -50,7 +52,8 @@ class UserView(View):
         else:
             # search the specified email and return data in json
             try:
-                user = User.objects.get(email=email)
+                # user = User.objects.get(email=email)
+                user = User.objects.get(email=self.kwargs['email'])
                 user_serializer = UserSerializer(user, many=False)
                 print(user_serializer.data)
                 return JsonResponse(user_serializer.data, safe=False)
@@ -58,6 +61,8 @@ class UserView(View):
                 return JsonResponse("User does not exists", safe=False)
 
     def delete(self, request, email=""):
-        user = User.objects.get(email=email)
+        # print(self.kwargs['email'])
+        # user = User.objects.get(email=email)
+        user = User.objects.get(email=self.kwargs['email'])
         user.delete()
         return JsonResponse("User account was deleted successfully", safe=False)
