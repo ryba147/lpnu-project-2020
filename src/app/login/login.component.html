@@ -4,7 +4,7 @@
     <p class="registration_enter_label">
       <label >1. Введіть електронну пошту</label><br><br>
       <input [class.is-invalid] = "userEmails.get('loginEmail').invalid && userEmails.get('loginEmail').touched"
-       type="email" id="login_email"  class="input_login form-control" formControlName="loginEmail"><br>
+       type="email" id="login_email"  class="input_login form-control" formControlName="loginEmail" [(ngModel)]="email"  ><br>
     </p>
     <div class="box_error">
     <div *ngIf="(loginEmail.invalid && loginEmail.touched) || loginEmail.dirty">
@@ -14,9 +14,9 @@
 </div>
     <p class="registration_enter_label">
       <label for="login_password">2. Введіть пароль</label><br><br>
-      <input type="password" id="login_password"  class="input_login "><br><br>
+      <input type="password" id="login_password"  class="input_login " [(ngModel)]="pwd" [ngModelOptions]="{standalone: true}"><br><br>
     </p>
-    <button type="submit" class="login_page_button ">Увійти</button>
+    <button type="submit" class="login_page_button " (click)="enter()" >Увійти</button>
     <br><br>
     <a href="/">
       <button type="button" class=" login_page_button ">Назад</button>
