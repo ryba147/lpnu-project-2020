@@ -1,0 +1,531 @@
+---
+openapi: 3.0.0
+info:
+  title: Eventure
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/ryba147/Eventure/1.0.0
+  description: SwaggerHub API Auto Mocking
+tags:
+- name: user
+- name: event
+- name: comment
+paths:
+  /user:
+    get:
+      tags:
+      - user
+      summary: Get userlist from db
+      operationId: getUsers
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    put:
+      tags:
+      - user
+      summary: Update user info
+      operationId: editUser
+      parameters:
+      - name: first_name
+        in: query
+        description: Anyway, history of name changes will be available for all users.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: last_name
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: birth_date
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: city
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: family_status
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: pets
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: organizer
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: Comment was edited successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Invalid announcement id
+        "404":
+          description: Announcement was not found
+    post:
+      tags:
+      - user
+      summary: Create user
+      operationId: createUser
+      requestBody:
+        description: Created user object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "201":
+          description: successful operation
+  /user/{email}:
+    post:
+      tags:
+      - user
+      summary: Check if user is in db. Login
+      operationId: loginUser
+      parameters:
+      - name: email
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+        "400":
+          description: Invalid username or password supplied
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      operationId: deleteUser
+      parameters:
+      - name: email
+        in: path
+        description: The email of user to be deleted.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Invalid email supplied
+        "404":
+          description: User not found
+  /event:
+    get:
+      tags:
+      - event
+      summary: Get eventlist from db
+      operationId: getEvents
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+    post:
+      tags:
+      - event
+      summary: Create an event
+      operationId: createEvent
+      requestBody:
+        description: Create event object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+        required: true
+      responses:
+        "201":
+          description: successful operation
+  /event/filterEventsBy:
+    get:
+      tags:
+      - event
+      summary: Filter events
+      description: Multiple filter values can be provided with comma separated strings.
+      operationId: filterEvents
+      parameters:
+      - name: filterName
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - date
+            - location
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        "400":
+          description: Invalid filter value
+  /event/{event_id}:
+    put:
+      tags:
+      - event
+      summary: Edit event
+      description: This can only be done by organizer.
+      operationId: editEvent
+      parameters:
+      - name: event_id
+        in: path
+        description: Id of comment to edit
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: event_name
+        in: query
+        description: Anyway, history of name changes will be available for all users
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: event_description
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: event_photo
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: event_date
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Comment was edited successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        "400":
+          description: Invalid announcement id
+        "404":
+          description: Announcement was not found
+    delete:
+      tags:
+      - event
+      summary: Delete event
+      description: This can only be done by organizer.
+      operationId: deleteEvent
+      parameters:
+      - name: event_id
+        in: path
+        description: The id of event that needs to be deleted
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "400":
+          description: Invalid id supplied
+        "404":
+          description: Event not found
+  /comment:
+    get:
+      tags:
+      - comment
+      summary: Get commentlist from db
+      operationId: getComments
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+    post:
+      tags:
+      - comment
+      summary: Comment the event post
+      operationId: createComment
+      requestBody:
+        description: Create comment object.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Comment'
+        required: true
+      responses:
+        "201":
+          description: successful operation
+  /comment/findCommentByEventId:
+    get:
+      tags:
+      - comment
+      summary: Finds comments related to specified event
+      description: Multiple id values can be provided with comma separated strings.
+      operationId: findCommentsByEventId
+      parameters:
+      - name: eventId
+        in: query
+        description: Get all comments related to specified event. Try 0 for test.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+              example:
+                event1:
+                  id: 3
+                  event: 0
+                  author: 16
+                  comment_text: great event to visit
+                  pub_date: 2020-11-23T00:43:08.101Z
+                event2:
+                  id: 6
+                  event: 0
+                  author: 23
+                  comment_text: highly recommend
+                  pub_date: 2020-11-23T00:43:08.101Z
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        "400":
+          description: Invalid id value
+  /comment/{commentId}:
+    put:
+      tags:
+      - comment
+      summary: Edit comment
+      operationId: editComment
+      parameters:
+      - name: commentId
+        in: path
+        description: Id of comment to edit.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: integer64
+      - name: newCommentText
+        in: query
+        description: Edited comment.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Comment was edited successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        "400":
+          description: Invalid announcement id
+        "404":
+          description: Announcement was not found
+    delete:
+      tags:
+      - comment
+      summary: Delete comment by id
+      operationId: deleteComment
+      parameters:
+      - name: commentId
+        in: path
+        description: Id of comment to delete.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: integer64
+      responses:
+        "200":
+          description: Comment was deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        "400":
+          description: Invalid ID
+        "404":
+          description: Comment was not found
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        birth_date:
+          type: string
+          format: date-time
+        email:
+          type: string
+        password:
+          type: string
+        city:
+          type: string
+        sex:
+          type: integer
+          enum:
+          - 0
+          - 1
+        family_status:
+          type: integer
+          enum:
+          - 0
+          - 1
+          - 2
+        pets:
+          type: array
+          items:
+            type: string
+        organizer:
+          type: boolean
+          default: false
+        rating:
+          type: number
+      xml:
+        name: User
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+        event_name:
+          type: string
+        event_description:
+          type: string
+        event_photo:
+          type: string
+          description: photo_url
+        event_date:
+          type: string
+          format: date-time
+      xml:
+        name: Event
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        event:
+          type: integer
+          description: event_id
+        author:
+          type: integer
+          description: user_id
+        comment_text:
+          type: string
+        pub_date:
+          type: string
+          format: date-time
+      xml:
+        name: Comment
