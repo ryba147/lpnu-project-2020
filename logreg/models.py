@@ -22,7 +22,7 @@ class User(models.Model):
     )
     family_status = models.IntegerField(blank=True, null=True, choices=FAMILY_STATUS)
 
-    pets = models.CharField(max_length=50, blank=True)
+    pets = models.CharField(max_length=80, blank=True)
     email = models.EmailField(blank=False, null=False, primary_key=True)
     organizer = models.BooleanField(default=False, blank=False, null=True)
 
