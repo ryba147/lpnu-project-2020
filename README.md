@@ -11,8 +11,15 @@ Deploying: ```git push heroku json-backend-deploy:main```
 ```heroku local```<br>
 ```heroku ps```<br>
 ```heroku ps:stop run.1```<br>
-http://0.0.0.0:5000/user/
+for heroku local: http://0.0.0.0:5000/user/ <br>
+using deployment: https://rocky-taiga-83171.herokuapp.com/ 
 
+use ```POST``` on -> http://127.0.0.1:8080/user/ (to create use JSON) <br>
+use ```POST``` on -> http://127.0.0.1:8080/user/ANY-EMAIL/  (to check if user with specified email is in db) <br>
+use ```DELETE``` on -> http://127.0.0.1:8080/user/ANY-EMAIL/ (to delete user with specified email from db) <br>
+use ```GET``` on -> http://127.0.0.1:8080/user/ (to get userlist from db) <br>
+use ```PUT``` on -> http://127.0.0.1:8080/user/ (use JSON to update info. do not forget to CREATE before EDITing) <br><br>
+JSON body:
 ```
 {
     "first_name": "Taras",
