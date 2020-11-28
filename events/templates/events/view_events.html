@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eventure | Events list</title>
+</head>
+<body>
+    <h2>Available events:</h2>
+    {% for i in events_list %}
+        <h4><i>Назва:</i> {{ i.event_name }}</h4>
+        <h4><i>Опис:</i> {{ i.event_description }}</h4>
+        <h4><i>Дата проведення:</i> {{ i.event_date }}</h4>
+        <img style="max-width: 10%" src="{{ i.event_photo.url }}" alt=""/>
+        <br><i>Фото</i>
+        <hr>
+    {% endfor %}
+    <a href="/login">Log in</a><br>
+    <a href="/signup">Sign up</a><br><br>
+    <a href="/admin">Admin</a><br>
+</body>
+</html>
