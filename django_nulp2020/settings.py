@@ -83,7 +83,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'pgnulp',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': 5432,
         # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
