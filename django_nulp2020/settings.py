@@ -79,15 +79,16 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'eventuredb',
-        'USER': 'postgres',
-        'PASSWORD': 'pgnulp',
-        'HOST': '127.0.0.1',
+        'NAME': 'd8rsgppqep422u',
+        'USER': 'enrxyfggwpzgle',
+        'PASSWORD': '8b08f1e7498557d7ffd0e0482ae93d0fe66881d26f46ee4cce9ba60c8a741ae3',
+        'HOST': 'ec2-54-156-149-189.compute-1.amazonaws.com',
         'PORT': 5432,
         # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-#
+# postgres://enrxyfggwpzgle:8b08f1e7498557d7ffd0e0482ae93d0fe66881d26f46ee4cce9ba60c8a741ae3@
+# ec2-54-156-149-189.compute-1.amazonaws.com:5432/d8rsgppqep422u
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
