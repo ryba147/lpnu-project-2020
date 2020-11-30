@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { User } from '../user';
+import { templateJitUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -30,9 +32,13 @@ export class LoginComponent implements OnInit {
   });
 
   enter(){
-    this.http.post('http://127.0.0.1:8080/user/'+this.email+'/',{'email':this.email}).subscribe(data =>{
-      if(data!='User does not exist!'){
+    this.http.post('http://127.0.0.1:8080/user/'+this.email+'/',{}).subscribe(data =>{
+      if(data['user']!=''){
         this.router.navigate(['/home']);
+      }
+      else{
+        this.pwd = '';
+        alert('User does not exists!')
       }
     })
     
