@@ -40,6 +40,11 @@
     float: left;
 }
 
+.footer .trademark{
+    font-size: 10px;
+    font-family: Montserrat;
+    float: left;
+}
 
 .footer .social-media{
     float: right;
