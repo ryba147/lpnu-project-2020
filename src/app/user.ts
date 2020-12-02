@@ -1,5 +1,6 @@
+import { Data } from '@angular/router';
+
 export class User{
-    user_id:int;
     first_name: string;
     last_name: string;
     birth_date: Date;
@@ -8,8 +9,7 @@ export class User{
     city:string;
     sex:number;
     family_status:number;
-    pets:[];
+    pets:string;
     organizer:boolean;
     rating:number;
-
 }

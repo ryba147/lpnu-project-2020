@@ -8,6 +8,7 @@ import { HomePageComponent } from './home-page/home-page.component'
 import { from } from 'rxjs';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { AboutUsComponent } from './about-us/about-us.component'
 
 const appRoutes: Routes = [
   { path: '', component: TitlePageComponent },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'contact-us',component:ContactUsComponent},
   { path: 'privacy-policy',component:PrivacyPolicyComponent},
+  { path: 'about-us',component:AboutUsComponent},
 ];
 
 @NgModule({

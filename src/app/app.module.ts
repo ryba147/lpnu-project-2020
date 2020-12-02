@@ -15,7 +15,9 @@ import { from } from 'rxjs';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import {HeaderComponent} from './header/header.component'
+import {HeaderComponent} from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutUsComponent } from './about-us/about-us.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {HeaderComponent} from './header/header.component'
     HomePageComponent,
     ContactUsComponent,
     PrivacyPolicyComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    AboutUsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule],
   providers: [],
