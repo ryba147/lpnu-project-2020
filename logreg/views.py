@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-
+import json
 from .models import User
 from .serializers import UserSerializer
 
@@ -17,10 +17,16 @@ class UserView(View):
     def dispatch(self, request, *args, **kwargs):
         return super(UserView, self).dispatch(request, *args, **kwargs)
 
-    def options(self, request, id):
-        response = HttpResponse()
-        response["allow"] = ",".join([self.allowed_methods])
-        return response
+    def make_response(self,body):
+    	response = HttpResponse(body)
+    	response['Access-Control-Allow-Origin'] = '*'	
+    	response['Access-Control-Allow-Headers'] = "Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers"
+    	response['Content-Type'] = 'application/json'
+    	response['allow'] = ",".join(self.allowed_methods)
+    	return response
+
+    def options(self, request, email=""):
+        return self.make_response('')
 
     def get(self, request, email=""):
         users = User.objects.all()
@@ -38,31 +44,27 @@ class UserView(View):
             return JsonResponse("Failed to update user information", safe=False)
 
     def post(self, request, email=""):
-        # print(self.kwargs['email'])
         if email == "":
-        # if self.kwargs['email'] == "":
+            print("Reached email")
             user_data = JSONParser().parse(request)
             user_serializer = UserSerializer(data=user_data)
             if user_serializer.is_valid():
                 user_serializer.save()
-                return JsonResponse("New user was created successfully", safe=False)
+                return self.make_response(json.dumps({'status':"New user was created successfully"}))
             else:
-                return JsonResponse("Failed to create user", safe=False)
+                return self.make_response(json.dumps({'status':"Failed to create user"}))
 
         else:
             # search the specified email and return data in json
             try:
-                # user = User.objects.get(email=email)
-                user = User.objects.get(email=self.kwargs['email'])
+                user = User.objects.get(email=email)
                 user_serializer = UserSerializer(user, many=False)
                 print(user_serializer.data)
-                return JsonResponse(user_serializer.data, safe=False)
+                return self.make_response(json.dumps({'user':user_serializer.data}))
             except ObjectDoesNotExist:
-                return JsonResponse("User does not exists", safe=False)
+            	return self.make_response(json.dumps({'user':''}))
 
     def delete(self, request, email=""):
-        # print(self.kwargs['email'])
-        # user = User.objects.get(email=email)
-        user = User.objects.get(email=self.kwargs['email'])
+        user = User.objects.get(email=email)
         user.delete()
         return JsonResponse("User account was deleted successfully", safe=False)
