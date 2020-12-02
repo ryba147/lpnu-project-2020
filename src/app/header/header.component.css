@@ -1,0 +1,32 @@
+.header {
+  height: 70px;
+  /* width: 100%; */
+  background-color: rgb(128, 180, 211);
+}
+
+.logo {
+  margin-left: 10px;
+  float: left;
+  max-height: 100%;
+  /* width: 25%; */
+  width: 75px;
+}
+
+.buttons {
+  float: right;
+  height: 100%;
+  /* width: 25%; */
+  margin-right: 10px;
+}
+
+.textF {
+  /* float: left; */
+  margin-left: 7000px;
+  margin: auto;
+  height: 100%;
+  width: min-content;
+  font-size: 60px;
+
+  font-family: "Emilys Candy", cursive;
+  color: rgb(70, 102, 121);
+}
