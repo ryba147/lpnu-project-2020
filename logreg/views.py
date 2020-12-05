@@ -50,9 +50,9 @@ class UserView(View):
             user_serializer = UserSerializer(data=user_data)
             if user_serializer.is_valid():
                 user_serializer.save()
-                return self.make_response(json.dumps({'status':"New user was created successfully"}))
+                return JsonResponse("New user was created successfully", safe=False)
             else:
-                return self.make_response(json.dumps({'status':"Failed to create user"}))
+                return JsonResponse("Failed to create user", safe=False)
 
         else:
             # search the specified email and return data in json

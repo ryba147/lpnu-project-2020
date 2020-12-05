@@ -10,21 +10,22 @@ class User(models.Model):
     password = models.CharField(max_length=30, blank=False, null=True)
 
     SEX_CHOICES = (
-        (0, 'Male'),
-        (1, 'Female'),
+        ('male', 'Male'),
+        ('female', 'Female'),
     )
-    sex = models.IntegerField(blank=True, null=True, choices=SEX_CHOICES)
+    sex = models.CharField(max_length=20, blank=True, null=True, choices=SEX_CHOICES)
 
     FAMILY_STATUS = (
-        (0, 'Single'),
-        (1, 'In relationship'),
-        (2, 'Married')
+        ('single', 'Single'),
+        ('in relationship', 'In relationship'),
+        ('married', 'Married')
     )
-    family_status = models.IntegerField(blank=True, null=True, choices=FAMILY_STATUS)
+    family_status = models.CharField(max_length=30, blank=True, null=True, choices=FAMILY_STATUS)
 
-    pets = models.CharField(max_length=80, blank=True)
+    pets = models.CharField(max_length=128, blank=True)
     email = models.EmailField(blank=False, null=False, primary_key=True)
     organizer = models.BooleanField(default=False, blank=False, null=True)
+    rating = models.FloatField(null=True, blank=True)
 
     def __str__(self):
         return self.first_name
