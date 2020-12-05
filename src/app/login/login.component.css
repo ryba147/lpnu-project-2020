@@ -1,0 +1,60 @@
+
+.login_page {
+  margin-left: auto;
+  margin-right: auto;
+  width:290px;
+  height:56vh;
+}
+
+.text_login {
+  font-style: normal;
+  font-weight: 400;
+  line-height: 44px;
+  text-align: center;
+  font-size: 36px;
+  margin-top: 100px;
+  margin-left:40px;
+}
+.registration_enter_label {
+  margin: 10px;
+  font-size: 14px;
+  padding:10px;
+  padding-top:15px;
+
+}
+.input_login {
+  position: absolute;
+  width: 300px;
+  height: 32px;
+  background: #E0EFFC;
+  border-radius: 20px;
+  border-color: transparent;
+
+}
+
+.login_page_button {
+  width: 130px;
+  height: 26px;
+  background: #E0EFFC;
+  border-radius: 20px;
+  border-color: transparent;
+  font-family: Montserrat, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: center;
+  position: absolute;
+  margin-left: 105px;
+  margin-top: 24px;
+}
+.box_error{
+width:600px;
+}
+.text-danger{
+color:red;
+font-size:13px;
+border-left:50px;
+padding-top:0px;
+}
+

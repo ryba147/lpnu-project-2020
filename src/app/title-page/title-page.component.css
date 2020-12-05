@@ -1,0 +1,40 @@
+.Main_page {
+  font-family: Montserrat, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  padding-top: 240px;
+
+}
+.wrapper {
+  margin: 0 auto;
+  width: 200px;
+}
+.registration_button {
+  font-family: Montserrat, serif;
+  text-align: center;
+  background: #E0EFFC;
+  position: absolute;
+  width: 219px;
+  height: 40px;
+  border-radius: 20px;
+  border-color: transparent;
+}
+.log_in_button {
+  margin-top: 43px;
+}
+.forget_password_button {
+  margin-top: 115px;
+  margin-left: 40px;
+  height: 17px;
+  top: 165px;
+  font-family: Montserrat, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  text-align: center;
+  border-color: transparent;
+  background-color: transparent;
+}
