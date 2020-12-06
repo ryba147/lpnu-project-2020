@@ -17,13 +17,14 @@ class UserView(View):
     def dispatch(self, request, *args, **kwargs):
         return super(UserView, self).dispatch(request, *args, **kwargs)
 
-    def make_response(self,body):
-    	response = HttpResponse(body)
-    	response['Access-Control-Allow-Origin'] = '*'	
-    	response['Access-Control-Allow-Headers'] = "Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers"
-    	response['Content-Type'] = 'application/json'
-    	response['allow'] = ",".join(self.allowed_methods)
-    	return response
+    def make_response(self, body):
+        response = HttpResponse(body)
+        response['Access-Control-Allow-Origin'] = '*'
+        response[
+            'Access-Control-Allow-Headers'] = "Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers"
+        response['Content-Type'] = 'application/json'
+        response['allow'] = ",".join(self.allowed_methods)
+        return response
 
     def options(self, request, email=""):
         return self.make_response('')
@@ -60,9 +61,9 @@ class UserView(View):
                 user = User.objects.get(email=email)
                 user_serializer = UserSerializer(user, many=False)
                 print(user_serializer.data)
-                return self.make_response(json.dumps({'user':user_serializer.data}))
+                return self.make_response(json.dumps({'user': user_serializer.data}))
             except ObjectDoesNotExist:
-            	return self.make_response(json.dumps({'user':''}))
+                return self.make_response(json.dumps({'user': ''}))
 
     def delete(self, request, email=""):
         user = User.objects.get(email=email)

@@ -5,7 +5,8 @@ http://localhost:8080/login/ <br>
 http://localhost:8080/signup/
 
 **Do not forget to track changes via ```git add .``` and ```git status```, then use ```git commit -m 'description'```<br>**
-Deploying: ```git push heroku json-backend-deploy:main```
+Deploying: ```git push heroku json-backend-deploy:main```<br>
+Renaming the app: ```heroku apps:rename newname --app oldname```
 
 *Running and stopping app using HEROKU*<br>
 ```heroku local```<br>
@@ -25,10 +26,12 @@ JSON body:
     "first_name": "Taras",
     "last_name": "Vilinskyi",
     "city": "Lviv",
-    "password": "12345",
-    "sex": 1,
-    "family_status": 0,
-    "pets": "dog",
-    "email": "123@example.com"
+    "password": "pass1",
+    "sex": "male",
+    "family_status": "single",
+    "pets": "dog, cat, parrot",
+    "email": "2@ex.com",
+    "organizer": false,
+    "rating": 86.5
 }
 ```
