@@ -51,7 +51,9 @@ class UserView(View):
             user_serializer = UserSerializer(data=user_data)
             if user_serializer.is_valid():
                 user_serializer.save()
-                return JsonResponse("New user was created successfully", safe=False)
+                user = User.objects.get(email=user_data["email"])
+                return self.make_response(json.dumps({'email': user.email}))
+                # return JsonResponse("New user was created successfully", safe=False)
             else:
                 return JsonResponse("Failed to create user", safe=False)
 
