@@ -70,9 +70,11 @@ class UserView(View):
                 print("q_email:", query_email)
                 user = User.objects.get(email=query_email)  # search user with specified email
                 if user.password == query_password:
-                    print("YES. LINE 84!")
-                user_serializer = UserSerializer(user, many=False)
-                return self.make_response(json.dumps({'user': user_serializer.data}))  # user was found. let him log in
+                    print("User exists!")
+                    user_serializer = UserSerializer(user, many=False)
+                    return self.make_response(json.dumps({'user': user_serializer.data}))  # user was found. let him log in
+                else:
+                    return self.make_response(json.dumps({'user': ''}))
             except ObjectDoesNotExist:
                 return self.make_response(json.dumps({'user': ''}))  # user was not found
 
