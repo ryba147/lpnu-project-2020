@@ -13,7 +13,7 @@ Renaming the app: ```heroku apps:rename newname --app oldname```
 ```heroku ps```<br>
 ```heroku ps:stop run.1```<br>
 for heroku local: http://0.0.0.0:5000/user/ <br>
-using deployment: https://rocky-taiga-83171.herokuapp.com/ 
+using deployment: https://eventure-lpnu.herokuapp.com/ 
 
 use ```POST``` on -> http://127.0.0.1:8080/user/ (to create use JSON) <br>
 use ```POST``` on -> http://127.0.0.1:8080/user/ANY-EMAIL/  (to check if user with specified email is in db) <br>
