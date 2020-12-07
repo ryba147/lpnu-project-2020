@@ -10,7 +10,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { AboutUsComponent } from './about-us/about-us.component'
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   { path: '', component: TitlePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: RegistrationComponent },
