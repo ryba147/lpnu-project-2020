@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { TitlePageComponent } from './title-page/title-page.component';
-import { from } from 'rxjs';
+
 import { HomePageComponent } from './home-page/home-page.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
