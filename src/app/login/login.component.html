@@ -2,10 +2,10 @@
   <p class="text_login ">Вхід</p>
   <form [formGroup]="userEmails" class="login_page ">
     <p class="registration_enter_label">
-      <label>1. Введіть електронну пошту</label><br><br>
+      <label>1. Введіть електронну пошту</label>
       <input [class.is-invalid]="userEmails.get('loginEmail').invalid && userEmails.get('loginEmail').touched"
-        type="email" id="login_email" class="input_login form-control" formControlName="loginEmail"
-        [(ngModel)]="email"><br>
+        type="email" id="login_email" class="input_login " formControlName="loginEmail"
+        [(ngModel)]="email">
     </p>
     <div class="box_error">
       <div *ngIf="(loginEmail.invalid && loginEmail.touched) || loginEmail.dirty">
@@ -17,10 +17,9 @@
     </div>
     <!--  -->
     <p class="registration_enter_label">
-      <label for="login_password">2. Введіть пароль</label><br><br>
+      <label >2. Введіть пароль</label>
       <input [class.is-invalid]="userEmails.get('loginPassword').invalid && userEmails.get('loginPassword').touched"
         type="password" id="login_password" class="input_login " [(ngModel)]="pwd" formControlName="loginPassword">
-        <br><br>
     </p>
     <div class="box_error">
       <div *ngIf="(loginPassword.invalid && loginPassword.touched) || loginPassword.dirty">
