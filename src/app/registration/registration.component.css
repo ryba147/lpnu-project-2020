@@ -1,7 +1,8 @@
 
 .registration_page {
   margin: 0 auto;
-  width: 369px;
+  width: 360px;
+  display: flex;
 
 }
 .text_registration {
@@ -10,20 +11,26 @@
   text-align: center;
 }
 .registration_enter_label {
-  margin: 10px;
   font-size: 14px;
   padding: 10px;
+  margin-bottom: 1px;
+  margin-top: 20px;
+  margin-left: 10px;
+
 }
+
 .input_reg {
   line-height: 1.5;
-  position: absolute;
   width: 316px;
   height: 27px;
   background: #E3F2FF;
   border-color: transparent;
   padding: 10px;
+  margin-bottom: 1px;
+  margin-top: 10px;
 }
 select {
+  margin-top: 10px;
   background: #E3F2FF;
   width: 316px;
   height: 27px;
@@ -31,25 +38,27 @@ select {
   font-family: Montserrat,serif;
   padding-left:  0.6em ;
 }
+.registration_button_position{
+  width: 316px;
+  margin: 0 auto;
+}
 .registration_button {
   font-family: Montserrat, serif;
   text-align: center;
   background: #E0EFFC;
-  position: absolute;
   width: 219px;
   height: 40px;
   border-radius: 20px;
   border-color: transparent;
+margin-left: 49px;
 }
-.registration_page_button {
-  position: center;
-  margin-top: 17px;
-  margin-left: 50px;
-  margin-bottom: 30px;
-}
+
 .invalid-data {
-color: red;
-font-size:12px;
-border-left:50px;
-padding-top:0px;
+  position: absolute;
+  color: red;
+  font-size:12px;
+  width: 316px;
+  margin-left: 20px;
+
+
 }
