@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { TitlePageComponent } from './title-page/title-page.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component'
-import { from } from 'rxjs';
+
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { AboutUsComponent } from './about-us/about-us.component'
