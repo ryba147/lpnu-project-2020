@@ -7,9 +7,9 @@ import {
 } from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { User } from '../interfaces/user';
-import { from } from 'rxjs';
 import { Router } from '@angular/router';
-
+import { RegistrationService } from '../registration.service'
+import { from } from 'rxjs';
 function passwordMatcher(c: AbstractControl) {
   return c.get('password').value === c.get('confirm_password').value
     ? null
@@ -25,7 +25,7 @@ export class RegistrationComponent implements OnInit {
   user: User = new User();
   confPass:string;
   form: FormGroup;
-  constructor(public fb: FormBuilder,private http:HttpClient,private router:Router) {
+  constructor(public fb: FormBuilder,private http:HttpClient,private router:Router,private registration:RegistrationService) {
     this.form = this.fb.group({
       firstname: ['', [Validators.required, Validators.pattern('^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$')]],
       lastname: ['', [Validators.required, Validators.pattern('^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$')]],
@@ -43,20 +43,6 @@ export class RegistrationComponent implements OnInit {
   get f() { return this.form.controls; }
   ngOnInit(): void {}
   register(){
-    console.log(this.user);
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    this.http.post('http://127.0.0.1:8080/user/',JSON.stringify(this.user),{headers:headers}).subscribe(data =>{
-      console.log(data);
-      if(data['status']!='Failed to create user'){
-        this.router.navigate(['/home']);
-      }
-      else{
-        alert('Cannot create user!');
-        this.user.email = '';
-        this.user.password = '';
-
-      }
-
-    })
+    this.registration.register(this.user);
   }
 }
