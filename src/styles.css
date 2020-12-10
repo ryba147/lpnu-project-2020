@@ -393,15 +393,9 @@ body {
   font-weight: 400;
   background: #FDFDFD;
 }
-
-/*
-.registration_button:disabled:hover {
-  background: rgb(144, 144, 144);
+html{
+  height: 100vh;
 }
-*/
-
-
-
 
 
 
