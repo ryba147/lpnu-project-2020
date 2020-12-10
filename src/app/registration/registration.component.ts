@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { User } from '../user';
+import { User } from '../interfaces/user';
 import { from } from 'rxjs';
 import { Router } from '@angular/router';
 
