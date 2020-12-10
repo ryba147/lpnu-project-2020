@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { LoginService } from '../login.service'
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   email: string;
   pwd: string;
   response: any;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private login: LoginService) {}
 
   get loginEmail() {
     return this.userEmails.get('loginEmail');
@@ -34,16 +35,7 @@ export class LoginComponent implements OnInit {
   });
 
   enter() {
-    this.http
-      .post('http://127.0.0.1:8080/user/' + this.email + '/', {})
-      .subscribe((data) => {
-        if (data['user'] !== '') {
-          this.router.navigate(['/home']);
-        } else {
-          this.pwd = '';
-          alert('User does not exists!');
-        }
-      });
+    this.login.loginEmail(this.email,this.pwd);
   }
 
   ngOnInit(): void {}
