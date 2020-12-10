@@ -1,64 +1,78 @@
 .footer{
-  /*  position: absolute;*/
-    position: relative;
-    display: block;
-    width:100%;
-    height:140px;
-    font-family: Montserrat;
-    font-style: italic;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 15px;
-    /* identical to box height */
-    text-align: center;
-    background-color: rgb(56, 73, 85,100);
-}
-
-.footer span{
-    position: relative;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-    /* identical to box height */
-
-    text-align: center;
-    margin: 65px;
-    color: #FFFFFF;
-}
-
-.footer a{
-    margin-right: 20px;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-}
-
-.footer .text{
-    float: left;
-}
-
-.footer .trademark{
-    font-size: 10px;
-    font-family: Montserrat;
-    float: left;
-}
-
-.footer .social-media{
-    float: right;
-    margin: 50px;
-}
-
-.footer .social-media div{
-    width: fit-content;
-    height: fit-content;
-    background-color: #FFE5F5;
-    border-radius: 2px;
-    padding:2px;
-    display: inline-block;
+    /*  position: absolute;*/
+      position: relative;
+      display: block;
+      width:100%;
+      height:140px;
+      font-family: Montserrat;
+      font-style: italic;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 15px;
+      /* identical to box height */
+      text-align: center;
+      background-color: rgb(56, 73, 85,100);
+  }
+  
+  .footer span{
+      position: relative;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 17px;
+      /* identical to box height */
+  
+      text-align: center;
+      margin: 65px;
+      color: #FFFFFF;
+  }
+  
+  .footer a{
+      margin-right: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      color: white;
+  }
+  
+  .footer .text{
+      float: left;
+  }
+  
+  .footer .text .link-wrapper{
+    margin: 0;
+    padding: 0;
+    border-right: 1px solid white;
+    padding: 0px;
+  }
+  .footer .text .link-wrapper a{
+    margin-left: 10px;
     margin-right: 10px;
-}
-.footer .social-media div img{
-    width: 15px;
-}
+  }
+
+  .footer .trademark{
+   /*margin-top: 10pz;*/
+      font-size: 14px;
+      font-family: Montserrat;
+      font-style: italic;
+      float: left;
+  }
+  
+  .footer .social-media{
+      float: right;
+      margin: 50px;
+  }
+  
+  .footer .social-media div{
+      width: fit-content;
+      height: fit-content;
+      background-color: #FFE5F5;
+      border-radius: 2px;
+      padding:2px;
+      display: inline-block;
+      margin-right: 10px;
+  }
+  
+  .footer .social-media div img{
+      width: 15px;
+  }
