@@ -5,3 +5,5 @@ tsconfig.spec.json
 tsconfig.json
 tsconfig.app.json
 .DS_Store
+package-lock.json
+package.json

@@ -1,8 +1,9 @@
 <main class="main  registration_page">
   <!-- <p>value: {{ form.value | json }}</p> -->
   <!-- <p>the whole form status: {{ form.status | json }} , {{form.valid}}</p> -->
-  <!-- <p>PASSWORD status: {{ form.get('pword').status | json }} , {{form.get('pword').valid}}</p> -->
-  <!-- <p>errors: {{ form.get('pword').errors | json }}</p> -->
+  <!-- <p>PASSWORD status: {{ form.get('password').status | json }} , {{form.get('password').valid}}</p> -->
+  <!-- <p>Confirm status: {{ form.get('confirm_password').status | json }} , {{form.get('confirm_password').valid}}</p> -->
+  <!-- <p>errors: {{ form.get('password').errors | json }}</p> -->
 
   <form [formGroup]="form" action="">
     <p class="text_registration"> Реєстрація</p>
@@ -10,10 +11,12 @@
     <!-- First name -->
     <p class="registration_enter_label ">
       <label for="firstname">Ім'я: </label>
-      <input autofocus type="text" id="firstname" [(ngModel)]="user.first_name" formControlName="firstname" class="input_reg" />
+      <input autofocus type="text" id="firstname" [(ngModel)]="user.first_name" formControlName="firstname"
+        class="input_reg" />
     </p>
-    <div *ngIf="f.firstname.touched && f.firstname.errors" >
-      <div *ngIf="f.firstname.errors.required" class=" invalid-data"><small>Це поле обов'язкове для заповнення</small></div>
+    <div *ngIf="f.firstname.touched && f.firstname.errors">
+      <div *ngIf="f.firstname.errors.required" class=" invalid-data"><small>Це поле обов'язкове для заповнення</small>
+      </div>
       <div class=" invalid-data" *ngIf="f.firstname.errors.pattern">Неправильний формат</div>
     </div>
     <!--  -->
@@ -21,9 +24,9 @@
     <!-- Last name -->
     <p class="registration_enter_label">
       <label for="lastname">Прізвище: </label>
-      <input type="text" id="lastname" formControlName="lastname" [(ngModel)]="user.last_name" class="input_reg"/>
+      <input type="text" id="lastname" formControlName="lastname" [(ngModel)]="user.last_name" class="input_reg" />
     </p>
-    <div *ngIf="f.lastname.touched && f.lastname.errors" >
+    <div *ngIf="f.lastname.touched && f.lastname.errors">
       <div *ngIf="f.lastname.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div>
       <div class=" invalid-data" *ngIf="f.lastname.errors.pattern">Неправильний формат</div>
     </div>
@@ -32,16 +35,16 @@
     <!-- Date of birth -->
     <p class="registration_enter_label ">
       <label for="date">Дата народження: </label>
-      <input type="date" id="date" formControlName="date" [(ngModel)]="user.birth_date" class="input_reg "/>
+      <input type="date" id="date" formControlName="date" [(ngModel)]="user.birth_date" class="input_reg " />
     </p>
     <!--  -->
 
     <!-- City -->
     <p class="registration_enter_label">
       <label for="city">Місто проживання: </label>
-      <input type="text" id="city" formControlName="city" class="input_reg" [(ngModel)]="user.city"/>
+      <input type="text" id="city" formControlName="city" class="input_reg" [(ngModel)]="user.city" />
     </p>
-    <div *ngIf="f.city.touched && f.city.errors" >
+    <div *ngIf="f.city.touched && f.city.errors">
       <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div>
       <div class=" invalid-data" *ngIf="f.city.errors.pattern">Неправильний формат</div>
     </div>
@@ -56,33 +59,38 @@
       <div class=" invalid-data" *ngIf="f.email.errors.required">Це поле обов'язкове для заповнення</div>
       <div class=" invalid-data" *ngIf="f.email.errors.pattern">Неправильний формат</div>
     </div>
-    <!--  -->
 
-    <!-- Окрема група для паролів, для зручності -->
-    <div formGroupName="pword">
     <p class="registration_enter_label">
       <label for="password">Створіть пароль: </label>
-      <input type="password" id="password" formControlName="password" class="input_reg" [(ngModel)]="user.password"/>
+      <input type="password" id="password" formControlName="password" class="input_reg" [(ngModel)]="user.password" />
     </p>
 
-    <div *ngIf="form.get('pword').get('password').touched && form.get('pword').get('password').errors">
-      <div class=" invalid-data" *ngIf="form.get('pword').get('password').errors.required">Це поле обов'язкове для заповнення</div>
+    <div *ngIf="form.get('password').touched && form.get('password').errors">
+      <div *ngIf="form.get('password').errors.required" class="invalid-data">Це поле не може бути порожнім</div>
+      <div *ngIf="form.get('password').errors.minlength || form.get('password').errors.maxlength" class="invalid-data">
+        Пароль повинен містити від 8 до 12 символів</div>
     </div>
 
     <p class="registration_enter_label">
       <label for="confirm_password">Введіть пароль повторно: </label>
-      <input type="password" id="confirm_password" formControlName="confirm_password" [(ngModel)]="confPass" class="input_reg"/>
+      <input type="password" id="confirm_password" formControlName="confirm_password" [(ngModel)]="confPass"
+        class="input_reg" />
     </p>
+
+    <div *ngIf="form.get('confirm_password').touched">
+      <div *ngIf="form.get('confirm_password').errors?.required" class="invalid-data">Це поле не може бути порожнім
+      </div>
     </div>
 
-    <div class=" invalid-data" *ngIf="form.get('pword').errors != null">
-      Паролі повинні співпадати
+    <div
+      *ngIf="form.get('confirm_password').touched && form.errors != null && !form.get('confirm_password').errors?.required">
+      <div *ngIf="form.errors != null" class="invalid-data">Паролі повинні співпадати</div>
     </div>
-    <!--  -->
+    <!-- <div>{{form.errors|json}}</div> -->
 
     <p class="registration_enter_label">
       <label for="pets">Чи є у Вас домашні улюбленці, які ?</label>
-      <input type="text" id="pets" formControlName="pets" class="input_reg"/></p>
+      <input type="text" id="pets" formControlName="pets" class="input_reg" /></p>
     <p class="registration_enter_label ">
       <label for="family_status">Сімейний стан:</label>
       <select id="family_status" [(ngModel)]="user.family_status" formControlName="family_status">
@@ -92,7 +100,8 @@
       </select>
     </p>
     <p class="registration_enter_label">
-      <button type="submit" [disabled]="form.invalid" class=" registration_button_position registration_button " (click)="register()">Перейти далі</button>
+      <button type="submit" [disabled]="form.invalid" class=" registration_button_position registration_button "
+        (click)="register()">Перейти далі</button>
     </p>
     <a href="/" class="registration_enter_label">
       <button type="button" class=" registration_button_position registration_button ">Назад</button>
