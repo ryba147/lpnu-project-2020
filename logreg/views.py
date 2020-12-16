@@ -17,8 +17,9 @@ class UserView(View):
     def dispatch(self, request, *args, **kwargs):
         return super(UserView, self).dispatch(request, *args, **kwargs)
 
-    def make_response(self, body):
+    def make_response(self, body,status_code = 200):
         response = HttpResponse(body)
+        response.status_code = status_code
         response['Access-Control-Allow-Origin'] = '*'
         response[
             'Access-Control-Allow-Headers'] = "Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers"
@@ -61,10 +62,10 @@ class UserView(View):
             if user_serializer.is_valid():
                 user_serializer.save()
                 user = User.objects.get(email=user_data["email"])
-                return self.make_response(json.dumps({'email': user.email}))  # user was created. return the email
+                return self.make_response(json.dumps({'user':user.data,'status':'registered'}),201)  # user was created. return the email
                 # return JsonResponse("New user was created successfully", safe=False)
             else:
-                return JsonResponse("Failed to create user", safe=False)
+                return self.make_response(json.dumps({'user':'','status':'email is not unique'}),403)
         else:
             try:
                 print("q_email:", query_email)
@@ -72,11 +73,11 @@ class UserView(View):
                 if user.password == query_password:
                     print("User exists!")
                     user_serializer = UserSerializer(user, many=False)
-                    return self.make_response(json.dumps({'user': user_serializer.data}))  # user was found. let him log in
+                    return self.make_response(json.dumps({'user': user_serializer.data,'status':'found'}))  # user was found. let him log in
                 else:
-                    return self.make_response(json.dumps({'user': ''}))
+                    return self.make_response(json.dumps({'user': '','status':'wrong password'}))
             except ObjectDoesNotExist:
-                return self.make_response(json.dumps({'user': ''}))  # user was not found
+                return self.make_response(json.dumps({'user': '','status':'not found'}),404)  # user was not found
 
     def delete(self, request, email=""):
         user = User.objects.get(email=email)
