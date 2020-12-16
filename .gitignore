@@ -1,0 +1,7 @@
+package-lock.json
+node_modules
+tsconfig.app.json
+tsconfig.json
+tsconfig.spec.json
+.idea
+.DS_Store
