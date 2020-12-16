@@ -16,9 +16,9 @@ export const appRoutes: Routes = [
   { path: 'sign-up', component: RegistrationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'home', component: HomePageComponent },
-  { path: 'contact-us',component:ContactUsComponent},
-  { path: 'privacy-policy',component:PrivacyPolicyComponent},
-  { path: 'about-us',component:AboutUsComponent},
+  { path: 'contact-us',component: ContactUsComponent},
+  { path: 'privacy-policy',component: PrivacyPolicyComponent},
+  { path: 'about-us',component: AboutUsComponent}
 ];
 
 @NgModule({

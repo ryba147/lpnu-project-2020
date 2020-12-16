@@ -1,1 +1,9 @@
-<p>home-page works!</p>
+<h1>Customers</h1>
+ 
+<div *ngFor="let customer of users | async" style="width: 300px;">
+  <p>User first_name: {{customer.first_name}}</p>
+</div>
+ 
+<div>
+  <button type="button" class="button btn-danger" (click)='deleteCustomers()'>Delete All</button>
+</div>
