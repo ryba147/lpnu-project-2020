@@ -61,8 +61,9 @@ class UserView(View):
 
             if user_serializer.is_valid():
                 user_serializer.save()
-                user = User.objects.get(email=user_data["email"])
-                return self.make_response(json.dumps({'user': user.data, 'status': 'registered'}),
+                # user = User.objects.get(email=user_data["email"])
+                # print(user)
+                return self.make_response(json.dumps({'user': user_serializer.data, 'status': 'registered'}),
                                           201)  # user was created. return the email
                 # return JsonResponse("New user was created successfully", safe=False)
             else:
@@ -79,7 +80,7 @@ class UserView(View):
                 else:
                     return self.make_response(json.dumps({'user': '', 'status': 'wrong password'}))
             except ObjectDoesNotExist:
-                return self.make_response(json.dumps({'user': '', 'status': 'not found'}), 404)  # user was not found
+                return self.make_response(json.dumps({'user': '', 'status': 'not found'}))  # user was not found
 
     def delete(self, request, email=""):
         user = User.objects.get(email=email)
