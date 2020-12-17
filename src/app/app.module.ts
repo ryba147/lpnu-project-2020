@@ -19,8 +19,6 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { PopupComponent } from './popup/popup.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -34,8 +32,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
     PrivacyPolicyComponent,
     HeaderComponent,
     FooterComponent,
-    AboutUsComponent,
-    PopupComponent
+    AboutUsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule, NoopAnimationsModule, MaterialModule],
   providers: [],
