@@ -93,7 +93,7 @@
       <input type="text" id="pets" formControlName="pets" class="input_reg" /></p>
     <p class="registration_enter_label ">
       <label for="family_status">Сімейний стан:</label>
-      <select id="family_status" [(ngModel)]="user.family_status" formControlName="family_status">
+      <select id="family_status" [(ngModel)]="user.family_status" formControlName="family_status"class="select">
         <option value=1 selected>Не одружений/не заміжня</option>
         <option value=2>Одружений/заміжня</option>
         <option value=3>В стосунках</option>
@@ -104,7 +104,7 @@
         (click)="register()">Перейти далі</button>
     </p>
     <a href="/" class="registration_enter_label">
-      <button type="button" class=" registration_button_position registration_button ">Назад</button>
+      <button type="button" class=" registration_button_position registration_button butt ">Назад</button>
     </a>
 
 
