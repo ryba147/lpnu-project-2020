@@ -12,4 +12,5 @@ class UserSerializer(serializers.ModelSerializer):
                   'family_status',
                   'birth_date',
                   'email',
-                  'organizer')
+                  'organizer'
+                  )
