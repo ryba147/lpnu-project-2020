@@ -13,7 +13,7 @@
       text-align: center;
       background-color: rgb(56, 73, 85,100);
   }
-  
+
   .footer span{
       position: relative;
       font-family: Montserrat;
@@ -22,23 +22,23 @@
       font-size: 14px;
       line-height: 17px;
       /* identical to box height */
-  
+
       text-align: center;
       margin: 65px;
       color: #FFFFFF;
   }
-  
+
   .footer a{
       margin-right: 20px;
       cursor: pointer;
       text-decoration: none;
       color: white;
   }
-  
+
   .footer .text{
       float: left;
   }
-  
+
   .footer .text .link-wrapper{
     margin: 0;
     padding: 0;
@@ -57,12 +57,13 @@
       font-style: italic;
       float: left;
   }
-  
+
   .footer .social-media{
       float: right;
-      margin: 50px;
+      margin: 60px;
+
   }
-  
+
   .footer .social-media div{
       width: fit-content;
       height: fit-content;
@@ -72,7 +73,7 @@
       display: inline-block;
       margin-right: 10px;
   }
-  
+
   .footer .social-media div img{
       width: 15px;
   }
