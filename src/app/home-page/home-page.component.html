@@ -1,9 +1,9 @@
-<h1>Customers</h1>
- 
-<div *ngFor="let customer of users | async" style="width: 300px;">
-  <p>User first_name: {{customer.first_name}}</p>
-</div>
- 
-<div>
-  <button type="button" class="button btn-danger" (click)='deleteCustomers()'>Delete All</button>
-</div>
+<main>
+  <h1>Events</h1>
+
+  <ul>
+    <li *ngFor="let event of events | async">
+      <p>event: {{event.event_name}}, date: {{event.event_date}}, description: {{event.event_description}}</p>
+    </li>
+  </ul>
+</main>

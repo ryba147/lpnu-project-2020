@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 
-import { User } from "../interfaces/user.interface";
+import { Event } from "../interfaces/event.interface";
 import { EventsService } from "../events.service";
 
 @Component({
@@ -13,12 +13,13 @@ export class HomePageComponent implements OnInit {
 
   constructor(private eventsService: EventsService) {}
 
-  users: Observable<User[]>;
+  events: Observable<Event[]>;
 
   ngOnInit() {
     this.reloadData();
   }
- 
+  
+  /*
   deleteCustomers() {
     this.eventsService.deleteAll()
       .subscribe(
@@ -28,9 +29,10 @@ export class HomePageComponent implements OnInit {
         },
         error => console.log('ERROR: ' + error));
   }
+  */
  
   reloadData() {
-    this.users = this.eventsService.getEventsList();
-    console.log(this.users);
+    this.events = this.eventsService.getEventsList();
+    console.log(this.events);
   }
 }
