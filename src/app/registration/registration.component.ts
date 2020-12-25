@@ -5,14 +5,10 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
-import { RegistrationService } from '../services/registration.service';
-import { LoginService } from '../services/login.service';
-import { Observable } from 'rxjs';
-import { UserProvider } from '../services/user.provider';
-import {dashCaseToCamelCase} from "@angular/compiler/src/util";
+import { RegistrationService } from '../services/registration.service'
 
 @Component({
   selector: 'app-registration',
@@ -20,21 +16,13 @@ import {dashCaseToCamelCase} from "@angular/compiler/src/util";
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent {
-  user: User;
+  user: User = new User();
   confPass: string;
   form: FormGroup;
-  response: number;
 
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
 
-  constructor(public fb: FormBuilder, private http: HttpClient, private router: Router,
-    private registrationService: RegistrationService, private loginService: LoginService, private userProvider: UserProvider) {
-      this.createForm();
-  }
-
-  get f() { return this.form.controls; }
-
-  private createForm(): void {
+  constructor(public fb: FormBuilder, private http:HttpClient, private router:Router, private registration:RegistrationService) {
     this.form = this.fb.group({
       firstname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
       lastname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
@@ -44,6 +32,8 @@ export class RegistrationComponent {
       confirm_password: ['', [Validators.required, Validators.minLength(8)]]
     }, {validator: this.passwordMatcher });
   }
+
+  get f() { return this.form.controls; }
 
   private passwordMatcher(group: FormGroup): null | { nomatch: boolean } {
     if (group.get('password') !== null) {
@@ -56,15 +46,6 @@ export class RegistrationComponent {
   }
 
   register() {
-    this.registrationService.createUser(this.user).
-    subscribe(data=>{
-        this.response = 201;
-        this.router.navigate(['/home']);
-      },
-      error => {
-          alert(error.code);
-          this.response = error.code;
-      }
-    );
+    this.registration.register(this.user);
   }
 }

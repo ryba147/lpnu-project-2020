@@ -55,10 +55,9 @@
       <label for="email">Електронна адреса: </label>
       <input type="email" id="email" formControlName="email" class="input_reg" [(ngModel)]="user.email" />
     </p>
-    <div *ngIf="(f.email.touched && f.email.errors) || response>201 ">
+    <div *ngIf="f.email.touched && f.email.errors">
       <div class=" invalid-data" *ngIf="f.email.errors.required">Це поле обов'язкове для заповнення</div>
       <div class=" invalid-data" *ngIf="f.email.errors.pattern">Неправильний формат</div>
-      <div class=" invalid-data" *ngIf="response>201">Користувач з даною поштою вже зареєстрований</div>
     </div>
 
     <p class="registration_enter_label">

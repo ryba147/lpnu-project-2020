@@ -4,11 +4,11 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LoginComponent } from './login/login.component';
 import { TitlePageComponent } from './title-page/title-page.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { HomePageComponent } from './home-page/home-page.component'
+import { HomePageComponent } from './home-page/home-page.component';
 
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { AboutUsComponent } from './about-us/about-us.component'
+import { AboutUsComponent } from './about-us/about-us.component';
 
 export const appRoutes: Routes = [
   { path: '', component: TitlePageComponent },
@@ -16,9 +16,9 @@ export const appRoutes: Routes = [
   { path: 'sign-up', component: RegistrationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'home', component: HomePageComponent },
-  { path: 'contact-us',component: ContactUsComponent},
-  { path: 'privacy-policy',component: PrivacyPolicyComponent},
-  { path: 'about-us',component: AboutUsComponent}
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'about-us', component: AboutUsComponent },
 ];
 
 @NgModule({
