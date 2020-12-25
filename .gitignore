@@ -1,0 +1,10 @@
+tslint.json
+tsconfig.spec.json
+tsconfig.json
+tsconfig.app.json
+.DS_Store
+package-lock.json
+package.json
+node_modules
+.idea
+__pycache__

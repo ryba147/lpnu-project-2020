@@ -24,7 +24,7 @@ SECRET_KEY = 'l&4b9r3r9v%dm%==s4(p8y+(u=@(bmt)x8kd%hy(*hbzxa&n8g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'rocky-taiga-83171.herokuapp.com', 'eventure-lpnu.herokuapp.com']
 
 # Application definition
 
@@ -36,9 +36,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'rest_framework',
+
     'logreg',
-    'events',
+    'events'
 ]
 
 MIDDLEWARE = [
@@ -49,7 +51,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware'
 ]
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'django_nulp2020.urls'
 
@@ -79,15 +85,16 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'eventuredb',
-        'USER': 'postgres',
-        'PASSWORD': 'pgnulp',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': 'd8rsgppqep422u',
+        'USER': 'enrxyfggwpzgle',
+        'PASSWORD': '8b08f1e7498557d7ffd0e0482ae93d0fe66881d26f46ee4cce9ba60c8a741ae3',
+        'HOST': 'ec2-54-156-149-189.compute-1.amazonaws.com',
+        'PORT': 5432,
         # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# postgres://enrxyfggwpzgle:8b08f1e7498557d7ffd0e0482ae93d0fe66881d26f46ee4cce9ba60c8a741ae3@
+# ec2-54-156-149-189.compute-1.amazonaws.com:5432/d8rsgppqep422u
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -133,4 +140,3 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-

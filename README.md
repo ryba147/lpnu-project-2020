@@ -1,7 +1,19 @@
 # lpnu-project-2020
 *Running and stopping using python development server*<br>
 ```python manage.py runserver 8080```<br>
-http://localhost:8080/user/ <br>
+http://localhost:8080/login/ <br>
+http://localhost:8080/signup/
+
+**Do not forget to track changes via ```git add .``` and ```git status```, then use ```git commit -m 'description'```<br>**
+Deploying: ```git push heroku json-backend-deploy:main```<br>
+Renaming the app: ```heroku apps:rename newname --app oldname```
+
+*Running and stopping app using HEROKU*<br>
+```heroku local```<br>
+```heroku ps```<br>
+```heroku ps:stop run.1```<br>
+for heroku local: http://0.0.0.0:5000/user/ <br>
+using deployment: https://eventure-lpnu.herokuapp.com/ 
 
 use ```POST``` on -> http://127.0.0.1:8080/user/ (to create use JSON) <br>
 use ```POST``` on -> http://127.0.0.1:8080/user/ANY-EMAIL/  (to check if user with specified email is in db) <br>

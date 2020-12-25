@@ -13,7 +13,7 @@ tags:
 - name: event
 - name: comment
 paths:
-  /user/:
+  /users:
     get:
       tags:
       - user
@@ -28,6 +28,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
+  /users/:
     put:
       tags:
       - user
@@ -160,7 +161,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-  /user/{email}/:
+  /users/{email}/:
     delete:
       tags:
       - user
@@ -180,7 +181,7 @@ paths:
           description: Invalid email supplied
         "404":
           description: User not found
-  /event:
+  /events:
     get:
       tags:
       - event
@@ -210,7 +211,7 @@ paths:
       responses:
         "201":
           description: successful operation
-  /event/filterEventsBy:
+  /events/filterEventsBy:
     get:
       tags:
       - event
@@ -246,7 +247,7 @@ paths:
                   $ref: '#/components/schemas/Event'
         "400":
           description: Invalid filter value
-  /event/{event_id}:
+  /events/{event_id}:
     put:
       tags:
       - event
