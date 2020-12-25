@@ -1,0 +1,35 @@
+<main class=" login_page container-fluid">
+  <p class="text_login ">Вхід</p>
+  <form [formGroup]="userEmails" class="login_page ">
+    <p class="registration_enter_label">
+      <label>1. Введіть електронну пошту</label>
+      <input [class.is-invalid]="userEmails.get('loginEmail').invalid && userEmails.get('loginEmail').touched"
+        type="email" id="login_email" class="input_login " formControlName="loginEmail"
+        [(ngModel)]="email">
+    </p>
+    <div class="box_error">
+      <div *ngIf="(loginEmail.invalid && loginEmail.touched) || loginEmail.dirty">
+        <small *ngIf="loginEmail.errors?.required" class="registration_enter_label text-danger ">Це поле обов'язкове для
+          заповнення</small>
+        <small *ngIf="loginEmail.errors?.pattern" class="registration_enter_label text-danger">Неправильний
+          формат</small>
+      </div>
+    </div>
+    <!--  -->
+    <p class="registration_enter_label">
+      <label >2. Введіть пароль</label>
+      <input [class.is-invalid]="userEmails.get('loginPassword').invalid && userEmails.get('loginPassword').touched"
+        type="password" id="login_password" class="input_login " [(ngModel)]="pwd" formControlName="loginPassword">
+    </p>
+    <div class="box_error">
+      <div *ngIf="(loginPassword.invalid && loginPassword.touched) || loginPassword.dirty">
+        <small *ngIf="loginPassword.errors?.required" class="registration_enter_label text-danger ">Це поле обов'язкове для
+          заповнення</small>
+      </div>
+    </div>
+    <button type="submit" class="  butt butt-space login_page_button" (click)="enter()">Увійти</button>
+    <a href="/" class="login_page_button">
+      <button type="button" class="butt login_page_button ">Назад</button>
+    </a>
+  </form>
+</main>
