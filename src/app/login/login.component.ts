@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { LoginService } from '../login.service'
-import { ThrowStmt } from '@angular/compiler';
+import { LoginService } from '../services/login.service'
+import {User} from '../interfaces/user.interface';
+import {UserProvider} from '../services/user.provider';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,8 @@ import { ThrowStmt } from '@angular/compiler';
 export class LoginComponent implements OnInit {
   email: string;
   pwd: string;
-  response: any;
-  constructor(private http: HttpClient, private router: Router, private login: LoginService) {}
+  response: number;
+  constructor(private http: HttpClient, private router: Router, private login: LoginService, private userProvider:UserProvider) {}
 
   get loginEmail() {
     return this.userEmails.get('loginEmail');
@@ -34,9 +35,19 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
-  enter() {
-    this.login.loginEmail(this.email,this.pwd);
+  async enter() {
+    await this.login.loginEmail(this.email.toLowerCase(), this.pwd).
+    subscribe( data => {
+      this.saveUser(data['user']);
+      this.response = 200;
+      this.router.navigate(['/home']);
+    }, error => {
+      this.response = error.status;
+    });
   }
 
+  private saveUser(user: User){
+    this.userProvider.setUser(user);
+  }
   ngOnInit(): void {}
 }

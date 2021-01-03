@@ -3,11 +3,14 @@
   <form [formGroup]="userEmails" class="login_page ">
     <p class="registration_enter_label">
       <label>1. Введіть електронну пошту</label>
-      <input [class.is-invalid]="userEmails.get('loginEmail').invalid && userEmails.get('loginEmail').touched"
+      <input (ngModelChange)="response = 0" [class.is-invalid]="userEmails.get('loginEmail').invalid && userEmails.get('loginEmail').touched"
         type="email" id="login_email" class="input_login " formControlName="loginEmail"
         [(ngModel)]="email">
     </p>
     <div class="box_error">
+      <div *ngIf="response===404">
+        <small class="registration_enter_label text-danger ">Користувача з такою поштою не існує</small>
+      </div>
       <div *ngIf="(loginEmail.invalid && loginEmail.touched) || loginEmail.dirty">
         <small *ngIf="loginEmail.errors?.required" class="registration_enter_label text-danger ">Це поле обов'язкове для
           заповнення</small>
@@ -18,10 +21,14 @@
     <!--  -->
     <p class="registration_enter_label">
       <label >2. Введіть пароль</label>
-      <input [class.is-invalid]="userEmails.get('loginPassword').invalid && userEmails.get('loginPassword').touched"
+      <input (ngModelChange)="response = 0" [class.is-invalid]="userEmails.get('loginPassword').invalid && userEmails.get('loginPassword').touched"
         type="password" id="login_password" class="input_login " [(ngModel)]="pwd" formControlName="loginPassword">
     </p>
+
     <div class="box_error">
+      <div *ngIf="response===403">
+        <small class="registration_enter_label text-danger ">Ви ввели неправильний пароль</small>
+      </div>
       <div *ngIf="(loginPassword.invalid && loginPassword.touched) || loginPassword.dirty">
         <small *ngIf="loginPassword.errors?.required" class="registration_enter_label text-danger ">Це поле обов'язкове для
           заповнення</small>
