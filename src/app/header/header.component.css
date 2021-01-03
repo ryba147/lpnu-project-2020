@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: 100;
+}
+
+.header {
+  height: 70px;
+  /* width: 100%; */
+  background-color: rgb(128, 180, 211);
+}
+
+.logo {
+  margin-left: 12px;
+  float: left;
+  max-height: 100%;
+  width: 40px;
+  margin-top: 13px;
+}
+
+.buttons {
+  float: right;
+  height: 100%;
+  /* width: 25%; */
+}
+
+.header-text {
+  margin: auto;
+  height: 100%;
+  width: min-content;
+  font-size: 60px;
+
+  font-family: "Emilys Candy", cursive;
+  color: rgb(56, 73, 85);
+}
+
+/*  */
+
+.dropdown-content {
+  margin-top: 8px;
+  display: none;
+  position: absolute;
+  right: 0;
+  font-size: 18px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+  background-color: #FDFDFD;
+}
+
+.dropdown-content a {
+  width: 239px;
+  height: auto;
+
+  color: #384955;
+  padding: 8px;
+  padding-left: 17px;
+  text-decoration: none;
+  display: block;
+
+  /* text-align: left; */
+  border: 1px solid #384955;
+  border-top: none;
+}
+
+.dd-option {
+  display: flex;
+  align-items: center;
+}
+
+.option-text {
+  position: absolute;
+  left: 65px;
+}
+
+.dropdown-content a:hover {
+  /* background-color: #384955; */
+  background-color: #f2f2f2;
+  /* background-color: rgb(255,229,245); */
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dd-ico {
+  width: 30px;
+  height: 30px;
+}
+
+.dd-logo-ico {
+  width: 30px;
+}
