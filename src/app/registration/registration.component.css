@@ -8,20 +8,20 @@
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
-
 }
+
 .text_registration {
   margin-top: 35px;
   font-size: 36px;
   text-align: center;
 }
+
 .registration_enter_label {
   font-size: 14px;
   padding: 10px;
   margin-bottom: 1px;
   margin-top: 20px;
   margin-left: 10px;
-
 }
 
 .input_reg {
@@ -34,6 +34,7 @@
   margin-bottom: 1px;
   margin-top: 10px;
 }
+
 select {
   margin-top: 10px;
   background: #E3F2FF;
@@ -42,15 +43,18 @@ select {
   border-color: transparent;
   font-family: Montserrat,serif;
 }
+
 select {
   background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right  #E3F2FF;
   -webkit-appearance: none;
   background-position-x: 282px;
 }
+
 .registration_button_position{
   width: 316px;
   margin: 0 auto;
 }
+
 .registration_button {
   font-family: Montserrat, serif;
   text-align: center;
@@ -62,15 +66,34 @@ select {
   margin-left: 49px;
   margin-bottom: 8px;
 }
+
 .butt{
   margin-bottom: 50px;
 }
+
 .invalid-data {
   position: absolute;
   color: red;
   font-size:12px;
   width: 316px;
   margin-left: 20px;
-
-
 }
+
+.autocomplete-items{
+  position: relative;
+}
+
+.autocomplete-item{
+  cursor: pointer;
+  width: 316px;
+  max-height: 100%;
+  padding: 5px;
+  border-bottom: 1px solid black;
+  position: relative;
+  background-color: white;
+}
+
+.autocomplete-item:hover{
+  background-color:#E3F2FF;
+}
+

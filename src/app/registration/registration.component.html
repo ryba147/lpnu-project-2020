@@ -40,13 +40,22 @@
     <!--  -->
 
     <!-- City -->
-    <p class="registration_enter_label">
+    <div class="registration_enter_label" >
       <label for="city">Місто проживання: </label>
-      <input type="text" id="city" formControlName="city" class="input_reg" [(ngModel)]="user.city" />
-    </p>
-    <div *ngIf="f.city.touched && f.city.errors">
-      <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div>
-      <div class=" invalid-data" *ngIf="f.city.errors.pattern">Неправильний формат</div>
+      <input type="text" id="city" formControlName="city" class="input_reg" [(ngModel)]="user.city"  (ngModelChange)="autoCompleteActive = 1; this.user.city = (this.user.city === ' '?'':this.user.city); updateSelectedCities();"/>
+      <div id="autocomplete-items" class="autocomplete-items" *ngIf="autoCompleteActive === 1">
+        <div style="position: absolute;z-index: 999;" (focusin)="autoCompleteActive = 1;" (focusout)=" autoCompleteActive = 0;">
+          <div *ngFor="let city of selectedCities;" class="autocomplete-item" (click)='autoCompleteActive = 1; setCity(city);' (focusout)="this.autoCompleteActive = 0;" >
+            {{city}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf=" f.city.touched && (f.city.errors || this.autoCompleteChosen===0)">
+     <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
+      <div class=" invalid-data" *ngIf="autoCompleteChosen===0">Виберіть дані з випадаючого списку</div>
+      <div class=" invalid-data" *ngIf="f.city.errors">Неправильний формат</div>
     </div>
     <!--  -->
 
@@ -77,7 +86,7 @@
     <p class="registration_enter_label">
       <label for="confirm_password">Введіть пароль повторно: </label>
       <input type="password" id="confirm_password" formControlName="confirm_password" [(ngModel)]="confPass"
-        class="input_reg" />
+        class="input_reg" autocomplete="off"/>
     </p>
 
     <div *ngIf="form.get('confirm_password').touched">
@@ -97,7 +106,7 @@
     <p class="registration_enter_label ">
       <label for="family_status">Сімейний стан:</label>
       <select id="family_status" [(ngModel)]="user.family_status" formControlName="family_status">
-        <option value=1 selected>Не одружений/не заміжня</option>
+        <option value=1 >Не одружений/не заміжня</option>
         <option value=2>Одружений/заміжня</option>
         <option value=3>В стосунках</option>
       </select>
