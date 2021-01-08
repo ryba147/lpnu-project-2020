@@ -19,6 +19,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { OneeventComponent } from './oneevent/oneevent.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     PrivacyPolicyComponent,
     HeaderComponent,
     FooterComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    OneeventComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule, MaterialModule],
   providers: [],
