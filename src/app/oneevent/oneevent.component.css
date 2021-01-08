@@ -35,16 +35,46 @@
   } 
 
   .main_text{
-    position: relative;
-    width: 515px;
+    position: absolute;
+    width: 500px;
     left: 400px;
-    top: 125px;    
-    height: 48px;
+    top: 120px;    
+    height: 20px;
     font-family: Monserrat;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000000;    
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .main{
+    position: absolute;
+    width: 500px;
+    left: 400px;
+    top: 160px;    
+    height: 70px;
+    font-family: Monserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    color: #000000;    
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .text{
+    position: absolute;
+    width: 500px;
+    left: 400px;
+    top: 240px;    
+    height: 70px;
+    font-family: Monserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
     color: #000000;    
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
@@ -108,7 +138,7 @@
 
   .time_information{
     position: absolute;
-    width: 187.47%;
+    width: 100px;
     height: 19px;
     top: 137px;
     left: 250px;  
