@@ -51,22 +51,27 @@ class UserView(View):
     # use user = User.objects.get(email=query_email) to get field from query parameters -> /user/?email=...&password=...
 
     def post(self, request, email=""):
+        print(request)
         query_password = request.GET.get('password', None)  # ?password=...
         query_email = request.GET.get('email', None)  # ?email=...
-
+        print(request)
         if query_email is None:
             print("Creating user using POST")
             user_data = JSONParser().parse(request)
-            user_serializer = UserSerializer(data=user_data)
+            print(user_data)
+            try:
+                user_serializer = UserSerializer(data=user_data)
 
-            if user_serializer.is_valid():
-                user_serializer.save()
-                # user = User.objects.get(email=user_data["email"])
-                # print(user)
-                return self.make_response(json.dumps({'user': user_serializer.data, 'status': 'registered'}),
-                                          201)  # user was created. return the email
-                # return JsonResponse("New user was created successfully", safe=False)
-            else:
+                if user_serializer.is_valid():
+                    user_serializer.save()
+                    # user = User.objects.get(email=user_data["email"])
+                    # print(user)
+                    return self.make_response(json.dumps({'user': user_serializer.data, 'status': 'registered'}),
+                                              201)  # user was created. return the email
+                    # return JsonResponse("New user was created successfully", safe=False)
+                else:
+                    return self.make_response(json.dumps({'user': '', 'status': 'email is not unique'}), 403)
+            except:
                 return self.make_response(json.dumps({'user': '', 'status': 'email is not unique'}), 403)
         else:
             try:
@@ -78,9 +83,9 @@ class UserView(View):
                     return self.make_response(
                         json.dumps({'user': user_serializer.data, 'status': 'found'}))  # user was found. let him log in
                 else:
-                    return self.make_response(json.dumps({'user': '', 'status': 'wrong password'}))
+                    return self.make_response(json.dumps({'user': '', 'status': 'not found'}), 404) # user tried to login with incorrect password
             except ObjectDoesNotExist:
-                return self.make_response(json.dumps({'user': '', 'status': 'not found'}))  # user was not found
+                return self.make_response(json.dumps({'user': '', 'status': 'not found'}), 404)  # user was not found
 
     def delete(self, request, email=""):
         user = User.objects.get(email=email)

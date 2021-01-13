@@ -5,11 +5,13 @@ from django.db import models
 class User(models.Model):
     first_name = models.CharField(max_length=30, blank=False, null=True)
     last_name = models.CharField(max_length=30, blank=False, null=True)
+    profile_photo = models.TextField(null=True, blank=True)
     birth_date = models.DateField(blank=True, null=True)
     city = models.CharField(max_length=30, blank=True, null=True)
     password = models.CharField(max_length=30, blank=False, null=True)
 
     SEX_CHOICES = (
+        ('not_specified', 'Not specified'),
         ('male', 'Male'),
         ('female', 'Female'),
     )
