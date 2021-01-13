@@ -5,7 +5,9 @@ http://localhost:8080/login/ <br>
 http://localhost:8080/signup/
 
 **Do not forget to track changes via ```git add .``` and ```git status```, then use ```git commit -m 'description'```<br>**
-Deploying: ```git push heroku json-backend-deploy:main```<br>
+Deployment:<br> 
+```heroku git:remote -a yourapp```<br>
+```git push heroku json-backend-deploy:main```<br>
 Renaming the app: ```heroku apps:rename newname --app oldname```
 
 *Running and stopping app using HEROKU*<br>
