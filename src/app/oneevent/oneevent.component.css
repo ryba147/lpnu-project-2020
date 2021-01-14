@@ -1,5 +1,6 @@
 .oneevent {
     margin: auto;
+    top: 90px;
     width: 980px;
     height: 503px;
     right: 95px;
@@ -86,39 +87,44 @@
     font-size: 17px;
     line-height: 21px;
     color: #000000;
+    width: 269px;
     position: absolute;
+    top: 303px;
     left: 7.43%;
     right: 65.17%;
-    top: 60.24%;
-    bottom: 31.81%;
-    background: rgba(221, 188, 206, 0.56);
-    width: 269px;
-    height: 40px;
-    border-radius: 15px
+    background: #FFE5F5;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
   }
 
   .button{
     margin: auto;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
-    width: min-content;
+    width: 269px;
     margin-bottom: 100px;
    }
    
-  .information_oneevent{
+   .butt-space{
+    margin-top: 45px;
+  }
+
+  .infobox_oneevent{
     position: absolute;
     width: 498px;
     height: 157px;
     left: 400px;
     top: 303px;
-    background: rgba(221, 188, 206, 0.56);
+    background: #FFE5F5;
     border: 1px solid rgba(0, 0, 0, 0.44);
     box-sizing: border-box;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
-  .information_text{
+  .infotext_oneevent{
     position: relative;
     font-family: Montserrat;
     top: -11px;
@@ -128,7 +134,7 @@
     color: #000000;
   }
 
-  .icon_information{
+  .infoicon_oneevent{
     position: relative;
     top: 4px;
     left: 10px;
