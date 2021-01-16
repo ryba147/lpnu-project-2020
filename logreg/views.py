@@ -83,11 +83,15 @@ class UserView(View):
                     return self.make_response(
                         json.dumps({'user': user_serializer.data, 'status': 'found'}))  # user was found. let him log in
                 else:
-                    return self.make_response(json.dumps({'user': '', 'status': 'not found'}), 404) # user tried to login with incorrect password
+                    return self.make_response(json.dumps({'user': '', 'status': 'not found'}),
+                                              404)  # user tried to login with incorrect password
             except ObjectDoesNotExist:
                 return self.make_response(json.dumps({'user': '', 'status': 'not found'}), 404)  # user was not found
 
     def delete(self, request, email=""):
-        user = User.objects.get(email=email)
-        user.delete()
-        return JsonResponse("User account was deleted successfully", safe=False)
+        try:
+            user = User.objects.get(email=email)
+            user.delete()
+            return JsonResponse("User account was deleted successfully", safe=False)
+        except ObjectDoesNotExist:
+            return self.make_response(json.dumps({'user': '', 'status': 'not found'}), 404)
