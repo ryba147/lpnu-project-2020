@@ -23,7 +23,7 @@
   width: 300px;
   height: 32px;
   background: #E0EFFC;
-  border-radius: 20px;
+  /*border-radius: 20px;*/
   border-color: transparent;
   line-height: 1.5;
   margin-top: 15px;
@@ -46,11 +46,11 @@
 
 .butt{
   display: block;
-  margin:   0 auto;
+  margin: 0 auto;
   justify-content: center;
   align-items: center;
   margin-top: 15px;
- 
+
 }
 a{
   text-decoration: none;
@@ -71,3 +71,9 @@ padding-top:10px;
   margin-top: 0px;
 }
 
+.loading-image{
+  height: 31px;
+  width: 316px;
+  position: absolute;
+ /* margin-left: 10px;*/
+}

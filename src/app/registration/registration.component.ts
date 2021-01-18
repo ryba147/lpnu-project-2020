@@ -10,9 +10,10 @@ import { User } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
 import { LoginService } from '../services/login.service';
-import { Observable } from 'rxjs';
 import { UserProvider } from '../services/user.provider';
-import {formatNumber} from '@angular/common';
+import {CityProvider} from '../services/ city.provider';
+import {patchTsGetExpandoInitializer} from '@angular/compiler-cli/ngcc/src/packages/patch_ts_expando_initializer';
+import {templateJitUrl} from '@angular/compiler';
 
 @Component({
   selector: 'app-registration',
@@ -25,25 +26,31 @@ export class RegistrationComponent {
   confPass: string;
   form: FormGroup;
   response: number;
-  cities: Array<string> = this.getCitiesList();
   selectedCities: Array<string> = [];
   autoCompleteActive = 0;
   autoCompleteChosen = 0;
+  loading = 0;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
 
   constructor(public fb: FormBuilder, private http: HttpClient, private router: Router,
-              private registrationService: RegistrationService, private loginService: LoginService, private userProvider: UserProvider) {
+              private registrationService: RegistrationService, private loginService: LoginService, private userProvider: UserProvider,
+              private cityProvider: CityProvider) {
       this.createForm();
+      this.user.sex = 'Not specified';
+      this.user.family_status = 'Not married';
+      this.user.organizer = false;
   }
 
   get f() { return this.form.controls; }
 
 
   public updateSelectedCities(): void{
+    if(this.cityProvider.compareWithSelectedCity(this.user.city) === true && this.autoCompleteChosen === 1) {return;}
     this.autoCompleteChosen = 0;
     this.selectedCities = [];
     if (this.user.city.length >= 3){
-      for (const city of this.cities){
+      const cities = this.cityProvider.getCityList();
+      for (const city of cities){
         if (city.substr(0, this.user.city.length).toLowerCase() === this.user.city.toLowerCase()){
           this.selectedCities.push(city);
         }
@@ -62,9 +69,6 @@ export class RegistrationComponent {
     }, {validator: this.passwordMatcher });
   }
 
-  private getCitiesList(): Array<string> {
-    return ['Lviv', 'Khmelnytskyi', 'Riasne', 'Kyiv', 'Uzhgorod', 'Odesa', 'Vinnytsia', 'Lutsk', 'Ternopil\'', 'Zaporizhia', 'Dnipro', 'Ivano-Frankivsk', 'Bukovel\'','Kamyanets-Podilskii','Kamyanske'];
-  }
 
   private passwordMatcher(group: FormGroup): null | { nomatch: boolean } {
     if (group.get('password') !== null) {
@@ -78,22 +82,33 @@ export class RegistrationComponent {
 
 
   register(): void {
+    if (this.form.invalid) {return; }
+    this.loading = 1;
     this.user.email = this.user.email.toLowerCase();
     this.registrationService.createUser(this.user).
     subscribe(data => {
+        this.loading = 0;
         this.userProvider.setUser(data['user']);
         this.response = 201;
         this.router.navigate(['/home']);
       },
       error => {
+          this.loading = 0;
           this.response = error.status;
       }
     );
   }
 
+  // tslint:disable-next-line:typedef
+  show(){
+    alert(this.autoCompleteChosen);
+  }
+
   setCity(city): void {
-    this.autoCompleteChosen = 1;
-    this.user.city = city;
-    this.autoCompleteActive = 0;
+    if (this.cityProvider.setSelectedCity(city) === true){
+      this.autoCompleteChosen = 1;
+      this.user.city = city;
+      this.autoCompleteActive = 0;
+    }
   }
 }

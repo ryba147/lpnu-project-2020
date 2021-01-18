@@ -8,9 +8,6 @@
         [(ngModel)]="email">
     </p>
     <div class="box_error">
-      <div *ngIf="response===404">
-        <small class="registration_enter_label text-danger ">Користувача з такою поштою не існує</small>
-      </div>
       <div *ngIf="(loginEmail.invalid && loginEmail.touched) || loginEmail.dirty">
         <small *ngIf="loginEmail.errors?.required" class="registration_enter_label text-danger ">Це поле обов'язкове для
           заповнення</small>
@@ -24,17 +21,19 @@
       <input (ngModelChange)="response = 0" [class.is-invalid]="userEmails.get('loginPassword').invalid && userEmails.get('loginPassword').touched"
         type="password" id="login_password" class="input_login " [(ngModel)]="pwd" formControlName="loginPassword">
     </p>
-
     <div class="box_error">
-      <div *ngIf="response===403">
-        <small class="registration_enter_label text-danger ">Ви ввели неправильний пароль</small>
+      <div *ngIf="response===404">
+        <small class="registration_enter_label text-danger ">Ви ввели неправильну пошту або пароль</small>
       </div>
       <div *ngIf="(loginPassword.invalid && loginPassword.touched) || loginPassword.dirty">
         <small *ngIf="loginPassword.errors?.required" class="registration_enter_label text-danger ">Це поле обов'язкове для
           заповнення</small>
       </div>
     </div>
-    <button type="submit" class="  butt butt-space login_page_button" (click)="enter()">Увійти</button>
+    <div class="registration_enter_label">
+      <img src="assets/images/loadanimation.svg" *ngIf="loading===true" class="loading-image">
+    </div>
+    <button type="submit" class="  butt butt-space login_page_button" (click)="userLogin()">Увійти</button>
     <a href="/" class="login_page_button">
       <button type="button" class="butt login_page_button ">Назад</button>
     </a>

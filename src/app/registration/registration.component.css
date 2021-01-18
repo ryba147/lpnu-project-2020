@@ -1,4 +1,3 @@
-
 .registration_page {
   margin: 0 auto;
   width: 360px;
@@ -48,6 +47,7 @@ select {
   background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right  #E3F2FF;
   -webkit-appearance: none;
   background-position-x: 282px;
+  padding-left: 10px;
 }
 
 .registration_button_position{
@@ -83,17 +83,31 @@ select {
   position: relative;
 }
 
+.autocomplete-item-container{
+  position: absolute;
+  z-index: 999;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+;
+}
+
 .autocomplete-item{
   cursor: pointer;
+ /* margin-top: 10px; */
+  background: #E3F2FF;
   width: 316px;
-  max-height: 100%;
-  padding: 5px;
-  border-bottom: 1px solid black;
-  position: relative;
-  background-color: white;
+  height: 27px;
+  border-color: transparent;
+  padding-left: 10px;
+  padding-top: 1px;
+  font-family: Montserrat,serif;
 }
 
 .autocomplete-item:hover{
-  background-color:#E3F2FF;
+  background-color:#f2f2f2;
 }
 
+.loading-image{
+  height: 31px;
+  width: 316px;
+  margin-left: 10px;
+}

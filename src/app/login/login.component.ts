@@ -1,27 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service'
 import {User} from '../interfaces/user.interface';
 import {UserProvider} from '../services/user.provider';
+import {dashCaseToCamelCase} from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   email: string;
   pwd: string;
   response: number;
-  constructor(private http: HttpClient, private router: Router, private login: LoginService, private userProvider:UserProvider) {}
+  loading = false;
+  constructor(private http: HttpClient, private router: Router, private loginService: LoginService, private userProvider: UserProvider) {}
 
-  get loginEmail() {
+
+  get loginEmail(): AbstractControl{
     return this.userEmails.get('loginEmail');
   }
 
-  get loginPassword() {
+  get loginPassword(): AbstractControl{
     return this.userEmails.get('loginPassword');
   }
 
@@ -35,19 +38,17 @@ export class LoginComponent implements OnInit {
     ]),
   });
 
-  async enter() {
-    await this.login.loginEmail(this.email.toLowerCase(), this.pwd).
-    subscribe( data => {
-      this.saveUser(data['user']);
-      this.response = 200;
-      this.router.navigate(['/home']);
-    }, error => {
-      this.response = error.status;
-    });
+  userLogin(): void {
+    this.loading = true;
+    this.loginService.login(this.email.toLowerCase(), this.pwd)
+      .subscribe((resp: {user: User, status: string}) => {
+        this.userProvider.setUser(resp.user);
+        this.router.navigate(['/my']);
+        this.loading = false;
+      }, (error) => {
+        this.response = error.status;
+        this.loading = false;
+      });
   }
 
-  private saveUser(user: User){
-    this.userProvider.setUser(user);
-  }
-  ngOnInit(): void {}
 }

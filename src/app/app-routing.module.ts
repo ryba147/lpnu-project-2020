@@ -6,6 +6,7 @@ import { TitlePageComponent } from './title-page/title-page.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component'
 import { OneeventComponent } from './oneevent/oneevent.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
@@ -18,9 +19,10 @@ export const appRoutes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'oneevent', component: OneeventComponent },
-  { path: 'contact-us',component: ContactUsComponent},
-  { path: 'privacy-policy',component: PrivacyPolicyComponent},
-  { path: 'about-us',component: AboutUsComponent}
+  { path: 'contact-us', component: ContactUsComponent},
+  { path: 'privacy-policy', component: PrivacyPolicyComponent},
+  { path: 'about-us', component: AboutUsComponent},
+  { path: 'my', component: UserPageComponent}
 ];
 
 @NgModule({

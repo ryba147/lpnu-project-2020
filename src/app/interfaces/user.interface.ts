@@ -5,8 +5,8 @@ export class User {
   email: string;
   password: string;
   city: string;
-  sex?: string;
-  family_status?: string;
+  sex?: string = 'not';
+  family_status?: string = 'not specified';
   pets?: string;
   organizer: boolean;
   rating?: number;

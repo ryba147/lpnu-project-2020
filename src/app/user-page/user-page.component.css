@@ -1,0 +1,19 @@
+.userData{
+  margin: 24px;
+}
+
+.userImage{
+  height: 500px;
+  width: 500px;
+}
+
+.nameData{
+  font-size: 36px;
+  margin-top: 10px;
+  font-weight: bolder;
+}
+
+.otherData{
+  margin-top: 10px;
+  font-size: 24px;
+}
