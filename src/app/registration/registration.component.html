@@ -75,10 +75,10 @@
     </div>
     <p class="registration_enter_label ">
       <label for="sex">Cтать:</label>
-      <select id="sex" [(ngModel)]="user.sex" formControlName="sex">
-        <option [selected]="true" value="Not specified">Не вказано</option>
-        <option value="Male">Чоловіча</option>
-        <option value="Female">Жіноча</option>
+      <select id="sex" [(ngModel)]="user.sex" (ngModelChange)="showVal()" formControlName="family_status">
+        <option (click)="user.sex = 'not_specified'" [value]="'not_specified'" >Не вказано</option>
+        <option (click)="user.sex = 'male'" [value]="'male'" >Чоловіча</option>
+        <option (click)="user.sex = 'female'" [value]="'female'" >Жіноча</option>
       </select>
     </p>
     <p class="registration_enter_label">
@@ -114,10 +114,10 @@
       <input type="text" id="pets" formControlName="pets" [(ngModel)]="user.pets" class="input_reg" /></p>
     <p class="registration_enter_label ">
       <label for="family_status">Сімейний стан:</label>
-      <select id="family_status" [(ngModel)]="user.family_status" [value]="'Unmarried'" formControlName="family_status">
-        <option value="Unmarried">Не одружений/не заміжня</option>
-        <option value="Married">Одружений/заміжня</option>
-        <option value="InRelationship">В стосунках</option>
+      <select id="family_status" [(ngModel)]="user.family_status" formControlName="family_status">
+        <option (click)="user.family_status = 'single'" [value]="'single'" >Не одружений/не заміжня</option>
+        <option (click)="user.family_status = 'married'" [value]="'married'" >Одружений/заміжня</option>
+        <option (click)="user.family_status = 'in relationship'"[value]="'in relationship'" >В стосунках</option>
       </select>
     </p>
     <div class="registration_enter_label">

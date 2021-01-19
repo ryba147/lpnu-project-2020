@@ -12,8 +12,7 @@ import { RegistrationService } from '../services/registration.service';
 import { LoginService } from '../services/login.service';
 import { UserProvider } from '../services/user.provider';
 import {CityProvider} from '../services/ city.provider';
-import {patchTsGetExpandoInitializer} from '@angular/compiler-cli/ngcc/src/packages/patch_ts_expando_initializer';
-import {templateJitUrl} from '@angular/compiler';
+
 
 @Component({
   selector: 'app-registration',
@@ -36,8 +35,8 @@ export class RegistrationComponent {
               private registrationService: RegistrationService, private loginService: LoginService, private userProvider: UserProvider,
               private cityProvider: CityProvider) {
       this.createForm();
-      this.user.sex = 'Not specified';
-      this.user.family_status = 'Not married';
+      this.user.sex = 'not_specified';
+      this.user.family_status = 'single';
       this.user.organizer = false;
   }
 
@@ -45,7 +44,7 @@ export class RegistrationComponent {
 
 
   public updateSelectedCities(): void{
-    if(this.cityProvider.compareWithSelectedCity(this.user.city) === true && this.autoCompleteChosen === 1) {return;}
+    if (this.cityProvider.compareWithSelectedCity(this.user.city) === true && this.autoCompleteChosen === 1) {return;}
     this.autoCompleteChosen = 0;
     this.selectedCities = [];
     if (this.user.city.length >= 3){
@@ -69,6 +68,9 @@ export class RegistrationComponent {
     }, {validator: this.passwordMatcher });
   }
 
+  showVal(): void{
+    alert(this.user.sex);
+  }
 
   private passwordMatcher(group: FormGroup): null | { nomatch: boolean } {
     if (group.get('password') !== null) {
