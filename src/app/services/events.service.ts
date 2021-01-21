@@ -9,12 +9,13 @@ import { User } from '../interfaces/user.interface'
   providedIn: 'root'
 })
 export class EventsService {
-  private baseUrl = 'http://0.0.0.0:5000/user' /* тимчасово */
-
+  // private baseUrl = "http://localhost:8080";
+  private baseUrl = "https://eventure-lpnu.herokuapp.com";
+  
   constructor(private http: HttpClient) { }
 
-  getEventsList(): Observable<any> {
-    return this.http.get<any[]>("https://eventure-lpnu.herokuapp.com/events/");
+  getEventsList(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/`);
   }
 
   /*
