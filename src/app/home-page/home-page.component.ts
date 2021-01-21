@@ -1,24 +1,36 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
-import { Event } from "../interfaces/event.interface";
-import { EventsService } from "../services/events.service";
+import { Event } from '../interfaces/event.interface';
+import { EventsService } from '../services/events.service';
 
 @Component({
-  selector: "app-home-page",
-  templateUrl: "./home-page.component.html",
-  styleUrls: ["./home-page.component.css"],
+  selector: 'app-home-page',
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-
   constructor(private eventsService: EventsService) {}
 
-  events: Observable<Event[]>;
+  events: Event[];
 
   ngOnInit() {
     this.reloadData();
   }
-  
+
+  reloadData() {
+    this.eventsService.getEventsList().subscribe((events) => {
+      this.events = events;
+      console.log(this.events);
+    });
+  }
+
+  /*
+  reloadData() {
+    this.events = this.eventsService.getEventsList();
+    console.log(this.events);
+  }*/
+
   /*
   deleteCustomers() {
     this.eventsService.deleteAll()
@@ -30,9 +42,4 @@ export class HomePageComponent implements OnInit {
         error => console.log('ERROR: ' + error));
   }
   */
- 
-  reloadData() {
-    this.events = this.eventsService.getEventsList();
-    console.log(this.events);
-  }
 }
