@@ -15,19 +15,162 @@ Div with photo and data of the user
 Div with accordeon
 -->
 <div>
-
+  <span class="accordeonItem" id="accordeonItem0" (click)="changePanel(0)">Recent events</span>
+  <span class="accordeonItem" id="accordeonItem1" (click)="changePanel(1)">My events</span>
+  <span class="accordeonItem" id="accordeonItem2" (click)="changePanel(2)">User settings</span>
 </div>
 
+
+
+<div class="accordeonContainer">
 <!--
 Div with events
 -->
-<div>
 
-</div>
+  <div class="accordeonDiv" *ngIf="status==0 || status==1">
+    <div *ngFor="let ev of this.eventList">
+      <img src="{{ev['event']}}" class="eventPhoto">
+      <span>
+        <span class="eventName"></span>
+        <span class="eventLocation"></span>
+        <span class="eventTime"></span>
+        <span class="eventDuration"></span>
+      </span>
+    </div>
+  </div>
 
-<!--
-Div with user form panel
--->
-<div>
+  <div class="accordeonDiv" *ngIf="status==2">
 
+    <!-- <p>value: {{ form.value | json }}</p> -->
+    <!-- <p>the whole form status: {{ form.status | json }} , {{form.valid}}</p> -->
+    <!-- <p>PASSWORD status: {{ form.get('password').status | json }} , {{form.get('password').valid}}</p> -->
+    <!-- <p>Confirm status: {{ form.get('confirm_password').status | json }} , {{form.get('confirm_password').valid}}</p> -->
+    <!-- <p>errors: {{ form.get('password').errors | json }}</p> -->
+
+    <form [formGroup]="form" action="" (ngSubmit)="updateUser()">
+      <p class="text_registration"> Реєстрація</p>
+
+      <!-- First name -->
+      <p class="registration_enter_label ">
+        <label for="firstname">Ім'я: </label>
+        <input autofocus type="text" id="firstname" [disabled]="loading===1" [(ngModel)]="updatedUser.first_name" formControlName="firstname"
+               class="input_reg" />
+      </p>
+      <div *ngIf="f.firstname.touched && f.firstname.errors">
+        <div *ngIf="f.firstname.errors.required" class=" invalid-data"><small>Це поле обов'язкове для заповнення</small>
+        </div>
+        <div class=" invalid-data" *ngIf="f.firstname.errors.pattern">Неправильний формат</div>
+      </div>
+      <!--  -->
+
+      <!-- Last name -->
+      <p class="registration_enter_label">
+        <label for="lastname">Прізвище: </label>
+        <input type="text" id="lastname" formControlName="lastname"  [disabled]="loading===1" [(ngModel)]="updatedUser.last_name" class="input_reg" />
+      </p>
+      <div *ngIf="f.lastname.touched && f.lastname.errors">
+        <div *ngIf="f.lastname.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div>
+        <div class=" invalid-data" *ngIf="f.lastname.errors.pattern">Неправильний формат</div>
+      </div>
+      <!--  -->
+
+      <!-- Date of birth -->
+      <p class="registration_enter_label ">
+        <label for="date">Дата народження: </label>
+        <input type="date" id="date" formControlName="date"  [disabled]="loading===1"  [(ngModel)]="updatedUser.birth_date" class="input_reg " />
+      </p>
+      <!--  -->
+
+      <!-- City -->
+      <div class="registration_enter_label" >
+        <label for="city">Місто проживання: </label>
+        <input type="text" id="city" formControlName="city" class="input_reg"   [disabled]="loading===1"  [(ngModel)]="updatedUser.city" (focusin)="autoCompleteActive = 1;" (ngModelChange)="this.updatedUser.city = (this.updatedUser.city === ' '?'':this.updatedUser.city); updateSelectedCities();"/>
+        <div id="autocomplete-items" class="autocomplete-items" *ngIf="autoCompleteActive === 1">
+          <div class="autocomplete-item-container" (focusin)="autoCompleteActive = 1;" (focusout)=" autoCompleteActive = 0;">
+            <div *ngFor="let city of selectedCities;" class="autocomplete-item" (click)='autoCompleteActive = 1;setCity(city);' (focusout)="this.autoCompleteActive = 0;" >
+              {{city}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf=" f.city.touched && (f.city.errors || this.autoCompleteChosen===0)">
+        <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
+        <div class=" invalid-data" *ngIf="this.autoCompleteChosen===0">Виберіть місто з випадаючого списку</div>
+        <!-- <div class=" invalid-data" *ngIf="f.city.errors">Неправильний формат</div> -->
+      </div>
+      <!--  -->
+
+
+      <p class="registration_enter_label ">
+        <label for="sex">Cтать:</label>
+        <select id="sex" [(ngModel)]="updatedUser.sex" formControlName="family_status">
+          <option (click)="updatedUser.sex = 'not_specified'" [value]="'not_specified'" >Не вказано</option>
+          <option (click)="updatedUser.sex = 'male'" [value]="'male'" >Чоловіча</option>
+          <option (click)="updatedUser.sex = 'female'" [value]="'female'" >Жіноча</option>
+        </select>
+      </p>
+      <!-- Old password -->
+      <p class="registration_enter_label">
+        <label for="old_password">Старий пароль(У разі зміни паролю) </label>
+        <input type="password" id="old_password" formControlName="old_password"  [disabled]="loading===1" (ngModelChange)="response = 0;" class="input_reg" [(ngModel)]="oldPass" />
+      </p>
+      <div>
+        <div class=" invalid-data" *ngIf="response>400">Користувач з даною поштою вже зареєстрований</div>
+        <div *ngIf="(f.email.touched && f.email.errors)">
+          <div class=" invalid-data" *ngIf="f.email.errors.required">Це поле обов'язкове для заповнення</div>
+          <div class=" invalid-data" *ngIf="f.email.errors.pattern">Неправильний формат</div>
+        </div>
+      </div>
+      <p class="registration_enter_label">
+        <label for="password">Введіть новий пароль: </label>
+        <input type="password" id="password" formControlName="new_password"  [disabled]="loading===1" class="input_reg" [(ngModel)]="updatedUser.password" />
+      </p>
+
+      <div *ngIf="form.get('password').touched && form.get('password').errors">
+        <div *ngIf="form.get('password').errors.required" class="invalid-data">Це поле не може бути порожнім</div>
+        <div *ngIf="form.get('password').errors.minlength || form.get('password').errors.maxlength" class="invalid-data">
+          Пароль повинен містити від 8 до 12 символів</div>
+      </div>
+
+      <p class="registration_enter_label">
+        <label for="confirm_password">Введіть новий пароль повторно: </label>
+        <input type="password" id="confirm_password" formControlName="confirm_password" [(ngModel)]="confPass"
+               class="input_reg" autocomplete="off"/>
+      </p>
+
+      <div *ngIf="form.get('confirm_password').touched">
+        <div *ngIf="form.get('confirm_password').errors?.required" class="invalid-data">Це поле не може бути порожнім
+        </div>
+      </div>
+
+      <div
+        *ngIf="form.get('confirm_password').touched && form.errors != null && !form.get('confirm_password').errors?.required">
+        <div *ngIf="form.errors != null" class="invalid-data">Паролі повинні співпадати</div>
+      </div>
+      <!-- <div>{{form.errors|json}}</div> -->
+
+      <p class="registration_enter_label">
+        <label for="pets">Чи є у Вас домашні улюбленці, які ?</label>
+        <input type="text" id="pets" formControlName="pets" [(ngModel)]="updatedUser.pets" class="input_reg" /></p>
+      <p class="registration_enter_label ">
+        <label for="family_status">Сімейний стан:</label>
+        <select id="family_status" [(ngModel)]="updatedUser.family_status" formControlName="family_status">
+          <option (click)="updatedUser.family_status = 'single'" [value]="'single'" >Не одружений/не заміжня</option>
+          <option (click)="updatedUser.family_status = 'married'" [value]="'married'" >Одружений/заміжня</option>
+          <option (click)="updatedUser.family_status = 'in relationship'"[value]="'in relationship'" >В стосунках</option>
+        </select>
+      </p>
+      <div class="registration_enter_label">
+        <img src="assets/images/loadanimation.svg" *ngIf="loading===1" class="loading-image">
+      </div>
+      <p class="registration_enter_label">
+        <button type="submit" [disabled]="form.invalid || loading===1" class=" registration_button_position registration_button "
+                (click)="updateUser()">Оновити</button>
+      </p>
+      <a class="registration_enter_label">
+        <button [disabled]="loading===1" type="button" (click)="resetUser()" class=" registration_button_position registration_button ">Повернути</button>
+      </a>
+    </form>
+  </div>
 </div>
