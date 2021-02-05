@@ -7,11 +7,12 @@
 </head>
 <body>
     <h2>Available events:</h2>
-    {% for i in events_list %}
+    {% for i in pics %}
         <h4><i>Назва:</i> {{ i.event_name }}</h4>
         <h4><i>Опис:</i> {{ i.event_description }}</h4>
         <h4><i>Дата проведення:</i> {{ i.event_date }}</h4>
         <img style="max-width: 10%" src="{{ i.event_photo.url }}" alt=""/>
+        <p>{{ i.event_photo.url }}</p>
         <br><i>Фото</i>
         <hr>
     {% endfor %}

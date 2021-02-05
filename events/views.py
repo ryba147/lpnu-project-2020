@@ -1,4 +1,6 @@
 import json
+
+from django.shortcuts import render
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -9,6 +11,10 @@ from rest_framework.parsers import JSONParser
 from .serializers import EventSerializer
 from .models import *
 
+
+def home(request):
+    pics = Event.objects.all()
+    return render(request, 'events/view_events.html', {'pics': pics})
 
 class EventView(View):
     allowed_methods = ["options", "get", "put", "post", "delete"]

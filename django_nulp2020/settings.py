@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+import cloudinary
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +26,7 @@ SECRET_KEY = 'l&4b9r3r9v%dm%==s4(p8y+(u=@(bmt)x8kd%hy(*hbzxa&n8g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'rocky-taiga-83171.herokuapp.com', 'eventure-lpnu.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'rocky-taiga-83171.herokuapp.com', 'eventure-lpnu.herokuapp.com']
 
 # Application definition
 
@@ -38,6 +40,8 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'rest_framework',
+    'cloudinary',
+    'cloudinary_storage',
 
     'logreg',
     'events'
@@ -139,4 +143,11 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hs2vpyvzv',
+    'API_KEY': '237792189743296',
+    'API_SECRET': 'GfE5Z_tPQzUgKwVxjVQoRTFpCpE',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

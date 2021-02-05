@@ -6,7 +6,8 @@ from . import views
 
 urlpatterns = [
     path('events/', views.EventView.as_view()),
-    path('events/<int:event_id>/', views.EventView.as_view())
+    path('events/<int:event_id>/', views.EventView.as_view()),
+    path('cloudinary/', views.home)
 ]
 
 urlpatterns += staticfiles_urlpatterns()
