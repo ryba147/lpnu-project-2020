@@ -1,3 +1,8 @@
+.gridWrapper{
+  display: grid;
+  grid-template-columns: minmax(max-content,500px) max-content;
+}
+
 .userData{
   margin: 24px;
 }
@@ -17,3 +22,154 @@
   margin-top: 10px;
   font-size: 24px;
 }
+
+.accordeon{
+  margin: 24px;
+}
+
+.accordeonItem{
+  font-size: 48px;
+  font-family: Montserrat, serif;
+  margin: 10px;
+  cursor: pointer;
+  margin-left: 0;
+  margin-right: 30px;
+}
+
+.userUpdateForm{
+  width: 370px;
+  margin: auto;
+}
+
+.userUpdateFormInputs{
+  max-height: 70vh;
+  overflow-y: auto;
+  margin-top: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  margin: 10px;
+}
+
+/* Track */
+.userUpdateFormInputs::-webkit-scrollbar-track {
+  background: #f1f1f1;
+
+}
+
+/* Handle */
+.userUpdateFormInputs::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.userUpdateFormInputs::-webkit-scrollbar-thumb:hover {
+  background: #999;
+  border-radius: 10px;
+}
+
+.text_update {
+  margin-top: 35px;
+  font-size: 36px;
+  text-align: center;
+}
+
+.update_enter_label {
+  font-size: 14px;
+  padding: 10px;
+  margin-bottom: 1px;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.input_reg {
+  line-height: 1.5;
+  width: 316px;
+  height: 27px;
+  background: #E3F2FF;
+  border-color: transparent;
+  padding: 10px;
+  margin-bottom: 1px;
+  margin-top: 10px;
+}
+
+select {
+  margin-top: 10px;
+  background: #E3F2FF;
+  width: 316px;
+  height: 27px;
+  border-color: transparent;
+  font-family: Montserrat,serif;
+}
+
+select {
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right  #E3F2FF;
+  -webkit-appearance: none;
+  background-position-x: 282px;
+  padding-left: 10px;
+}
+
+.update_button_position{
+  width: 316px;
+  margin: 0 auto;
+}
+
+.update_button {
+  font-family: Montserrat, serif;
+  text-align: center;
+  background: #E0EFFC;
+  width: 219px;
+  height: 40px;
+  border-radius: 20px;
+  border-color: transparent;
+  margin-left: 49px;
+  margin-bottom: 8px;
+}
+
+.butt{
+  margin-bottom: 50px;
+}
+
+.invalid-data {
+  position: absolute;
+  color: red;
+  font-size:12px;
+  width: 316px;
+  margin-left: 20px;
+}
+
+.autocomplete-items{
+  position: relative;
+}
+
+.autocomplete-item-container{
+  position: absolute;
+  z-index: 999;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+;
+}
+
+.autocomplete-item{
+  cursor: pointer;
+  /* margin-top: 10px; */
+  background: #E3F2FF;
+  width: 316px;
+  height: 27px;
+  border-color: transparent;
+  padding-left: 10px;
+  padding-top: 1px;
+  font-family: Montserrat,serif;
+}
+
+.autocomplete-item:hover{
+  background-color:#f2f2f2;
+}
+
+.loading-image{
+  height: 31px;
+  width: 316px;
+  margin-left: 10px;
+}
+

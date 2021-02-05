@@ -23,6 +23,7 @@ export class UserPageComponent implements OnInit {
   response = 0;
   oldPass: string;
   confPass: string;
+  edit = 0;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
 
   constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider) { }
@@ -52,8 +53,8 @@ export class UserPageComponent implements OnInit {
       firstname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
       lastname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
       city: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
-      email: ['', [Validators.required, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-zA-Z.-]+\\.[a-z]{2,4}$')]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
+      old_password: ['', [Validators.required, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-zA-Z.-]+\\.[a-z]{2,4}$')]],
+      new_password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
       confirm_password: ['', [Validators.required, Validators.minLength(8)]],
       date: [''],
       pets: ['']
@@ -104,7 +105,5 @@ export class UserPageComponent implements OnInit {
 
   resetUser(): void{
     this.updatedUser = this.userProvider.getUser();
-    alert('Updated '+this.updatedUser);
-    alert('Base '+this.currentUser);
   }
 }
