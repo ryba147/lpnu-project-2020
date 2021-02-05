@@ -15,8 +15,8 @@ export class UserPageComponent implements OnInit {
   loading = 0;
   currentUser = this.userProvider.getUser();
   eventList = [];
-  updatedUser = this.userProvider.getUser();
-  autoCompleteChosen = 1;
+  updatedUser = JSON.parse(JSON.stringify(this.currentUser));
+  autoCompleteChosen = 0;
   selectedCities = [];
   autoCompleteActive = 0;
   form: FormGroup;
@@ -26,7 +26,9 @@ export class UserPageComponent implements OnInit {
   edit = 0;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
 
-  constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider) { }
+  constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider) {
+    this.createForm();
+  }
 
   ngOnInit(): void {
     this.currentUser = this.userProvider.getUser();
@@ -50,14 +52,16 @@ export class UserPageComponent implements OnInit {
   }
   private createForm(): void {
     this.form = this.fb.group({
-      firstname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
-      lastname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
-      city: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
+      firstname: [this.updatedUser.first_name, [Validators.required, Validators.pattern(this.stringPattern)]],
+      lastname: [this.updatedUser.last_name, [Validators.required, Validators.pattern(this.stringPattern)]],
+      city: [this.updatedUser.city, [Validators.required, Validators.pattern(this.stringPattern)]],
       old_password: ['', [Validators.required, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-zA-Z.-]+\\.[a-z]{2,4}$')]],
       new_password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
       confirm_password: ['', [Validators.required, Validators.minLength(8)]],
-      date: [''],
-      pets: ['']
+      date: [this.updatedUser.birth_date],
+      pets: [this.updatedUser.pets],
+      sex: [this.updatedUser.sex],
+      family_status: [this.updatedUser.family_status]
     }, {validator: this.passwordMatcher });
   }
   private passwordMatcher(group: FormGroup): null | { nomatch: boolean } {

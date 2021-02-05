@@ -85,7 +85,7 @@
             <!-- City -->
             <div class="update_enter_label" >
               <label for="city">Місто проживання: </label>
-              <input type="text" id="city" formControlName="city" class="input_reg"   [disabled]="loading===1"  [(ngModel)]="updatedUser.city" (focusin)="autoCompleteActive = 1;" (ngModelChange)="this.updatedUser.city = (this.updatedUser.city === ' '?'':this.updatedUser.city); updateSelectedCities();"/>
+              <input type="text" id="city" formControlName="city" class="input_reg"   [disabled]="loading===1"  [(ngModel)]="this.updatedUser.city" (focusin)="autoCompleteActive = 1;" (ngModelChange)="this.updatedUser.city = (this.updatedUser.city === ' '?'':this.updatedUser.city); updateSelectedCities();"/>
               <div id="autocomplete-items" class="autocomplete-items" *ngIf="autoCompleteActive === 1">
                 <div class="autocomplete-item-container" (focusin)="autoCompleteActive = 1;" (focusout)=" autoCompleteActive = 0;">
                   <div *ngFor="let city of selectedCities;" class="autocomplete-item" (click)='autoCompleteActive = 1;setCity(city);' (focusout)="this.autoCompleteActive = 0;" >
