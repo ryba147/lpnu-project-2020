@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
 
 from .serializers import EventSerializer
 from .models import *
@@ -15,6 +16,7 @@ from .models import *
 def home(request):
     pics = Event.objects.all()
     return render(request, 'events/view_events.html', {'pics': pics})
+
 
 class EventView(View):
     allowed_methods = ["options", "get", "put", "post", "delete"]
@@ -52,6 +54,15 @@ class EventView(View):
             event_serializer = EventSerializer(event)
             return JsonResponse(event_serializer.data, safe=False)
             # return self.make_response(json.dumps({'user': event_serializer.data, 'status': 'found'}))
+
+    def post(self, request):
+        event_data = JSONParser().parse(request)
+        event_serializer = EventSerializer(data=event_data)
+
+        if event_serializer.is_valid():
+            event_serializer.save()
+            return JsonResponse(event_serializer.data, safe=False)
+        return self.make_response(json.dumps({'event': '', 'status': '?'}))
 
     #
     # def put(self, request, email=""):
