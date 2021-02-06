@@ -1,3 +1,17 @@
+.caption {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 44px;
+
+  color: #0e1111;
+}
+
+.content-container, .caption{
+   margin: 1%;
+}
+
 .event-container {
   width: 348px;
   /* height: 324px; */
@@ -44,4 +58,33 @@ button[type="submit"] img {
 
 button[type="submit"] {
   height: 44px;
+}
+
+.pagination-container {
+  text-align: center;
+  margin: 38px 48px;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  background-color: #FFE5F5;
+  color: #0e1111;
+  float: left;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border-radius: 5px;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #E554AE;
+  color: #0e1111;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #E554AE;
 }

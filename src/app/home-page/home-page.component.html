@@ -3,17 +3,34 @@
     <div class="search-container">
       <form action="">
         <input type="text" autofocus="autofocus" placeholder="Пошук подій" name="search">
-        <button type="submit"><img src="https://www.flaticon.com/svg/vstatic/svg/622/622669.svg?token=exp=1610666339~hmac=a785adac90797915fb64e21df5a1da82" alt="" /></button>
+        <button type="submit"><img
+            src="https://res.cloudinary.com/hs2vpyvzv/image/upload/v1612568959/icons/search_uwsmjl.svg"
+            alt="" /></button>
       </form>
     </div>
   </div>
 
+  <div class="caption">Популярні</div>
 
-  <div class="container"></div>
-  <div class="event-container" *ngFor="let event of events">
-    <img src="https://eventure-lpnu.herokuapp.com{{event.event_photo}}" alt="">
-    <p>{{event.event_date | date:'EEE, MMM d, HH:mm'}}</p>
-    <p>{{event.event_name}}</p>
-    <p>{{event.event_description}}</p>
+  <div class="content-container">
+    <div class="event-container" *ngFor="let event of events">
+      <img src="{{event.event_photo}}" alt="">
+      <p>{{event.event_date | date:'EEE, MMM d, HH:mm'}}</p>
+      <p>{{event.event_name}}</p>
+      <p>{{event.event_description}}</p>
+    </div>
   </div>
+
+  <div class="pagination-container">
+    <div class="pagination">
+      <a href="#">Попередня</a>
+      <a href="#">1</a>
+      <a href="#">2</a>
+      <a href="#" class="active">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">Наступна</a>
+    </div>
+  </div>
+
 </main>
