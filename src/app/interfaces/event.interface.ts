@@ -4,4 +4,5 @@ export class Event {
   event_photo: string; // path to the image
   event_date: Date;
   event_rating?: number;
+  event_location: string;
 }
