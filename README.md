@@ -8,6 +8,9 @@ http://localhost:8080/signup/
 Deployment:<br> 
 ```heroku git:remote -a yourapp```<br>
 ```git push heroku json-backend-deploy:main```<br>
+```heroku run python manage.py migrate```<br>
+You can specify the app name in the following way:
+```heroku run python manage.py migrate -a <app-name>```<br>
 Renaming the app: ```heroku apps:rename newname --app oldname```
 
 *Running and stopping app using HEROKU*<br>
