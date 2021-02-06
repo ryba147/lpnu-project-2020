@@ -42,7 +42,7 @@
 }
 
 .userUpdateFormInputs{
-  max-height: 70vh;
+  max-height: 52vh;
   overflow-y: auto;
   margin-top: 10px;
 }
@@ -55,7 +55,6 @@
 /* Track */
 .userUpdateFormInputs::-webkit-scrollbar-track {
   background: #f1f1f1;
-
 }
 
 /* Handle */
@@ -173,3 +172,61 @@ select {
   margin-left: 10px;
 }
 
+@media screen and (max-width: 1400px) {
+  .accordeonItem{
+    font-size: 42px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .accordeonItem{
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .accordeonItem{
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .gridWrapper{
+    grid-template-columns: inherit;
+  }
+
+  .userData{
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  .accordeonItem{
+    font-size: 42px;
+  }
+
+  .accordeonItemList{
+    display: flex;
+    flex-wrap: wrap;
+    position: sticky;
+    border-top: 2px solid rgb(56, 73, 85, 100);
+    border-bottom: 2px solid rgb(56, 73, 85, 100);
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .accordeonItem{
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 600px)  {
+  .userImage{
+    height: 350px;
+    width: 350px;
+  }
+  .accordeonItemList {
+    font-size: 26px;
+  }
+}
+}
