@@ -16,10 +16,12 @@
   font-size: 36px;
   margin-top: 10px;
   font-weight: bolder;
+  display: block;
 }
 
 .otherData{
-  margin-top: 10px;
+  display: block;
+  margin-top: 5px;
   font-size: 24px;
 }
 
@@ -229,4 +231,4 @@ select {
     font-size: 26px;
   }
 }
-}
+

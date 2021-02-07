@@ -33,11 +33,12 @@
         <div *ngFor="let ev of this.eventList">
           <img src="{{ev['event']}}" class="eventPhoto">
           <span>
-            <span class="eventName"></span>
-            <span class="eventLocation"></span>
-            <span class="eventTime"></span>
+            <span class="eventName">{{ev.event_name}}</span>
+            <span class="eventLocation">{{ev.event_location}}</span>
+            <span class="eventTime">{{ev.event_name}}</span>
             <span class="eventDuration"></span>
           </span>
+
         </div>
       </div>
 
@@ -171,7 +172,7 @@
                     (click)="updateUser()">Оновити</button>
           </p>
           <a class="update_enter_label">
-            <button [disabled]="loading===1" type="button" (click)="resetUser()" class=" update_button_position update_button ">Повернути</button>
+            <button [disabled]="loading===1" type="button" (click)="this.resetUser()" class=" update_button_position update_button ">Повернути</button>
           </a>
         </form>
       </div>

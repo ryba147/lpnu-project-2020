@@ -3,6 +3,7 @@ import {UserProvider} from '../services/user.provider';
 import {passBoolean} from 'protractor/built/util';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CityProvider} from '../services/ city.provider';
+import {UserpageService} from '../services/userpage.service';
 
 @Component({
   selector: 'app-user-page',
@@ -26,7 +27,7 @@ export class UserPageComponent implements OnInit {
   edit = 0;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
 
-  constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider) {
+  constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider, private userPageService: UserpageService) {
     this.createForm();
   }
 
@@ -50,6 +51,7 @@ export class UserPageComponent implements OnInit {
       }
     }
   }
+
   private createForm(): void {
     this.form = this.fb.group({
       firstname: [this.updatedUser.first_name, [Validators.required, Validators.pattern(this.stringPattern)]],
@@ -64,6 +66,7 @@ export class UserPageComponent implements OnInit {
       family_status: [this.updatedUser.family_status]
     }, {validator: this.passwordMatcher });
   }
+
   private passwordMatcher(group: FormGroup): null | { nomatch: boolean } {
     if (group.get('password') !== null) {
       const pass = group.get('password').value;
@@ -104,10 +107,19 @@ export class UserPageComponent implements OnInit {
   }
 
   updateUser(): void {
-
+    this.loading = 1;
+    this.userPageService.updateUser(this.updatedUser)
+      .subscribe(
+        data => {
+            this.loading = 0;
+        },
+        error => {
+            this.loading = 0;
+        }
+      );
   }
 
   resetUser(): void{
-    this.updatedUser = this.userProvider.getUser();
+    this.updatedUser = JSON.parse(JSON.stringify(this.currentUser));
   }
 }
