@@ -3,7 +3,7 @@
   Div with photo and data of the user
   -->
   <div class="userData">
-    <img src="" class="userImage"/>
+    <img src="{{currentUser.profile_photo}}" class="userImage"/>
     <ul>
       <li><span class="nameData">{{currentUser.last_name+" "+currentUser.first_name}}</span></li>
       <li><span class="otherData">{{currentUser.email}}</span></li>
@@ -30,13 +30,13 @@
   -->
 
       <div class="eventList" *ngIf="status==0 || status==1">
-        <div *ngFor="let ev of this.eventList">
-          <img src="{{ev['event']}}" class="eventPhoto">
+        <div *ngFor="let ev of this.eventList" class="eventListItem">
           <span>
+            <img class="eventPhoto" src="{{ev.event_photo}}">
             <span class="eventName">{{ev.event_name}}</span>
             <span class="eventLocation">{{ev.event_location}}</span>
-            <span class="eventTime">{{ev.event_name}}</span>
-            <span class="eventDuration"></span>
+            <span class="eventTime">{{calculateBeginEnd(ev)}}</span>
+            <span class="eventDuration">{{calculateDuration(ev)}}</span>
           </span>
 
         </div>

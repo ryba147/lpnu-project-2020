@@ -99,10 +99,10 @@ export class UserPageComponent implements OnInit {
 
   updateEventList(mode): void {
     if (mode === 1){
-        this.eventList = [{"id": 12, "event_name": "test_event", "event_description": "bhj", "event_photo": '', "event_date": "2021-01-27T19:53:56+02:00", "event_rating": 0}];
+        this.eventList = [{"id": 12, "event_name": "test_event", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T19:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
     }
     else{
-      this.eventList = [{"id": 12, "event_name": "test_event_1", "event_description": "bhj", "event_photo": '', "event_date": "2021-01-27T19:53:56+02:00", "event_rating": 0}];
+      this.eventList = [{"id": 12, "event_name": "test_event1", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T20:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
     }
   }
 
@@ -112,6 +112,8 @@ export class UserPageComponent implements OnInit {
       .subscribe(
         data => {
             this.loading = 0;
+            this.userProvider.setUser(this.updatedUser);
+            this.currentUser = this.userProvider.getUser();
         },
         error => {
             this.loading = 0;
@@ -121,5 +123,33 @@ export class UserPageComponent implements OnInit {
 
   resetUser(): void{
     this.updatedUser = JSON.parse(JSON.stringify(this.currentUser));
+  }
+
+  calculateDuration(event): string{
+    let beginEvent = new Date(event.event_datetime_begin);
+    let endEvent = new Date(event.event_datetime_end);
+    let diff_in_hours = (endEvent.getTime() - beginEvent.getTime())/3600000;//milliseconds in one minute
+    let diff_in_days = Math.ceil(diff_in_hours/24);
+    let diff_in_month = Math.ceil( diff_in_hours/30);
+    let diff_in_years = Math.ceil(diff_in_hours/365);
+    if(diff_in_hours < 24)return diff_in_hours + ' hrs';
+    else
+      if(diff_in_days < 30) return diff_in_days + ' days';
+      else
+      if(diff_in_month > 30) return diff_in_month + ' month';
+      else
+        return diff_in_years + ' years';
+  }
+
+  calculateBeginEnd(event): string{
+    let beginEvent = new Date(event.event_datetime_begin);
+    let endEvent = new Date(event.event_datetime_end);
+    if (beginEvent.getDay() === endEvent.getDay() && beginEvent.getMonth() === endEvent.getMonth() &&  beginEvent.getFullYear() === endEvent.getFullYear()){
+       return beginEvent.toUTCString().substring(0, 22) + ' - ' + endEvent.toTimeString().substring(0, 5);
+    }
+    else{
+      return beginEvent.toUTCString().substring(0, 22) + ' - ' + endEvent.toUTCString().substring(0, 22);
+
+    }
   }
 }
