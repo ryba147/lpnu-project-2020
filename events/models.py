@@ -5,14 +5,14 @@ from logreg.models import User
 # Create your models here.
 class Event(models.Model):
     id = models.IntegerField(blank=False, null=False, primary_key=True)
-    event_name = models.CharField(max_length=255, blank=True, null=True)
+    event_name = models.CharField(max_length=255, blank=False, null=True)
     event_description = models.TextField(blank=True, null=True)
     event_photo = models.ImageField(blank=True, null=True, upload_to='media/events')
-    event_datetime_begin = models.DateTimeField(blank=True, null=True)
-    event_datetime_end = models.DateTimeField(blank=True, null=True)
+    event_datetime_begin = models.DateTimeField(blank=False, null=True)
+    event_datetime_end = models.DateTimeField(blank=False, null=True)
     event_rating = models.FloatField(blank=True, null=True)
-    event_location = models.CharField(max_length=255, blank=True, null=True)
-    event_organizer = models.CharField(max_length=255, blank=True, null=True)
+    event_location = models.CharField(max_length=255, blank=False, null=True)
+    event_organizer = models.CharField(max_length=255, blank=False, null=True)
 
     def __str__(self):
         return self.event_name
@@ -27,7 +27,7 @@ class EventToUser(models.Model):
         ('to_visit', 'To visit'),
         ('visited', 'Visited'),
     )
-    status = models.CharField(max_length=20, blank=True, null=True, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=20, blank=False, null=True, choices=STATUS_CHOICES)
 
 
 class Comment(models.Model):
