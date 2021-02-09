@@ -225,25 +225,7 @@ select {
   margin-left: 10px;
 }
 
-@media screen and (max-width: 1400px) {
-  .accordeonItem{
-    font-size: 42px;
-  }
-}
-
-@media screen and (max-width: 1250px) {
-  .accordeonItem{
-    font-size: 36px;
-  }
-}
-
-@media screen and (max-width: 1250px) {
-  .accordeonItem{
-    font-size: 36px;
-  }
-}
-
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1500px) {
   .gridWrapper{
     grid-template-columns: inherit;
   }
@@ -264,6 +246,50 @@ select {
     border-top: 2px solid rgb(56, 73, 85, 100);
     border-bottom: 2px solid rgb(56, 73, 85, 100);
     justify-content: center;
+  }
+
+  .eventPhoto{
+    height: 65px;
+    width: 85px;
+    margin-bottom: 10px;
+    margin-left: 8px;
+  }
+
+  .eventName{
+    font-family: 'Montserrat',sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    margin-top: 20px;
+    margin-left: 10px;
+    display: inline-block;
+  }
+
+  .eventLocation{
+    display: inline-block;
+    float: right;
+    font-size: 24px;
+    font-family: 'Montserrat',sans-serif;
+    color: #000000;
+    margin-top: 25px;
+    margin-right: 10px;
+  }
+
+  .eventTime{
+    display: inline-block;
+    float: right;
+    font-size: 24px;
+    color: #134563;
+    margin-top: 25px;
+    margin-right: 10px;
+  }
+
+  .eventDuration{
+    display: inline-block;
+    float: right;
+    font-size: 24px;
+    margin-top: 25px;
+    margin-right: 10px;
+    color: #E554AE;
   }
 }
 

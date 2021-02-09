@@ -4,6 +4,7 @@ import {passBoolean} from 'protractor/built/util';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CityProvider} from '../services/ city.provider';
 import {UserpageService} from '../services/userpage.service';
+import {EventsService} from '../services/events.service';
 
 @Component({
   selector: 'app-user-page',
@@ -27,7 +28,7 @@ export class UserPageComponent implements OnInit {
   edit = 0;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
 
-  constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider, private userPageService: UserpageService) {
+  constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider, private userPageService: UserpageService, private eventsService: EventsService) {
     this.createForm();
   }
 
@@ -39,7 +40,7 @@ export class UserPageComponent implements OnInit {
   get f() { return this.form.controls; }
 
   public updateSelectedCities(): void{
-    if (this.cityProvider.compareWithSelectedCity(this.updatedUser.city) === true && this.autoCompleteChosen === 1) {return;}
+    if (this.cityProvider.compareWithSelectedCity(this.updatedUser.city) === true && this.autoCompleteChosen === 1) {return; }
     this.autoCompleteChosen = 0;
     this.selectedCities = [];
     if (this.updatedUser.city.length >= 3){
@@ -99,10 +100,26 @@ export class UserPageComponent implements OnInit {
 
   updateEventList(mode): void {
     if (mode === 1){
-        this.eventList = [{"id": 12, "event_name": "test_event", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T19:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
+      this.eventsService.getEventsList()
+        .subscribe(data => {
+          this.eventList = data;
+          alert(data);
+        },
+          error =>  {
+            alert(error);
+          });
+      //  this.eventList = [{"id": 12, "event_name": "test_event", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T19:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
     }
     else{
-      this.eventList = [{"id": 12, "event_name": "test_event1", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T20:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
+      this.eventsService.getEventsList()
+        .subscribe(data => {
+          this.eventList = data;
+          alert(data);
+        },
+          error => {
+          alert(error);
+          });
+      // this.eventList = [{"id": 12, "event_name": "test_event1", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T20:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
     }
   }
 
@@ -126,30 +143,35 @@ export class UserPageComponent implements OnInit {
   }
 
   calculateDuration(event): string{
-    let beginEvent = new Date(event.event_datetime_begin);
-    let endEvent = new Date(event.event_datetime_end);
-    let diff_in_hours = (endEvent.getTime() - beginEvent.getTime())/3600000;//milliseconds in one minute
-    let diff_in_days = Math.ceil(diff_in_hours/24);
-    let diff_in_month = Math.ceil( diff_in_hours/30);
-    let diff_in_years = Math.ceil(diff_in_hours/365);
-    if(diff_in_hours < 24)return diff_in_hours + ' hrs';
+    const beginEvent = new Date(event.event_datetime_begin);
+    const endEvent = new Date(event.event_datetime_end);
+    const diff_in_hours = Math.ceil((endEvent.getTime() - beginEvent.getTime()) / 3600000); // milliseconds in one minute
+    const diff_in_mins = diff_in_hours * 60;
+    const diff_in_days = Math.ceil(diff_in_hours / 24);
+    const diff_in_month = Math.ceil( diff_in_hours / 30);
+    const diff_in_years = Math.ceil(diff_in_hours / 365);
+    if (diff_in_mins < 1) {return '<1 min'; }
     else
-      if(diff_in_days < 30) return diff_in_days + ' days';
+    if (diff_in_mins < 60) {return diff_in_mins + ' mins'; }
+    else
+    if (diff_in_hours < 24) {return diff_in_hours + ' hrs'; }
+    else
+      if (diff_in_days < 30) { return diff_in_days + ' days'; }
       else
-      if(diff_in_month > 30) return diff_in_month + ' month';
-      else
+      if (diff_in_month > 30) { return diff_in_month + ' month'; }
+      else {
         return diff_in_years + ' years';
+      }
   }
 
   calculateBeginEnd(event): string{
-    let beginEvent = new Date(event.event_datetime_begin);
-    let endEvent = new Date(event.event_datetime_end);
+    const beginEvent = new Date(event.event_datetime_begin);
+    const endEvent = new Date(event.event_datetime_end);
     if (beginEvent.getDay() === endEvent.getDay() && beginEvent.getMonth() === endEvent.getMonth() &&  beginEvent.getFullYear() === endEvent.getFullYear()){
        return beginEvent.toUTCString().substring(0, 22) + ' - ' + endEvent.toTimeString().substring(0, 5);
     }
     else{
       return beginEvent.toUTCString().substring(0, 22) + ' - ' + endEvent.toUTCString().substring(0, 22);
-
     }
   }
 }
