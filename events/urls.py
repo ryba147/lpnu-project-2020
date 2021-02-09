@@ -7,7 +7,8 @@ from . import views
 urlpatterns = [
     path('events/', views.EventView.as_view()),
     path('events/<int:event_id>/', views.EventView.as_view()),
-    path('cloudinary/', views.home)
+    path('events/search/', views.search),
+    path('events/filterby/', views.filter_events),  # filterby/from?=..&to=..
 ]
 
 urlpatterns += staticfiles_urlpatterns()

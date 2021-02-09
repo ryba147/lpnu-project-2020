@@ -6,18 +6,32 @@
     <title>Eventure | Events list</title>
 </head>
 <body>
-    <h2>Available events:</h2>
-    {% for i in pics %}
-        <h4><i>Назва:</i> {{ i.event_name }}</h4>
-        <h4><i>Опис:</i> {{ i.event_description }}</h4>
-        <h4><i>Дата проведення:</i> {{ i.event_date }}</h4>
+<div class="search-form">
+    <form style="float: right;" method="get" action="">
+        <!--  autofocus="autofocus" -->
+        <input autofocus="autofocus" type="text" name="q" placeholder="Search items" value="{{ request.GET.q }}">
+
+        <!-- Submit button -->
+        <input type="submit" value="Search">
+    </form>
+</div>
+<h2>Available events:</h2>
+{% for i in events %}
+    <h4><i>Назва:</i> {{ i.event_name }}</h4>
+    <h4><i>Опис:</i> {{ i.event_description }}</h4>
+    <h4><i>Дата проведення:</i> {{ i.event_date }}</h4>
+    {% if not i.event_photo %}
+        <p>no photo</p>
+    {% else %}
         <img style="max-width: 10%" src="{{ i.event_photo.url }}" alt=""/>
         <p>{{ i.event_photo.url }}</p>
-        <br><i>Фото</i>
-        <hr>
-    {% endfor %}
-    <a href="/login">Log in</a><br>
-    <a href="/signup">Sign up</a><br><br>
-    <a href="/admin">Admin</a><br>
+    {% endif %}
+
+    <br><i>Фото</i>
+    <hr>
+{% endfor %}
+<a href="/login">Log in</a><br>
+<a href="/signup">Sign up</a><br><br>
+<a href="/admin">Admin</a><br>
 </body>
 </html>

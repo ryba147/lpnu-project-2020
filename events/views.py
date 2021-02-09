@@ -1,5 +1,6 @@
 import json
 
+from django.db.models import Q
 from django.shortcuts import render
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
@@ -8,14 +9,57 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
+from datetime import datetime
 
 from .serializers import EventSerializer
 from .models import *
 
 
-def home(request):
-    pics = Event.objects.all()
-    return render(request, 'events/view_events.html', {'pics': pics})
+def search(request):
+    events = Event.objects.all()
+    query = request.GET.get('q', None)
+    if query is not None:
+        events = Event.objects.all().filter(
+            Q(event_name__icontains=query.lower()) |
+            Q(event_description__icontains=query.lower())
+        )
+        print("filtered", events)
+    return render(request, 'events/view_events.html', {'events': events})
+
+
+def filter_events(request):
+    events = Event.objects.all()
+    filter_type = request.GET.get('type', None)
+
+    if filter_type == 'location':
+        query_location = request.GET.get('q')
+        events = Event.objects.all().filter(
+            Q(event_location__icontains=query_location)
+        )
+        print("filtered", events)
+
+    if filter_type == 'timerange':
+        query_datetime_begin = request.GET.get('from', None)
+        query_datetime_end = request.GET.get('to', None)
+
+        if query_datetime_begin is not None and query_datetime_end is not None:
+            events = Event.objects.all().filter(
+                Q(event_datetime_begin__gte=query_datetime_begin) &
+                Q(event_datetime_end__lte=query_datetime_end)
+            )
+        print(query_datetime_begin, query_datetime_end)
+        # увага! час може вказуватись у таких форматах:
+        # 2012-09-04 06:00
+        # 2012-09-04 06:00:00
+        # 2012-09-04 06:00:00.000000
+
+        # w/ optional TZ as timezone.
+        # 2012-09-04 06:00Z  # utc
+        # 2012-09-04 06:00:00+0800  # ТАКИЙ ДАЄ ПОМИЛКУ!
+        # 2012-09-04 06:00:00.000000-08:00
+
+    events_serializer = EventSerializer(events, many=True)
+    return JsonResponse(events_serializer.data, safe=False)
 
 
 class EventView(View):

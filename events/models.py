@@ -4,7 +4,6 @@ from logreg.models import User
 
 # Create your models here.
 class Event(models.Model):
-    # id = models.IntegerField(primary_key=True)
     event_name = models.CharField(max_length=255, blank=False, null=True)
     event_description = models.TextField(blank=True, null=True)
     event_photo = models.ImageField(blank=True, null=True, upload_to='media/events')

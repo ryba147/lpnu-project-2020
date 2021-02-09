@@ -7,7 +7,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=30, blank=False, null=True)
     profile_photo = models.ImageField(blank=True, null=True, upload_to='media/user_photos')
     birth_date = models.DateField(blank=True, null=True)
-    city = models.CharField(max_length=30, blank=True, null=True)
+    city = models.CharField(max_length=30, blank=False, null=True)
     password = models.CharField(max_length=30, blank=False, null=True)
 
     SEX_CHOICES = (
