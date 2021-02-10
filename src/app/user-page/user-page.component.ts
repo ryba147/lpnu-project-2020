@@ -103,10 +103,10 @@ export class UserPageComponent implements OnInit {
       this.eventsService.getEventsList()
         .subscribe(data => {
           this.eventList = data;
-          alert(data);
+          //alert(data);
         },
           error =>  {
-            alert(error);
+            //alert(error);
           });
       //  this.eventList = [{"id": 12, "event_name": "test_event", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T19:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
     }
@@ -114,10 +114,10 @@ export class UserPageComponent implements OnInit {
       this.eventsService.getEventsList()
         .subscribe(data => {
           this.eventList = data;
-          alert(data);
+          //alert(data);
         },
           error => {
-          alert(error);
+          //alert(error);
           });
       // this.eventList = [{"id": 12, "event_name": "test_event1", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T20:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
     }

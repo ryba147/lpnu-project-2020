@@ -33,17 +33,17 @@
 
       <div class="eventList" *ngIf="status==0 || status==1">
         <div *ngFor="let ev of this.eventList" class="eventListItem">
-          <span>
             <img class="eventPhoto" src="{{ev.event_photo}}">
             <span class="eventName">{{ev.event_name}}</span>
-            <span class="eventDuration">
-              <img src="./assets/images/clock_duration_icon.svg" alt="" class='icon' />
-                          {{calculateDuration(ev)}}</span>
-            <span class="eventTime">{{calculateBeginEnd(ev)}}</span>
-            <span class="eventLocation">
-              <img src="./assets/images/location_icon.svg" alt="" class='icon'/>
-              {{ev.event_location}}</span>
-          </span>
+            <span class="eventOtherData">
+              <span class="eventDuration">
+                <img src="./assets/images/clock_duration_icon.svg" alt="" class='icon' />
+                            {{calculateDuration(ev)}}</span>
+              <span class="eventTime">{{calculateBeginEnd(ev)}}</span>
+              <span class="eventLocation">
+                <img src="./assets/images/location_icon.svg" alt="" class='icon'/>
+                {{ev.event_location}}</span>
+            </span>
 
         </div>
       </div>
