@@ -1,18 +1,37 @@
 import json
-
-from django.db.models import Q
-from django.shortcuts import render
-from django.views import View
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-from django.http import HttpResponse, JsonResponse
-from rest_framework.decorators import api_view
-from rest_framework.parsers import JSONParser
-from rest_framework.response import Response
 from datetime import datetime
 
-from .serializers import EventSerializer
+from django.core.paginator import Paginator, EmptyPage
+from django.db.models import Q
+from django.http import HttpResponse, JsonResponse
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+
 from .models import *
+from .serializers import EventSerializer
+
+
+def paginate(request, object_list):
+    # receiving the params using query
+    q_page = request.GET.get('page', 1)
+    q_page_size = request.GET.get('show', 3)
+
+    # paging
+    paginator = Paginator(object_list, q_page_size)
+    events = paginator.get_page(q_page)
+    events_serializer = EventSerializer(events, many=True)
+
+    # events variable has a page type
+    return ({
+        "page": q_page,
+        "count": len(events),  # or (events.end_index - events.start_index) + 1
+        "num_pages": paginator.num_pages,
+        "has_next": events.has_next(),
+        "has_previous": events.has_previous(),
+        "results": events_serializer.data
+    })
 
 
 def search(request):
@@ -23,22 +42,36 @@ def search(request):
             Q(event_name__icontains=query.lower()) |
             Q(event_description__icontains=query.lower())
         )
-        print("filtered", events)
-    return render(request, 'events/view_events.html', {'events': events})
+    try:
+        response = paginate(request, events)
+    except EmptyPage:
+        return JsonResponse({"results": ""}, status=404)
+
+    return JsonResponse(response)
+    # return render(request, 'events/view_events.html', {'events': events})
 
 
 def filter_events(request):
     events = Event.objects.all()
-    filter_type = request.GET.get('type', None)
+    q_type = request.GET.get('type', None)
 
-    if filter_type == 'location':
+    if q_type == 'location':
         query_location = request.GET.get('q')
         events = Event.objects.all().filter(
             Q(event_location__icontains=query_location)
         )
-        print("filtered", events)
-
-    if filter_type == 'timerange':
+    """
+        увага! час може вказуватись у таких форматах:
+        2012-09-04 06:00
+        2012-09-04 06:00:00
+        2012-09-04 06:00:00.000000
+         
+        w/ optional TZ as timezone.
+        2012-09-04 06:00Z  # utc
+        2012-09-04 06:00:00+0800  # ТАКИЙ ДАЄ ПОМИЛКУ!
+        2012-09-04 06:00:00.000000-08:00
+    """
+    if q_type == 'timerange':
         query_datetime_begin = request.GET.get('from', None)
         query_datetime_end = request.GET.get('to', None)
 
@@ -48,18 +81,13 @@ def filter_events(request):
                 Q(event_datetime_end__lte=query_datetime_end)
             )
         print(query_datetime_begin, query_datetime_end)
-        # увага! час може вказуватись у таких форматах:
-        # 2012-09-04 06:00
-        # 2012-09-04 06:00:00
-        # 2012-09-04 06:00:00.000000
+    try:
+        response = paginate(request, events)
+    except EmptyPage:
+        return JsonResponse({"results": ""}, status=404)
 
-        # w/ optional TZ as timezone.
-        # 2012-09-04 06:00Z  # utc
-        # 2012-09-04 06:00:00+0800  # ТАКИЙ ДАЄ ПОМИЛКУ!
-        # 2012-09-04 06:00:00.000000-08:00
-
-    events_serializer = EventSerializer(events, many=True)
-    return JsonResponse(events_serializer.data, safe=False)
+    return JsonResponse(response)
+    # return JsonResponse(events_serializer.data, safe=False)
 
 
 class EventView(View):
@@ -87,9 +115,21 @@ class EventView(View):
         # e.save()
         if event_id is None:
             events = Event.objects.all()
-            events_serializer = EventSerializer(events, many=True)
-            print("event_id:", event_id)
-            return JsonResponse(events_serializer.data, safe=False)
+            events_per_page = 3
+
+            paginator = Paginator(events, events_per_page)
+            query_page = request.GET.get('page')
+            events_page = paginator.get_page(query_page)
+
+            events_serializer = EventSerializer(events_page, many=True)  # отримую джсонки з сторіночки
+
+            # return JsonResponse(events_serializer.data, safe=False)
+            return JsonResponse({
+                # 'count': paginator.count,
+                'count': events_per_page,
+                'num_pages': paginator.num_pages,
+                'results': events_serializer.data
+            })
         else:
             event = Event.objects.get(id=event_id)
             print(event)
