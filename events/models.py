@@ -18,8 +18,8 @@ class Event(models.Model):
 
 
 class EventToUser(models.Model):
-    event_id = models.ForeignKey(Event, blank=False, null=True, on_delete=models.CASCADE)
-    user_email = models.ForeignKey(User, blank=False, null=True, on_delete=models.CASCADE)
+    event_id = models.IntegerField(blank=False, null=True)
+    user_email = models.EmailField(blank=False, null=True)
 
     STATUS_CHOICES = (
         ('event_organizer', 'Organizer'),
