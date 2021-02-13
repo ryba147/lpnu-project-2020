@@ -91,6 +91,7 @@
 .dd-logo-ico {
   width: 30px;
 }
+
 #popup{
   position: fixed;
   width: 100%;
@@ -115,7 +116,7 @@
 .popup-inner{
   position: relative;
   background-color: #fff;
-  width: 800px;
+  width: 700px;
   height: 500px;
   padding: 25px;
   -webkit-transform: scale(0);
@@ -144,4 +145,207 @@ a.close-popup{
   text-align: center;
   line-height: 40px;
   border-radius: 50%;
+}
+
+
+.fotofon{
+  position: absolute;
+  width: 300px;
+  height: 500px;
+  left: 400px;
+  top: 0px;
+  background: #E0EFFC;
+  font-family: Emilys Candy;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  justify-content: right;
+  color: #696666;
+}
+
+.logo_add{
+  position: relative;
+  width: 60px;
+  height: 65px;
+  top: 20px;
+}
+
+.mainfoto{
+  position: absolute;
+  width: 195px;
+  height: 170px;
+  left: 52.5px;
+  top: 115px;
+  background: #FFFFFF;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border: 2px solid #040404;
+  box-sizing: border-box;
+  font-family: Emilys Candy;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 23px;
+  line-height: 27px;
+  text-align: center;
+  color: #696666;
+}
+
+.foto{
+  position: relative;
+  width: 35px;
+  height: 35px;
+  top: 228px;
+  left: 52.5px;
+  float: left;
+  margin-right: 5px;
+  font-family: Emilys Candy;
+  font-style: normal;
+  font-size: 20px;
+  text-align: center;
+  color: #696666;
+  background: #FFFFFF;
+  border: 2px solid #040404;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.addfiles{
+  position: absolute;
+  top: 340px;
+  left: 80px;
+  background: #DDBCCE;
+  border-radius: 20px;
+  font-family: Emilys Candy;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  color: #696666;
+}
+
+.addevent{
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  top: 460px;
+  left: 250px;
+  background: #DDBCCE;
+  border-radius: 20px;
+  font-family: Emilys Candy;
+  font-size: 25px;
+  line-height: 28px;
+  font-style: normal;
+  font-weight: normal;
+  color: #696666;
+}
+
+.button{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min-content;
+  margin-bottom: 80px;
+ }
+
+.maintextadd{
+  position: relative;
+  left:60px;
+  font-family: Emilys Candy;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: left;
+  color: #926C82;
+}
+
+.textadd{
+  position: relative;
+  font-family: Emilys Candy;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: left;
+  color: #696666;
+}
+
+.inputfield{
+  position: relative;
+  width: 350px;
+  height: 17px;
+  font-size: 11px;
+  margin-bottom: 3px;
+  background: #DDBCCE;
+}
+
+.descriptionfield{
+  position: absolute;
+  width: 350px;
+  height: 60px;
+  background: #F9E6F0;
+}
+
+label {
+  position: relative;
+  font-family: Emilys Candy;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  color: #696666;
+  padding-left: 3px;
+  padding-right: 12px;
+}
+
+.input_box {
+  position: relative;
+  width: 17px;
+  height: 17px;
+  justify-content: left;
+  background: #FFFFFF;
+  margin-top: 1px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+option {
+  position: relative;
+  width: 350px;
+  height: 10px;
+  font-size: 20px;
+  background: #DDBCCE;
+}
+
+select{
+  position: relative;
+  width: 350px;
+  height: 20px;
+  position: relative;
+  font-family: Emilys Candy;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  text-align: left;
+  color: #4C4949;
+  background: #DDBCCE;
+}
+
+.input_date{
+  line-height: 1.3;
+  width: 150px;
+  height: 17px;
+  background: #DDBCCE;
+  font-size: 13px;
+  border-color: transparent;
+  padding: 10px;
+  margin-bottom: 1px;
+  margin-top: 2px;
+  display: inline-block;
+  margin-right: 15px;
 }
