@@ -75,7 +75,7 @@
     </div>
     <p class="registration_enter_label ">
       <label for="sex">Cтать:</label>
-      <select id="sex" [(ngModel)]="user.sex" (ngModelChange)="showVal()" formControlName="family_status">
+      <select id="sex" [(ngModel)]="user.sex" formControlName="sex">
         <option (click)="user.sex = 'not_specified'" [value]="'not_specified'" >Не вказано</option>
         <option (click)="user.sex = 'male'" [value]="'male'" >Чоловіча</option>
         <option (click)="user.sex = 'female'" [value]="'female'" >Жіноча</option>
