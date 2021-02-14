@@ -129,8 +129,22 @@
 
 .updatePhoto{
   height: 316px;
+  margin-left: 20px;
 }
 
+.updatePhotoButton{
+  width: 316px;
+  height: 27px;
+  font-family: Montserrat, serif;
+  margin-top: 10px;
+  background-color: #e3f2ff;
+  border: none;
+  outline: none;
+}
+
+.updatePhotoInput{
+  display: none;
+}
 
 .text_update {
   margin-top: 35px;
@@ -329,11 +343,11 @@ select {
     font-size: 18px;
     margin-top: 30px;
   }
-  
+
 }
 
 @media screen and (max-width: 1000px){
-  
+
   .eventListItem{
     height: fit-content;
   }

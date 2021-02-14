@@ -58,10 +58,12 @@
 
         <form [formGroup]="form" action="" (ngSubmit)="updateUser()" class="userUpdateForm">
             <div class="userUpdateFormInputs">
-            <p class="update_enter_label">
               <img class="updatePhoto" src="{{this.updatedUser.profile_photo}}" alt="" />
+            <p class="update_enter_label">
+
               <label for="profile_photo">Фото профілю</label>
-              <input id="profile_photo" type="file" accept=".jpg, .jpeg, .png" formControlName="profile_photo"/>
+              <button class="updatePhotoButton" (click)="userButtonClick()">Вибрати фото профілю</button>
+              <input id="profile_photo" class="updatePhotoInput" type="file" accept=".jpg, .jpeg, .png" formControlName="profile_photo"/>
             </p>
               <!-- First name -->
               <p class="update_enter_label ">

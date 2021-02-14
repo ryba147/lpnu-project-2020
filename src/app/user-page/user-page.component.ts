@@ -153,6 +153,10 @@ export class UserPageComponent implements OnInit {
       );
   }
 
+  userButtonClick(){
+    document.getElementById('profile_photo').click();
+  }
+
   resetUser(): void{
     this.updatedUser = this.userProvider.getUser();
   }
