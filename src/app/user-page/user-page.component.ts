@@ -10,6 +10,7 @@ import { runInThisContext } from 'vm';
 import { flatten, templateJitUrl } from '@angular/compiler';
 import { toUnicode } from 'punycode';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {defaultGatherDiagnostics} from '@angular/compiler-cli';
 
 @Component({
   selector: 'app-user-page',
@@ -32,9 +33,10 @@ export class UserPageComponent implements OnInit {
   form: FormGroup;
   response = 0;
   oldPass: string;
+  newPass: string;
   confPass: string;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
-
+  imagePath: any;
   constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider, private userPageService: UserpageService, private eventsService: EventsService) {
     this.currentUser = this.userProvider.getUser();
     this.eventList = [];
@@ -48,6 +50,8 @@ export class UserPageComponent implements OnInit {
   get f() { return this.form.controls; }
 
   public updateSelectedCities(): void{
+    this.autoCompleteActive = true;
+    this.updatedUser.city = this.updatedUser.city.trimLeft();
     if (this.cityProvider.compareWithSelectedCity(this.updatedUser.city) === true && this.autoCompleteChosen === true) {return; }
     this.autoCompleteChosen = false;
     this.selectedCities = [];
@@ -63,11 +67,9 @@ export class UserPageComponent implements OnInit {
 
   private createForm(): void {
     this.updatedUser = this.userProvider.getUser();
-    this.autoCompleteActive = false;
-    this.autoCompleteChosen = true;
     this.oldPass = '';
     this.confPass = '';
-    this.updatedUser.password = '';
+    this.newPass = '';
     this.form = this.fb.group({
       profile_photo: [''],
       firstname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
@@ -80,18 +82,13 @@ export class UserPageComponent implements OnInit {
       pets: [''],
       sex: [''],
       family_status: ['']
-    }, {validator: this.passwordMatcher});
+    });
   }
 
-  private passwordMatcher(group: FormGroup): null | { nomatch: boolean} {
-    if(group.get('new_password') !== null && group.get('old_password') !== null && group.get('confirm_password') !== null ){
-      const oldPassword: string = group.get('old_password').value;
-      const newPassword: string = group.get('new_password').value;
-      const confirmPassword: string = group.get('confirm_password').value;
-      if (oldPassword === '' && newPassword === '' && confirmPassword === '') {return null; }
-      if (oldPassword === this.userProvider.getUser().password && newPassword === confirmPassword && newPassword.length >= 8 && newPassword.length <= 12 ) {return null; }
-      return {nomatch: true};
-    }
+  passwordMatcher(): boolean {
+      if (this.oldPass === '' && this.newPass === '' && this.confPass === '') { return true; }
+      if (this.oldPass === this.currentUser.password && this.newPass === this.confPass && this.confPass.length >= 8 && this.confPass.length <= 12 ) { return true; }
+      return false;
   }
 
   setCity(city): void {
@@ -103,7 +100,7 @@ export class UserPageComponent implements OnInit {
   }
 
   changePanel(param): void {
-   // alert(document.getElementById('accordeonItem1'));
+    // alert(document.getElementById('accordeonItem1'));
     for (let i = 0; i <= 2; i++){
       document.getElementById('accordeonItem' + i.toString()).style.color = '#aaaaaa';
     }
@@ -121,8 +118,8 @@ export class UserPageComponent implements OnInit {
     if (mode === 1){
       this.eventsService.getEventsList()
         .subscribe(data => {
-          this.eventList = data.results;
-        },
+            this.eventList = data.results;
+          },
           error =>  {
 
           });
@@ -130,30 +127,33 @@ export class UserPageComponent implements OnInit {
     else{
       this.eventsService.getEventsList()
         .subscribe(data => {
-          this.eventList = data.results;
-        },
+            this.eventList = data.results;
+          },
           error => {
-              const a = error;
+            const a = error;
           });
     }
   }
 
   updateUser(): void {
     this.loading = 1;
+    if (this.newPass.length > 0 && this.passwordMatcher() === true){
+      this.updatedUser.password = this.newPass;
+    }
     this.userPageService.updateUser(this.updatedUser)
       .subscribe(
         data => {
-            this.loading = 0;
-            this.userProvider.setUser(this.updatedUser);
-            this.currentUser = this.userProvider.getUser();
+          this.loading = 0;
+          this.userProvider.setUser(this.updatedUser);
+          this.currentUser = this.userProvider.getUser();
         },
         error => {
-            this.loading = 0;
+          this.loading = 0;
         }
       );
   }
 
-  userButtonClick(){
+  userButtonClick(): void {
     document.getElementById('profile_photo').click();
   }
 
@@ -175,24 +175,26 @@ export class UserPageComponent implements OnInit {
     else
     if (diff_in_hours < 24) {return diff_in_hours + ' hrs'; }
     else
-      if (diff_in_days < 30) { return diff_in_days + ' days'; }
-      else
-      if (diff_in_month > 30) { return diff_in_month + ' month'; }
-      else {
-        return diff_in_years + ' years';
-      }
+    if (diff_in_days < 30) { return diff_in_days + ' days'; }
+    else
+    if (diff_in_month > 30) { return diff_in_month + ' month'; }
+    else {
+      return diff_in_years + ' years';
+    }
   }
 
   calculateBeginEnd(event): string{
     const beginEvent = new Date(event.event_datetime_begin);
     const endEvent = new Date(event.event_datetime_end);
     if (beginEvent.getDay() === endEvent.getDay() && beginEvent.getMonth() === endEvent.getMonth() &&  beginEvent.getFullYear() === endEvent.getFullYear()){
-       return beginEvent.toUTCString().substring(0, 22) + ' - ' + endEvent.toTimeString().substring(0, 5);
+      return beginEvent.toUTCString().substring(0, 22) + ' - ' + endEvent.toTimeString().substring(0, 5);
     }
     else{
       return beginEvent.toUTCString().substring(0, 22) + ' - ' + endEvent.toUTCString().substring(0, 22);
     }
   }
 
-
+  pause(): void{
+    alert(1);
+  }
 }

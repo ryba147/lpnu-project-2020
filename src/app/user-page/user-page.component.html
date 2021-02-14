@@ -63,7 +63,7 @@
 
               <label for="profile_photo">Фото профілю</label>
               <button class="updatePhotoButton" (click)="userButtonClick()">Вибрати фото профілю</button>
-              <input id="profile_photo" class="updatePhotoInput" type="file" accept=".jpg, .jpeg, .png" formControlName="profile_photo"/>
+              <input id="profile_photo" class="updatePhotoInput" type="file" accept=".jpg, .jpeg, .png" [(ngModel)]="this.imagePath" formControlName="profile_photo"/>
             </p>
               <!-- First name -->
               <p class="update_enter_label ">
@@ -99,19 +99,19 @@
               <!-- City -->
               <div class="update_enter_label" >
                 <label for="city">Місто проживання: </label>
-                <input type="text" id="city" formControlName="city" class="input_reg"   [disabled]="loading===1"  [(ngModel)]="this.updatedUser.city" (focusin)="autoCompleteActive = 1;" (ngModelChange)="this.updatedUser.city = (this.updatedUser.city === ' '?'':this.updatedUser.city); updateSelectedCities();"/>
-                <div id="autocomplete-items" class="autocomplete-items" *ngIf="autoCompleteActive === 1">
-                  <div class="autocomplete-item-container" (focusin)="autoCompleteActive = 1;" (focusout)=" autoCompleteActive = 0;">
-                    <div *ngFor="let city of selectedCities;" class="autocomplete-item" (click)='autoCompleteActive = 1;setCity(city);' (focusout)="this.autoCompleteActive = 0;" >
+                <input type="text" id="city" formControlName="city" class="input_reg"   [disabled]="loading===1"  [(ngModel)]="this.updatedUser.city" (focusin)="autoCompleteActive = true;" (ngModelChange)="updateSelectedCities();"/>
+                <div id="autocomplete-items" class="autocomplete-items" *ngIf="this.autoCompleteActive === true">
+                  <div class="autocomplete-item-container" (focusin)="autoCompleteActive = true;" (focusout)=" autoCompleteActive = false;">
+                    <div *ngFor="let city of selectedCities;" class="autocomplete-item" (click)='autoCompleteActive = true;setCity(city);' (focusout)="this.autoCompleteActive = false;" >
                       {{city}}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div *ngIf=" f.city.touched && (f.city.errors || this.autoCompleteChosen===0)">
+              <div *ngIf=" f.city.touched && (f.city.errors || this.autoCompleteChosen===false)">
                 <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
-                <div class=" invalid-data" *ngIf="this.autoCompleteChosen===0">Виберіть місто з випадаючого списку</div>
+                <div class=" invalid-data" *ngIf="this.autoCompleteChosen===false">Виберіть місто з випадаючого списку</div>
                 <!-- <div class=" invalid-data" *ngIf="f.city.errors">Неправильний формат</div> -->
               </div>
               <!--  -->
@@ -125,21 +125,40 @@
                   <option (click)="updatedUser.sex = 'female'" [value]="'female'" >Жіноча</option>
                 </select>
               </p>
+
               <!-- Old password -->
               <p class="update_enter_label">
                 <label for="old_password">Старий пароль(У разі зміни паролю) </label>
                 <input type="password" id="old_password" formControlName="old_password"  [disabled]="loading===1" (ngModelChange)="response = 0;" class="input_reg" [(ngModel)]="oldPass" />
               </p>
+              <div *ngIf="newPass!=='' && oldPass.length<8 ">
+                <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
+                <div class=" invalid-data" >Оскільки ви хочете змінити пароль, то введіть старий</div>
+                <!-- <div class=" invalid-data" *ngIf="f.city.errors">Неправильний формат</div> -->
+              </div>
+
+              <!-- New password -->
               <p class="update_enter_label">
                 <label for="password">Введіть новий пароль: </label>
-                <input type="password" id="password" formControlName="new_password"  [disabled]="loading===1" class="input_reg" [(ngModel)]="updatedUser.password" />
+                <input type="password" id="password" formControlName="new_password"  [disabled]="loading===1" class="input_reg" [(ngModel)]="newPass" />
               </p>
+              <div *ngIf="newPass!='' && (newPass.length<8 || newPass.length>12)">
+                <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
+                <div class=" invalid-data">Новий пароль має бути від 8 до 12 символів</div>
+                <!-- <div class=" invalid-data" *ngIf="f.city.errors">Неправильний формат</div> -->
+              </div>
 
+              <!-- Confirm password -->
               <p class="update_enter_label">
                 <label for="confirm_password">Введіть новий пароль повторно: </label>
                 <input type="password" id="confirm_password" formControlName="confirm_password" [(ngModel)]="confPass"
                        class="input_reg" autocomplete="off"/>
               </p>
+              <div *ngIf=" this.newPass.length>0 && this.newPass!==this.confPass">
+                <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
+                <div class=" invalid-data ">Введений та підтверджений паролі не збігаються</div>
+                <!-- <div class=" invalid-data" *ngIf="f.city.errors">Неправильний формат</div> -->
+              </div>
 
               <!-- <div>{{form.errors|json}}</div> -->
 
@@ -159,7 +178,7 @@
               </div>
             </div>
             <p class="update_enter_label">
-              <button type="submit" [disabled]="form.invalid || loading===1" class=" update_button_position update_button "
+              <button type="submit" [disabled]="form.invalid || loading===1 || this.passwordMatcher()===false" class=" update_button_position update_button "
                       (click)="updateUser()">Оновити</button>
             </p>
             <a class="update_enter_label">
