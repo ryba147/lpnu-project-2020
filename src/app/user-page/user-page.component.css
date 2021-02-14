@@ -127,6 +127,11 @@
   border-radius: 10px;
 }
 
+.updatePhoto{
+  height: 316px;
+}
+
+
 .text_update {
   margin-top: 35px;
   font-size: 36px;

@@ -5,6 +5,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CityProvider} from '../services/ city.provider';
 import {UserpageService} from '../services/userpage.service';
 import {EventsService} from '../services/events.service';
+import { User } from '../interfaces/user.interface';
+import { runInThisContext } from 'vm';
+import { flatten, templateJitUrl } from '@angular/compiler';
+import { toUnicode } from 'punycode';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-user-page',
@@ -13,35 +18,38 @@ import {EventsService} from '../services/events.service';
 })
 export class UserPageComponent implements OnInit {
   // 0 - recent, 1 - user pages, 2 - settings
+  //Переробити під булеан
   status = 0;
   loading = 0;
-  currentUser = this.userProvider.getUser();
-  eventList = [];
-  updatedUser = JSON.parse(JSON.stringify(this.currentUser));
-  autoCompleteChosen = 0;
-  selectedCities = [];
-  autoCompleteActive = 0;
+  //Перекинути в конструкторі
+  currentUser: User;
+  eventList: Array<Event>;
+  //Забрати
+  updatedUser: User;
+  autoCompleteChosen: boolean;
+  selectedCities: Array<string>;
+  autoCompleteActive: boolean;
   form: FormGroup;
   response = 0;
   oldPass: string;
   confPass: string;
-  edit = 0;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
 
   constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider, private userPageService: UserpageService, private eventsService: EventsService) {
-    this.createForm();
+    this.currentUser = this.userProvider.getUser();
+    this.eventList = [];
+    this.selectedCities = [];
   }
 
   ngOnInit(): void {
-    this.currentUser = this.userProvider.getUser();
     this.changePanel(0);
   }
 
   get f() { return this.form.controls; }
 
   public updateSelectedCities(): void{
-    if (this.cityProvider.compareWithSelectedCity(this.updatedUser.city) === true && this.autoCompleteChosen === 1) {return; }
-    this.autoCompleteChosen = 0;
+    if (this.cityProvider.compareWithSelectedCity(this.updatedUser.city) === true && this.autoCompleteChosen === true) {return; }
+    this.autoCompleteChosen = false;
     this.selectedCities = [];
     if (this.updatedUser.city.length >= 3){
       const cities = this.cityProvider.getCityList();
@@ -54,35 +62,43 @@ export class UserPageComponent implements OnInit {
   }
 
   private createForm(): void {
+    this.updatedUser = this.userProvider.getUser();
+    this.autoCompleteActive = false;
+    this.autoCompleteChosen = true;
+    this.oldPass = '';
+    this.confPass = '';
+    this.updatedUser.password = '';
     this.form = this.fb.group({
-      firstname: [this.updatedUser.first_name, [Validators.required, Validators.pattern(this.stringPattern)]],
-      lastname: [this.updatedUser.last_name, [Validators.required, Validators.pattern(this.stringPattern)]],
-      city: [this.updatedUser.city, [Validators.required, Validators.pattern(this.stringPattern)]],
-      old_password: ['', [Validators.required, Validators.pattern('^[a-z0-9A-Z._%+-]+@[a-zA-Z.-]+\\.[a-z]{2,4}$')]],
-      new_password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]],
-      confirm_password: ['', [Validators.required, Validators.minLength(8)]],
-      date: [this.updatedUser.birth_date],
-      pets: [this.updatedUser.pets],
-      sex: [this.updatedUser.sex],
-      family_status: [this.updatedUser.family_status]
-    }, {validator: this.passwordMatcher });
+      profile_photo: [''],
+      firstname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
+      lastname: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
+      city: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
+      old_password: [''],
+      new_password: [''],
+      confirm_password: [''],
+      date: [''],
+      pets: [''],
+      sex: [''],
+      family_status: ['']
+    }, {validator: this.passwordMatcher});
   }
 
-  private passwordMatcher(group: FormGroup): null | { nomatch: boolean } {
-    if (group.get('password') !== null) {
-      const pass = group.get('password').value;
-      const confirm_pass = group.get('confirm_password').value;
-      return pass === confirm_pass
-        ? null
-        : { nomatch: true };
+  private passwordMatcher(group: FormGroup): null | { nomatch: boolean} {
+    if(group.get('new_password') !== null && group.get('old_password') !== null && group.get('confirm_password') !== null ){
+      const oldPassword: string = group.get('old_password').value;
+      const newPassword: string = group.get('new_password').value;
+      const confirmPassword: string = group.get('confirm_password').value;
+      if (oldPassword === '' && newPassword === '' && confirmPassword === '') {return null; }
+      if (oldPassword === this.userProvider.getUser().password && newPassword === confirmPassword && newPassword.length >= 8 && newPassword.length <= 12 ) {return null; }
+      return {nomatch: true};
     }
   }
 
   setCity(city): void {
     if (this.cityProvider.setSelectedCity(city) === true){
-      this.autoCompleteChosen = 1;
+      this.autoCompleteChosen = true;
       this.updatedUser.city = city;
-      this.autoCompleteActive = 0;
+      this.autoCompleteActive = false;
     }
   }
 
@@ -95,6 +111,9 @@ export class UserPageComponent implements OnInit {
     if (param === 0 || param === 1){
       this.updateEventList(param);
     }
+    else{
+      this.createForm();
+    }
     this.status = param;
   }
 
@@ -102,24 +121,20 @@ export class UserPageComponent implements OnInit {
     if (mode === 1){
       this.eventsService.getEventsList()
         .subscribe(data => {
-          this.eventList = data;
-          //alert(data);
+          this.eventList = data.results;
         },
           error =>  {
-            //alert(error);
+
           });
-      //  this.eventList = [{"id": 12, "event_name": "test_event", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T19:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
     }
     else{
       this.eventsService.getEventsList()
         .subscribe(data => {
-          this.eventList = data;
-          //alert(data);
+          this.eventList = data.results;
         },
           error => {
-          //alert(error);
+              const a = error;
           });
-      // this.eventList = [{"id": 12, "event_name": "test_event1", "event_description": "bhj", "event_photo": '', "event_datetime_begin": "2021-01-27T19:53:56+02:00","event_datetime_end": "2021-01-27T20:53:56+02:00",'event_location':'Softserve, Lviv','event_organsizer':'Softserve', "event_rating": 0}];
     }
   }
 
@@ -139,7 +154,7 @@ export class UserPageComponent implements OnInit {
   }
 
   resetUser(): void{
-    this.updatedUser = JSON.parse(JSON.stringify(this.currentUser));
+    this.updatedUser = this.userProvider.getUser();
   }
 
   calculateDuration(event): string{
@@ -174,4 +189,6 @@ export class UserPageComponent implements OnInit {
       return beginEvent.toUTCString().substring(0, 22) + ' - ' + endEvent.toUTCString().substring(0, 22);
     }
   }
+
+
 }
