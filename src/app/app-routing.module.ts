@@ -7,6 +7,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component'
 import { OneeventComponent } from './oneevent/oneevent.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { InfoeventComponent } from './infoevent/infoevent.component'
 
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
@@ -18,15 +19,16 @@ export const appRoutes: Routes = [
   { path: 'sign-up', component: RegistrationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'home', component: HomePageComponent },
-  { path: 'oneevent', component: OneeventComponent },
+  { path: 'oneevent', component: OneeventComponent,
+    children:[{ path: 'infoevent', component: InfoeventComponent}] },
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'about-us', component: AboutUsComponent},
-  { path: 'my', component: UserPageComponent}
+  { path: 'my', component: UserPageComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes), RouterModule.forChild(appRoutes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

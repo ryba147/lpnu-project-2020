@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { OneeventComponent } from './oneevent/oneevent.component';
 import {UserPageComponent} from './user-page/user-page.component';
+import { InfoeventComponent } from './infoevent/infoevent.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {UserPageComponent} from './user-page/user-page.component';
     FooterComponent,
     AboutUsComponent,
     OneeventComponent,
-    UserPageComponent
+    UserPageComponent,
+    InfoeventComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule, MaterialModule],
   providers: [],
