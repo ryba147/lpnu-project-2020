@@ -5,12 +5,12 @@
   Div with photo and data of the user
   -->
   <div class="userData">
-    <img src="{{currentUser.profile_photo}}" class="userImage"/>
+    <img src="{{currentUser?.profile_photo}}" class="userImage"/>
     <ul>
-      <li><span class="nameData">{{currentUser.last_name+" "+currentUser.first_name}}</span></li>
-      <li><span class="otherData">{{currentUser.email}}</span></li>
-      <li><span class="otherData">{{currentUser.city}}</span></li>
-      <li><span class="otherData">{{currentUser.birth_date}}</span></li>
+      <li><span class="nameData">{{currentUser?.last_name+" "+currentUser?.first_name}}</span></li>
+      <li><span class="otherData">{{currentUser?.email}}</span></li>
+      <li><span class="otherData">{{currentUser?.city}}</span></li>
+      <li><span class="otherData">{{currentUser?.birth_date}}</span></li>
     </ul>
   </div>
 
@@ -31,7 +31,7 @@
   Div with events
   -->
 
-      <div class="eventList" *ngIf="status==0 || status==1">
+      <div class="eventList" *ngIf="status===0 || status===1">
         <div *ngFor="let ev of this.eventList" class="eventListItem">
             <img class="eventPhoto" src="{{ev.event_photo}}">
             <span class="eventName">{{ev.event_name}}</span>
@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div class='userUpdateFormWrapper' *ngIf="status==2">
+      <div class='userUpdateFormWrapper' *ngIf="status===2">
 
         <!-- <p>value: {{ form.value | json }}</p> -->
         <!-- <p>the whole form status: {{ form.status | json }} , {{form.valid}}</p> -->
@@ -58,17 +58,19 @@
 
         <form [formGroup]="form" action="" (ngSubmit)="updateUser()" class="userUpdateForm">
             <div class="userUpdateFormInputs">
-              <img class="updatePhoto" src="{{this.updatedUser.profile_photo}}" alt="" />
+              <img class="updatePhoto" src="{{this.url}}" alt="" />
             <p class="update_enter_label">
 
               <label for="profile_photo">Фото профілю</label>
               <button class="updatePhotoButton" (click)="userButtonClick()">Вибрати фото профілю</button>
+              <input type='file' (change)="readUrl($event)">
+
               <input id="profile_photo" class="updatePhotoInput" type="file" accept=".jpg, .jpeg, .png" [(ngModel)]="this.imagePath" formControlName="profile_photo"/>
             </p>
               <!-- First name -->
               <p class="update_enter_label ">
                 <label for="firstname">Ім'я: </label>
-                <input autofocus type="text" id="firstname" [disabled]="loading===1" [(ngModel)]="updatedUser.first_name" formControlName="firstname"
+                <input autofocus type="text" id="firstname" [disabled]="loading===true" [(ngModel)]="updatedUser.first_name" formControlName="firstname"
                        class="input_reg" />
               </p>
               <div *ngIf="f.firstname.touched && f.firstname.errors">
@@ -81,7 +83,7 @@
               <!-- Last name -->
               <p class="update_enter_label">
                 <label for="lastname">Прізвище: </label>
-                <input type="text" id="lastname" formControlName="lastname"  [disabled]="loading===1" [(ngModel)]="updatedUser.last_name" class="input_reg" />
+                <input type="text" id="lastname" formControlName="lastname"  [disabled]="loading===true" [(ngModel)]="updatedUser.last_name" class="input_reg" />
               </p>
               <div *ngIf="f.lastname.touched && f.lastname.errors">
                 <div *ngIf="f.lastname.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div>
@@ -92,14 +94,14 @@
               <!-- Date of birth -->
               <p class="update_enter_label ">
                 <label for="date">Дата народження: </label>
-                <input type="date" id="date" formControlName="date"  [disabled]="loading===1"  [(ngModel)]="updatedUser.birth_date" class="input_reg " />
+                <input type="date" id="date" formControlName="date"  [disabled]="loading===true"  [(ngModel)]="updatedUser.birth_date" class="input_reg " />
               </p>
               <!--  -->
 
               <!-- City -->
               <div class="update_enter_label" >
                 <label for="city">Місто проживання: </label>
-                <input type="text" id="city" formControlName="city" class="input_reg"   [disabled]="loading===1"  [(ngModel)]="this.updatedUser.city" (focusin)="autoCompleteActive = true;" (ngModelChange)="updateSelectedCities();"/>
+                <input type="text" id="city" formControlName="city" class="input_reg"   [disabled]="loading===true"  [(ngModel)]="this.updatedUser.city" (focusin)="autoCompleteActive = true;" (ngModelChange)="updateSelectedCities();"/>
                 <div id="autocomplete-items" class="autocomplete-items" *ngIf="this.autoCompleteActive === true">
                   <div class="autocomplete-item-container" (focusin)="autoCompleteActive = true;" (focusout)=" autoCompleteActive = false;">
                     <div *ngFor="let city of selectedCities;" class="autocomplete-item" (click)='autoCompleteActive = true;setCity(city);' (focusout)="this.autoCompleteActive = false;" >
@@ -129,7 +131,7 @@
               <!-- Old password -->
               <p class="update_enter_label">
                 <label for="old_password">Старий пароль(У разі зміни паролю) </label>
-                <input type="password" id="old_password" formControlName="old_password"  [disabled]="loading===1" (ngModelChange)="response = 0;" class="input_reg" [(ngModel)]="oldPass" />
+                <input type="password" id="old_password" formControlName="old_password"  [disabled]="loading===true" (ngModelChange)="response = 0;" class="input_reg" [(ngModel)]="oldPass" />
               </p>
               <div *ngIf="newPass!=='' && oldPass.length<8 ">
                 <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
@@ -140,7 +142,7 @@
               <!-- New password -->
               <p class="update_enter_label">
                 <label for="password">Введіть новий пароль: </label>
-                <input type="password" id="password" formControlName="new_password"  [disabled]="loading===1" class="input_reg" [(ngModel)]="newPass" />
+                <input type="password" id="password" formControlName="new_password"  [disabled]="loading===true" class="input_reg" [(ngModel)]="newPass" />
               </p>
               <div *ngIf="newPass!='' && (newPass.length<8 || newPass.length>12)">
                 <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
@@ -173,16 +175,17 @@
                   <option (click)="updatedUser.family_status = 'in relationship'" [value]="'in relationship'" >В стосунках</option>
                 </select>
               </p>
-              <div class="update_enter_label">
-                <img src="assets/images/loadanimation.svg" *ngIf="loading===1" class="loading-image">
-              </div>
+
+            </div>
+            <div class="update_enter_label">
+              <img src="assets/images/loadanimation.svg" *ngIf="loading===true" class="loading-image">
             </div>
             <p class="update_enter_label">
-              <button type="submit" [disabled]="form.invalid || loading===1 || this.passwordMatcher()===false" class=" update_button_position update_button "
+              <button type="submit" [disabled]="form.invalid || loading===true || this.passwordMatcher()===false" class=" update_button_position update_button "
                       (click)="updateUser()">Оновити</button>
             </p>
             <a class="update_enter_label">
-              <button [disabled]="loading===1" type="button" (click)="this.resetUser()" class=" update_button_position update_button ">Повернути</button>
+              <button [disabled]="loading===true" type="button" (click)="this.resetUser()" class=" update_button_position update_button ">Повернути</button>
             </a>
         </form>
       </div>

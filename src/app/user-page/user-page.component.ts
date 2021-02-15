@@ -21,22 +21,21 @@ export class UserPageComponent implements OnInit {
   // 0 - recent, 1 - user pages, 2 - settings
   //Переробити під булеан
   status = 0;
-  loading = 0;
+  loading:boolean;
   //Перекинути в конструкторі
   currentUser: User;
-  eventList: Array<Event>;
+  eventList:Array<Event>;
   //Забрати
   updatedUser: User;
   autoCompleteChosen: boolean;
   selectedCities: Array<string>;
   autoCompleteActive: boolean;
   form: FormGroup;
-  response = 0;
   oldPass: string;
   newPass: string;
   confPass: string;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
-  imagePath: any;
+  url:any;
   constructor(public fb: FormBuilder, private userProvider: UserProvider, private cityProvider: CityProvider, private userPageService: UserpageService, private eventsService: EventsService) {
     this.currentUser = this.userProvider.getUser();
     this.eventList = [];
@@ -48,6 +47,18 @@ export class UserPageComponent implements OnInit {
   }
 
   get f() { return this.form.controls; }
+
+  readUrl(event:any) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event: ProgressEvent) => {
+        this.url = (<FileReader>event.target).result;
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
   public updateSelectedCities(): void{
     this.autoCompleteActive = true;
@@ -130,25 +141,25 @@ export class UserPageComponent implements OnInit {
             this.eventList = data.results;
           },
           error => {
-            const a = error;
+
           });
     }
   }
 
   updateUser(): void {
-    this.loading = 1;
+    this.loading = true;
     if (this.newPass.length > 0 && this.passwordMatcher() === true){
       this.updatedUser.password = this.newPass;
     }
     this.userPageService.updateUser(this.updatedUser)
       .subscribe(
         data => {
-          this.loading = 0;
+          this.loading = false;
           this.userProvider.setUser(this.updatedUser);
           this.currentUser = this.userProvider.getUser();
         },
         error => {
-          this.loading = 0;
+          this.loading = false;
         }
       );
   }
