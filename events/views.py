@@ -115,21 +115,11 @@ class EventView(View):
         # e.save()
         if event_id is None:
             events = Event.objects.all()
-            events_per_page = 3
-
-            paginator = Paginator(events, events_per_page)
-            query_page = request.GET.get('page')
-            events_page = paginator.get_page(query_page)
-
-            events_serializer = EventSerializer(events_page, many=True)  # отримую джсонки з сторіночки
-
-            # return JsonResponse(events_serializer.data, safe=False)
-            return JsonResponse({
-                # 'count': paginator.count,
-                'count': events_per_page,
-                'num_pages': paginator.num_pages,
-                'results': events_serializer.data
-            })
+            try:
+                response = paginate(request, events)
+            except EmptyPage:
+                return JsonResponse({"results": ""}, status=404)
+            return JsonResponse(response)
         else:
             event = Event.objects.get(id=event_id)
             print(event)
