@@ -11,13 +11,19 @@
   </div>
 
   <div class="caption">Популярні</div>
-
   <div class="content-container">
     <div class="event-container" *ngFor="let event of events">
-      <img src="{{event.event_photo}}" alt="">
-      <p>{{event.event_date | date:'EEE, MMM d, HH:mm'}}</p>
-      <p>{{event.event_name}}</p>
-      <p>{{event.event_description}}</p>
+
+      <img src="{{event.event_photo}}"
+        onerror="this.src='https://media-exp1.licdn.com/dms/image/C560BAQHMnA03XDdf3w/company-logo_200_200/0/1519855918965?e=2159024400&v=beta&t=CrP5Le1mWICRcaxIGNBuajHcHGFPuyNA5C8DI339lSk'"
+        alt="">
+
+      <div class="event-name">{{event.event_name}}</div>
+      <div class="datetime">{{event.event_datetime_begin | date:'EEE, MMM d, HH:mm'}} - {{event.event_datetime_end | date:'EEE, MMM d, HH:mm'}}</div>
+
+      <div class="event-description">
+        {{event.event_description}}
+      </div>
     </div>
   </div>
 

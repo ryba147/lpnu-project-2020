@@ -9,19 +9,22 @@ import { EventsService } from '../services/events.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
 })
+
 export class HomePageComponent implements OnInit {
   constructor(private eventsService: EventsService) {}
 
   events: Event[];
+  next: string;
+  previous: string;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.reloadData();
   }
 
+  // if page with query number does not exist the {"results": ""} with status 404 will be returned
   reloadData() {
-    this.eventsService.getEventsList().subscribe((events) => {
-      this.events = events;
-      console.log(this.events);
+    this.eventsService.getEventsList().subscribe(response => {
+      this.events = response['results'];
     });
   }
 
