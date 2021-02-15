@@ -1,4 +1,4 @@
-* {
+ * {
   box-sizing: border-box;
   margin: 0;
   font-weight: 100;
@@ -92,6 +92,8 @@
   width: 30px;
 }
 
+/*  */
+
 #popup{
   position: fixed;
   width: 100%;
@@ -147,6 +149,7 @@ a.close-popup{
   border-radius: 50%;
 }
 
+/*    */
 
 .fotofon{
   position: absolute;
@@ -215,8 +218,8 @@ a.close-popup{
 
 .addfiles{
   position: absolute;
-  top: 340px;
-  left: 80px;
+  top: 400px;
+  left: 200px;
   background: #DDBCCE;
   border-radius: 20px;
   font-family: Emilys Candy;
@@ -225,6 +228,27 @@ a.close-popup{
   font-weight: normal;
   text-align: center;
   color: #696666;
+}
+.custom-file-upload{
+  position: absolute;
+  top: 340px;
+  left: 75px;
+  background: #DDBCCE;
+  border-radius: 20px;
+  font-family: Emilys Candy;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  color: #000000;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 .addevent{
@@ -279,7 +303,8 @@ a.close-popup{
   position: relative;
   width: 350px;
   height: 17px;
-  font-size: 11px;
+  font-size: 15px;
+  color:#000000;
   margin-bottom: 3px;
   background: #DDBCCE;
 }
@@ -289,6 +314,9 @@ a.close-popup{
   width: 350px;
   height: 60px;
   background: #F9E6F0;
+  font-size: 15px;
+  color:#000000;
+  justify-content: top;
 }
 
 label {
