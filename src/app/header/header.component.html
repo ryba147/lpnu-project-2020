@@ -5,19 +5,19 @@
     <a href="javascript:void(0)"><img style="margin-top: 12px; width: 50px"
         src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/menu-512.png" alt="" /></a>
     <div class="dropdown-content">
-      <a href="#">
+      <a href="/my">
         <div class="dd-option">
           <img class="dd-ico" src="https://www.flaticon.com/svg/static/icons/svg/860/860784.svg" alt="" />
-          <div class="option-text" (click)="goToProfile('/my')">
+          <div class="option-text">
             Профіль
           </div>
         </div>
       </a>
-      <a href="#">
+      <a href="/home">
         <div class="dd-option">
           <!-- <img src="https://www.flaticon.com/svg/static/icons/svg/16/16492.svg" alt="" class="dd-ico" /> -->
           <img src="./assets/images/g72.png" alt="" class="dd-logo-ico"/>
-          <div class="option-text" (click)="goToProfile('/home')">
+          <div class="option-text">
             Усі події
           </div>
         </div>
@@ -60,8 +60,8 @@
         <h1 class="maintextadd">Додати подію</h1> 
 
         <h3 class="textadd">1.Назва заходу</h3>
-        <p class="inputfield"></p>
-
+        <input type="text" autofocus class="inputfield">
+        
         <h3 class="textadd">2.Дата та час проведення</h3>
         <div style="display:inline-block">  
           <tr>
@@ -76,10 +76,10 @@
         </div>
 
         <h3 class="textadd">3.Місце проведення</h3>
-        <p class="inputfield"></p>
+        <input type="text" class="inputfield">
 
         <h3 class="textadd">4.Ціна</h3>
-        <p class="inputfield"></p>
+        <input type="text" class="inputfield">
 
         <h3 class="textadd">5.Стать</h3>
         <div>
@@ -124,7 +124,7 @@
     </p>
 
         <h3 class="textadd">8.Короткий опис</h3>
-        <p class="descriptionfield"></p>
+        <input type="text" class="descriptionfield">
 
 
         <div class="fotofon">
@@ -133,9 +133,10 @@
           <div class="fotos">
             <div class="foto">2</div><div class="foto">3</div><div class="foto">4</div><div class="foto">5</div><div class="foto">6</div>
         </div> 
-        <div class="button">
-          <button type="submit" class="addfiles">Завантажити файли</button>
-          </div>
+        <label class="custom-file-upload">
+          <input type="file"/>
+          Завантажити
+        </label>
       </div> 
       <div class="button">
         <button type="submit" class="addevent">Готово</button>
@@ -147,3 +148,4 @@
 
   <div class="header-text">eventure</div>
 </div>
+
