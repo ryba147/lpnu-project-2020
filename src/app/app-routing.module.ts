@@ -12,6 +12,7 @@ import { InfoeventComponent } from './infoevent/infoevent.component'
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { AboutUsComponent } from './about-us/about-us.component'
+import { ConfparticipationComponent } from './confparticipation/confparticipation.component';
 
 export const appRoutes: Routes = [
   { path: '', component: TitlePageComponent },
@@ -20,7 +21,10 @@ export const appRoutes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'oneevent', component: OneeventComponent,
-    children:[{ path: 'infoevent', component: InfoeventComponent}] },
+    children:[
+    {path: '', redirectTo: 'infoevent', pathMatch: 'full'},  
+    { path: 'infoevent', component: InfoeventComponent},
+    { path: 'confparticipation', component: ConfparticipationComponent}] },
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'about-us', component: AboutUsComponent},

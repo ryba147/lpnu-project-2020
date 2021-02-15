@@ -22,6 +22,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { OneeventComponent } from './oneevent/oneevent.component';
 import {UserPageComponent} from './user-page/user-page.component';
 import { InfoeventComponent } from './infoevent/infoevent.component';
+import { ConfparticipationComponent } from './confparticipation/confparticipation.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { InfoeventComponent } from './infoevent/infoevent.component';
     OneeventComponent,
     UserPageComponent,
     InfoeventComponent,
+    ConfparticipationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule, MaterialModule],
   providers: [],
