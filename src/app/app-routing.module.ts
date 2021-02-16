@@ -5,14 +5,15 @@ import { LoginComponent } from './login/login.component';
 import { TitlePageComponent } from './title-page/title-page.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component'
-import { OneeventComponent } from './oneevent/oneevent.component';
+import { OneEventComponent } from './one-event/one-event.component';
 import { UserPageComponent } from './user-page/user-page.component';
-import { InfoeventComponent } from './infoevent/infoevent.component'
+import { InfoEventComponent } from './info-event/info-event.component'
 
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { AboutUsComponent } from './about-us/about-us.component'
-import { ConfparticipationComponent } from './confparticipation/confparticipation.component';
+import { ConfirmParticipationComponent } from './confirm-participation/confirm-participation.component';
+
 
 export const appRoutes: Routes = [
   { path: '', component: TitlePageComponent },
@@ -20,11 +21,11 @@ export const appRoutes: Routes = [
   { path: 'sign-up', component: RegistrationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'home', component: HomePageComponent },
-  { path: 'oneevent', component: OneeventComponent,
+  { path: 'one-event', component: OneEventComponent,
     children:[
-    {path: '', redirectTo: 'infoevent', pathMatch: 'full'},  
-    { path: 'infoevent', component: InfoeventComponent},
-    { path: 'confparticipation', component: ConfparticipationComponent}] },
+    {path: '', redirectTo: 'info-event', pathMatch: 'full'},  
+    { path: 'info-event', component: InfoEventComponent},
+    { path: 'confirm-participation', component: ConfirmParticipationComponent}] },
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'about-us', component: AboutUsComponent},

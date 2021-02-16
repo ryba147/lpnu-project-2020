@@ -19,10 +19,10 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { OneeventComponent } from './oneevent/oneevent.component';
-import {UserPageComponent} from './user-page/user-page.component';
-import { InfoeventComponent } from './infoevent/infoevent.component';
-import { ConfparticipationComponent } from './confparticipation/confparticipation.component';
+import { OneEventComponent } from './one-event/one-event.component';
+import  {UserPageComponent } from './user-page/user-page.component';
+import { InfoEventComponent } from './info-event/info-event.component';
+import { ConfirmParticipationComponent } from './confirm-participation/confirm-participation.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +37,10 @@ import { ConfparticipationComponent } from './confparticipation/confparticipatio
     HeaderComponent,
     FooterComponent,
     AboutUsComponent,
-    OneeventComponent,
+    OneEventComponent,
     UserPageComponent,
-    InfoeventComponent,
-    ConfparticipationComponent,
+    InfoEventComponent,
+    ConfirmParticipationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule, MaterialModule],
   providers: [],
