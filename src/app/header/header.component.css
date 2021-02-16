@@ -119,7 +119,7 @@
   position: relative;
   background-color: #fff;
   width: 700px;
-  height: 500px;
+  height: 510px;
   padding: 25px;
   -webkit-transform: scale(0);
   -ms-transform: scale(0);
@@ -141,8 +141,8 @@ a.close-popup{
   top: -10px;
   width: 40px;
   height: 40px;
-  background-color: blue; /*потрібно вибрати колір під попап*/
-  color: white;
+  background-color: #DDBCCE; /*потрібно вибрати колір під попап*/
+  color: #696666;
   text-decoration: none;
   text-align: center;
   line-height: 40px;
@@ -154,7 +154,7 @@ a.close-popup{
 .fotofon{
   position: absolute;
   width: 300px;
-  height: 500px;
+  height: 510px;
   left: 400px;
   top: 0px;
   background: #E0EFFC;
@@ -229,6 +229,7 @@ a.close-popup{
   text-align: center;
   color: #696666;
 }
+
 .custom-file-upload{
   position: absolute;
   top: 340px;
@@ -251,39 +252,16 @@ input[type="file"] {
   display: none;
 }
 
-.addevent{
-  position: absolute;
-  width: 200px;
-  height: 30px;
-  top: 460px;
-  left: 250px;
-  background: #DDBCCE;
-  border-radius: 20px;
-  font-family: Emilys Candy;
-  font-size: 25px;
-  line-height: 28px;
-  font-style: normal;
-  font-weight: normal;
-  color: #696666;
-}
-
-.button{
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: min-content;
-  margin-bottom: 80px;
- }
-
 .maintextadd{
-  position: relative;
-  left:60px;
+  position: absolute;
+  left: 113px;
+  top: 10px;
   font-family: Emilys Candy;
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
   line-height: 30px;
+  padding-bottom: 10px;
   text-align: left;
   color: #926C82;
 }
@@ -294,18 +272,20 @@ input[type="file"] {
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 17px;
   text-align: left;
   color: #696666;
+  padding-top: 5px;
 }
 
 .inputfield{
   position: relative;
+  border: 0px;
   width: 350px;
-  height: 17px;
+  height: 22px;
   font-size: 15px;
   color:#000000;
-  margin-bottom: 3px;
+  margin-top: 2px;
   background: #DDBCCE;
 }
 
@@ -314,9 +294,11 @@ input[type="file"] {
   width: 350px;
   height: 60px;
   background: #F9E6F0;
+  border: 0px;
   font-size: 15px;
   color:#000000;
   justify-content: top;
+  margin-top: 2px;
 }
 
 label {
@@ -329,17 +311,19 @@ label {
   color: #696666;
   padding-left: 3px;
   padding-right: 12px;
+  align-items: center;
 }
 
 .input_box {
   position: relative;
-  width: 17px;
-  height: 17px;
+  width: 13.5px;
+  height: 13.5px;
   justify-content: left;
   background: #FFFFFF;
   margin-top: 1px;
   border: 1px solid #000000;
   box-sizing: border-box;
+  align-items: center;
 }
 
 option {
@@ -354,6 +338,7 @@ select{
   position: relative;
   width: 350px;
   height: 20px;
+  border: 0px;
   position: relative;
   font-family: Emilys Candy;
   font-style: normal;
@@ -362,14 +347,15 @@ select{
   text-align: left;
   color: #4C4949;
   background: #DDBCCE;
+  margin-top: 2px;
 }
 
 .input_date{
-  line-height: 1.3;
+  line-height: 17px;
   width: 150px;
   height: 17px;
   background: #DDBCCE;
-  font-size: 13px;
+  font-size: 10px;
   border-color: transparent;
   padding: 10px;
   margin-bottom: 1px;
@@ -377,3 +363,41 @@ select{
   display: inline-block;
   margin-right: 15px;
 }
+
+.text_date{
+  position: relative;
+  font-family: Emilys Candy;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: left;
+  color: #696666;
+  padding-top: 3px;
+}
+
+.addevent_button{
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  top: 470px;
+  left: 250px;
+  background: #DDBCCE;
+  border-radius: 20px;
+  font-family: Emilys Candy;
+  font-size: 25px;
+  line-height: 28px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  color: #696666;
+}
+
+.button{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min-content;
+  margin-bottom: 80px;
+ }

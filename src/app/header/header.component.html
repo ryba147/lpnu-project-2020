@@ -59,29 +59,29 @@
     <div class="popup-inner">
         <h1 class="maintextadd">Додати подію</h1> 
 
-        <h3 class="textadd">1.Назва заходу</h3>
+        <h3 class="textadd" style="padding-top: 20px;">1. Назва заходу</h3>
         <input type="text" autofocus class="inputfield">
         
-        <h3 class="textadd">2.Дата та час проведення</h3>
-        <div style="display:inline-block">  
+        <h3 class="textadd" style="padding-top: 1px; top: 5px">2. Дата та час проведення</h3>
+        <div style="top: 50px;">  
           <tr>
-            <th><p class="textadd">початок</p>
+            <th><p class="text_date">початок</p>
             <input id="datetime" type="datetime-local" name="start" class="input_date">
             </th>
             <th>
-            <p class="textadd">кінець</p>
+            <p class="text_date">кінець</p>
             <input id="datetime" type="datetime-local" name="end" class="input_date">
             </th>
           </tr>
         </div>
 
-        <h3 class="textadd">3.Місце проведення</h3>
+        <h3 class="textadd">3. Місце проведення</h3>
         <input type="text" class="inputfield">
 
-        <h3 class="textadd">4.Ціна</h3>
+        <h3 class="textadd">4. Ціна</h3>
         <input type="text" class="inputfield">
 
-        <h3 class="textadd">5.Стать</h3>
+        <h3 class="textadd">5. Стать</h3>
         <div>
           <input type="checkbox" id="male" name="male" class="input_box">
           <label for="male">Чоловіча</label>
@@ -93,7 +93,7 @@
           <label for="both">Обидві</label>
         </div>
         
-        <h3 class="textadd">6.Оберіть вікову категорію</h3>
+        <h3 class="textadd" style="padding-top: 2px;">6. Оберіть вікову категорію</h3>
         <p class="inputfield">
         <select name="age" id="age">
           <option value="everyone">0+</option>
@@ -103,7 +103,7 @@
         </select>
       </p>
       
-      <h3 class="textadd">7.Оберіть категорію заходу</h3>
+      <h3 class="textadd">7. Оберіть категорію заходу</h3>
       <p class="inputfield">
       <select name="category" id="category">
         <option value="everyone">Усі</option>
@@ -123,7 +123,7 @@
         </select>
     </p>
 
-        <h3 class="textadd">8.Короткий опис</h3>
+        <h3 class="textadd">8. Короткий опис</h3>
         <input type="text" class="descriptionfield">
 
 
@@ -138,10 +138,13 @@
           Завантажити файли
         </label>
       </div> 
-      <div class="button">
-        <button type="submit" class="addevent">Готово</button>
+      <a href="/home">
+        <div class="button">
+        <button type="submit" class="addevent_button">Готово</button>
         </div>
+      </a>
       </div>
+      
       <a href="#popup-close" class="close-popup">X</a>
   </div>
   
