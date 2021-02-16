@@ -43,7 +43,7 @@ export class LoginComponent {
     this.loginService.login(this.email.toLowerCase(), this.pwd)
       .subscribe((resp: {user: User, status: string}) => {
         this.userProvider.setUser(resp.user);
-        this.router.navigate(['/my']);
+        this.router.navigate(['/my-profile']);
         this.loading = false;
       }, (error) => {
         this.response = error.status;
