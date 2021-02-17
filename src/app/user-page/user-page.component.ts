@@ -5,12 +5,14 @@ import { CityProvider } from '../services/city.provider';
 import { UserpageService } from '../services/userpage.service';
 import { EventsService } from '../services/events.service';
 import { User } from '../interfaces/user.interface';
+import { Event } from '../interfaces/event.interface'
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css'],
 })
+
 export class UserPageComponent implements OnInit {
   // 0 - recent, 1 - user pages, 2 - settings
   //Переробити під булеан
@@ -18,7 +20,7 @@ export class UserPageComponent implements OnInit {
   loading: boolean;
   //Перекинути в конструкторі
   currentUser: User;
-  eventList: Array<Event>;
+  eventList: Event[];
   //Забрати
   updatedUser: User;
   autoCompleteChosen: boolean;
@@ -156,14 +158,14 @@ export class UserPageComponent implements OnInit {
     if (mode === 1) {
       this.eventsService.getEventsList().subscribe(
         (data) => {
-          this.eventList = data['results'];
+          this.eventList = data.results;
         },
         () => {}
       );
     } else {
       this.eventsService.getEventsList().subscribe(
         (data) => {
-          this.eventList = data['results'];
+          this.eventList = data.results;
         },
         () => {}
       );
