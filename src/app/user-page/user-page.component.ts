@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProvider } from '../services/user.provider';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CityProvider } from '../services/ city.provider';
+import { CityProvider } from '../services/city.provider';
 import { UserpageService } from '../services/userpage.service';
 import { EventsService } from '../services/events.service';
 import { User } from '../interfaces/user.interface';
