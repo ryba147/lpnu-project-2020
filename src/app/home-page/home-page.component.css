@@ -1,4 +1,5 @@
 .caption {
+  margin: 10px 100px;
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
@@ -8,9 +9,8 @@
   color: #0e1111;
 }
 
-.content-container,
-.caption {
-  margin: 1%;
+.content-container {
+  margin: 2%;
 }
 
 .content-container {
@@ -132,6 +132,7 @@ button[type="submit"] {
   transition: background-color .3s;
   border-radius: 5px;
   margin: 0 4px;
+  cursor: pointer;
 }
 
 .pagination a.active {
@@ -141,4 +142,17 @@ button[type="submit"] {
 
 .pagination a:hover:not(.active) {
   background-color: #E554AE;
+}
+
+.empty-page-error {
+  display: flex;
+  justify-content: center;
+}
+
+.empty-page-error p {
+  font-size: 1.5em;
+}
+
+.empty-page-error img {
+  height: 25%;
 }

@@ -19,7 +19,8 @@
         alt="">
 
       <div class="event-name">{{event.event_name}}</div>
-      <div class="datetime">{{event.event_datetime_begin | date:'EEE, MMM d, HH:mm'}} - {{event.event_datetime_end | date:'EEE, MMM d, HH:mm'}}</div>
+      <div class="datetime">{{event.event_datetime_begin | date:'EEE, MMM d, HH:mm'}} -
+        {{event.event_datetime_end | date:'EEE, MMM d, HH:mm'}}</div>
 
       <div class="event-description">
         {{event.event_description}}
@@ -27,16 +28,19 @@
     </div>
   </div>
 
-  <div class="pagination-container">
+  <div *ngIf="page_status == 'load_success'" class="pagination-container">
     <div class="pagination">
-      <a href="#">Попередня</a>
-      <a href="#">1</a>
-      <a href="#">2</a>
-      <a href="#" class="active">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">Наступна</a>
+      <a *ngIf="has_prev" (click)="fetchPrevious()">Попередня</a>
+      <a *ngIf="has_prev" (click)="fetchPrevious()">{{previous_page_num}}</a>
+      <a class="active">{{page_num}}</a>
+      <a *ngIf="has_next" (click)="fetchNext()">{{next_page_num}}</a>
+      <a *ngIf="has_next" (click)="fetchNext()">Наступна</a>
     </div>
+  </div>
+
+  <div *ngIf="page_status !== 'load_success'" class="empty-page-error">
+    <img *ngIf="page_status == 'loading'" src="assets/images/loadanimation.svg" alt="">
+    <p *ngIf="page_status == 'load_failed'">This page is empty</p>
   </div>
 
 </main>
