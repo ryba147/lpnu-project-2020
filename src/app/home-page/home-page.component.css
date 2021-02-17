@@ -156,3 +156,13 @@ button[type="submit"] {
 .empty-page-error img {
   height: 25%;
 }
+
+a{
+  text-decoration: none;
+  color: #0e1111;
+}
+
+a:hover{
+  color: #636666;
+}
+
