@@ -1,30 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { Event } from '../interfaces/event.interface'
+import { ResponsePage } from '../interfaces/response-page.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class EventsService {
-  // private baseUrl = "http://localhost:8080";
+  // private baseUrl = 'http://localhost:8080';
   private baseUrl = "https://eventure-lpnu.herokuapp.com";
-  
-  constructor(private http: HttpClient) { }
 
-  getEventsList(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.baseUrl}/events/`);
+  constructor(private http: HttpClient) {}
+
+  public getEventsList(): Observable<ResponsePage> {
+    return this.http.get<ResponsePage>(`${this.baseUrl}/events/`);
   }
 
-  // TODO events provider 
-  // приймати з беку, якщо не прийнято
-  
-  // ng query for search
-
-
-
+  public getPage(page_num: number): Observable<ResponsePage> {
+    return this.http.get<ResponsePage>(`${this.baseUrl}/events/?show=4`, {
+      params: new HttpParams().set('page', `${page_num}`),
+    });
+  }
 
   /*
   deleteAll(): Observable<any> {
