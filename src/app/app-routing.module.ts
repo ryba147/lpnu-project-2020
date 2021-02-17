@@ -7,10 +7,13 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component'
 import { OneEventComponent } from './one-event/one-event.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { InfoEventComponent } from './info-event/info-event.component'
 
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { AboutUsComponent } from './about-us/about-us.component'
+import { ConfirmParticipationComponent } from './confirm-participation/confirm-participation.component';
+
 
 export const appRoutes: Routes = [
   { path: '', component: TitlePageComponent },
@@ -18,15 +21,19 @@ export const appRoutes: Routes = [
   { path: 'sign-up', component: RegistrationComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'home', component: HomePageComponent },
-  { path: 'one-event', component: OneEventComponent },
+  { path: 'one-event', component: OneEventComponent,
+    children:[
+    {path: '', redirectTo: 'info-event', pathMatch: 'full'},  
+    { path: 'info-event', component: InfoEventComponent},
+    { path: 'confirm-participation', component: ConfirmParticipationComponent}] },
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'about-us', component: AboutUsComponent},
-  { path: 'my-profile', component: UserPageComponent}
+  { path: 'my', component: UserPageComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes), RouterModule.forChild(appRoutes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
