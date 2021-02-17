@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from django.core.paginator import Paginator, EmptyPage
+from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.utils.decorators import method_decorator
@@ -20,14 +20,26 @@ def paginate(request, object_list):
 
     # paging
     paginator = Paginator(object_list, q_page_size)
-    events = paginator.get_page(q_page)
+    events = paginator.page(q_page)
     events_serializer = EventSerializer(events, many=True)
+
+    try:
+        next_page_num = events.next_page_number()
+    except InvalidPage:
+        next_page_num = None
+
+    try:
+        prev_page_num = events.previous_page_number()
+    except InvalidPage:
+        prev_page_num = None
 
     # events variable has a page type
     return ({
-        "page": q_page,
-        "count": len(events),  # or (events.end_index - events.start_index) + 1
+        "page": int(q_page),
+        "count": paginator.count,  # or (events.end_index - events.start_index) + 1  # len(events)
         "num_pages": paginator.num_pages,
+        "previous_page": prev_page_num,
+        "next_page": next_page_num,
         "has_next": events.has_next(),
         "has_previous": events.has_previous(),
         "results": events_serializer.data
