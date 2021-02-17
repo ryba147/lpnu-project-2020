@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {
-  AbstractControl,
   FormGroup,
   FormBuilder,
   Validators,
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
 import { LoginService } from '../services/login.service';
 import { UserProvider } from '../services/user.provider';
-import {CityProvider} from '../services/ city.provider';
+import {CityProvider} from '../services/city.provider';
 
 
 @Component({
