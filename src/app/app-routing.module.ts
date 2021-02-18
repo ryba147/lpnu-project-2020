@@ -13,6 +13,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { AboutUsComponent } from './about-us/about-us.component'
 import { ConfirmParticipationComponent } from './confirm-participation/confirm-participation.component';
+import { CommentsEventComponent } from './comments-event/comments-event.component';
 
 
 export const appRoutes: Routes = [
@@ -25,7 +26,8 @@ export const appRoutes: Routes = [
     children:[
     {path: '', redirectTo: 'info-event', pathMatch: 'full'},  
     { path: 'info-event', component: InfoEventComponent},
-    { path: 'confirm-participation', component: ConfirmParticipationComponent}] },
+    { path: 'confirm-participation', component: ConfirmParticipationComponent},
+    {path: 'comments-event', component: CommentsEventComponent}] },
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'about-us', component: AboutUsComponent},
