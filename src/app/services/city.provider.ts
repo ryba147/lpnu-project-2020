@@ -7,12 +7,8 @@ import {element} from 'protractor';
 
 export class CityProvider {
   private selectedCity: string;
-  private cityList: Array<string>;
-  public getCityList(): Array<string>
-  {
-    this.updateCityList();
-    return this.cityList.slice(0, 9);
-  }
+  private cityList:string[] = ['Lviv', 'Ryasne', 'Kyiv', 'Kamyanske', 'Kamyanets-Podilskii'];
+
   public setSelectedCity(city: string): boolean{
     if(this.cityList.indexOf(city) !== -1){
       this.selectedCity = city;
@@ -20,10 +16,20 @@ export class CityProvider {
     }
     return false;
   }
+
   public compareWithSelectedCity(city: string): boolean{
     return this.selectedCity === city;
   }
-  public updateCityList(): void{
-    this.cityList = ['Lviv', 'Ryasne', 'Kyiv', 'Kamyanske', 'Kamyanets-Podilskii'];
+
+  public getCityList(citySubstring:string): string[]{
+    if(citySubstring.trimLeft().length < 3)return [];
+    let currentArray:string[] = [];
+    citySubstring = citySubstring.trimLeft();
+    for (const city of this.cityList) {
+      if ( city.substr(0, citySubstring.length).toLowerCase() === citySubstring.toLowerCase() ) {
+        currentArray.push(city);
+      }
+    }
+    return currentArray;
   }
 }
