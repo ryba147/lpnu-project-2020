@@ -6,7 +6,7 @@
     width: 980px;
     height: 503px;
     bottom: 129px;    
-    background: rgba(244, 246, 246, 0.82);
+    background:  #E0EFFC;
     border: 1px solid rgba(224, 239, 252, 0.82);
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -22,6 +22,7 @@
     top: 76px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
+
 
   .text_oneevent {
     position: absolute;
@@ -48,15 +49,14 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 20px;
-    color: #000000;    
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #000000;   
   }
 
   .main{
     position: absolute;
     width: 500px;
     left: 400px;
-    top: 160px;    
+    top: 155px;    
     height: 70px;
     font-family: Monserrat;
     font-style: normal;
@@ -64,23 +64,80 @@
     font-size: 18px;
     line-height: 20px;
     color: #000000;    
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
   .text{
     position: absolute;
     width: 500px;
     left: 400px;
-    top: 240px;    
+    top: 230px;    
     height: 70px;
     font-family: Monserrat;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 20px;
-    color: #000000;    
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: #000000; 
   }
+   
+  .infobox_oneevent{
+    position: absolute;
+    width: 498px;
+    height: 157px;
+    left: 400px;
+    top: 303px;
+    background: #FFE5F5;
+    border: 1px solid rgba(0, 0, 0, 0.44);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .infotext_oneevent{
+    position: relative;
+    font-family: Montserrat;
+    top: -13px;
+    font-size: 20px;
+    line-height: 10px;
+    left: 35px;
+    color: #000000;
+    padding-top: 1px;
+  }
+
+  .infoicon_oneevent{
+    position: relative;
+    top: 2px;
+    left: 10px;
+    width: 17px;
+    height: 17px;
+    padding: auto;
+  }
+
+  .infoline{
+    margin: 3px;
+  }
+
+  .time_information{
+    position: absolute;
+    width: 200px;
+    height: 19px;
+    top: 136px;
+    left: 250px;  
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 10px;    
+    color: #000000;
+  }
+
+  .time_icon{
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    top: 132px;
+    left: 230px;
+  }
+
 
   .button_oneevent{
     font-family: Montserrat;
@@ -95,7 +152,7 @@
     left: 7.43%;
     right: 65.17%;
     background: #FFE5F5;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 2px solid #DDBCCE;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
@@ -121,56 +178,7 @@
     width: 269px;
     height: 40px;
     margin-bottom: 100px;
+    
    }
    
-  .infobox_oneevent{
-    position: absolute;
-    width: 498px;
-    height: 157px;
-    left: 400px;
-    top: 303px;
-    background: #FFE5F5;
-    border: 1px solid rgba(0, 0, 0, 0.44);
-    box-sizing: border-box;
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  .infotext_oneevent{
-    position: relative;
-    font-family: Montserrat;
-    top: -11px;
-    font-size: 15px;
-    line-height: 16px;
-    left: 35px;
-    color: #000000;
-  }
-
-  .infoicon_oneevent{
-    position: relative;
-    top: 4px;
-    left: 10px;
-    width: 15px;
-    height: 15px;
-  }
-
-  .time_information{
-    position: absolute;
-    width: 100px;
-    height: 19px;
-    top: 137px;
-    left: 250px;  
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 15px;
-    line-height: 16px;    
-    color: #000000;
-  }
-
-  .time_icon{
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    top: 137px;
-    left: 230px;
-  }
+  
