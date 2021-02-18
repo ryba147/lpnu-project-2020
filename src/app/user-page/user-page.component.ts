@@ -29,6 +29,7 @@ export class UserPageComponent implements OnInit {
   oldPass: string;
   newPass: string;
   confPass: string;
+  formLoaded: boolean;
   private stringPattern = '^[a-zA-Zа-яА-ЯіІїЇєЄ-]+$';
   url: any;
   constructor(
@@ -64,28 +65,16 @@ export class UserPageComponent implements OnInit {
   }
 
   public updateSelectedCities(): void {
-    this.autoCompleteActive = true;
-    this.updatedUser.city = this.updatedUser.city.trimLeft();
-    if (
-      this.cityProvider.compareWithSelectedCity(this.updatedUser.city) ===
-        true &&
-      this.autoCompleteChosen === true
-    ) {
+    if(this.formLoaded === false ){
+      this.formLoaded = true;
+      return;
+    }
+    if ( this.cityProvider.compareWithSelectedCity(this.updatedUser.city) === true && this.autoCompleteChosen === true ) {
       return;
     }
     this.autoCompleteChosen = false;
-    this.selectedCities = [];
-    if (this.updatedUser.city.length >= 3) {
-      const cities = this.cityProvider.getCityList();
-      for (const city of cities) {
-        if (
-          city.substr(0, this.updatedUser.city.length).toLowerCase() ===
-          this.updatedUser.city.toLowerCase()
-        ) {
-          this.selectedCities.push(city);
-        }
-      }
-    }
+    this.autoCompleteActive = true;
+    this.selectedCities = this.cityProvider.getCityList(this.updatedUser.city);
   }
 
   private createForm(): void {
@@ -93,6 +82,7 @@ export class UserPageComponent implements OnInit {
     this.oldPass = '';
     this.confPass = '';
     this.newPass = '';
+    this.formLoaded = false;
     this.form = this.fb.group({
       profile_photo: [''],
       firstname: [
@@ -138,13 +128,10 @@ export class UserPageComponent implements OnInit {
   }
 
   changePanel(param): void {
-    // alert(document.getElementById('accordeonItem1'));
     for (let i = 0; i <= 2; i++) {
-      document.getElementById('accordeonItem' + i.toString()).style.color =
-        '#aaaaaa';
+      document.getElementById('accordeonItem' + i.toString()).style.color = '#aaaaaa';
     }
-    document.getElementById('accordeonItem' + param.toString()).style.color =
-      '#000000';
+    document.getElementById('accordeonItem' + param.toString()).style.color = '#000000';
     if (param === 0 || param === 1) {
       this.updateEventList(param);
     } else {
