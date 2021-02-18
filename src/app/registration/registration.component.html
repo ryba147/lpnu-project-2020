@@ -120,9 +120,11 @@
         <option (click)="user.family_status = 'in relationship'"[value]="'in relationship'" >В стосунках</option>
       </select>
     </p>
-    <div class="registration_enter_label">
+    <!-- GIF with loading -->
+    <div class="registration_loading_gif">
         <img src="assets/images/loadanimation.svg" *ngIf="loading===1" class="loading-image">
     </div>
+
     <p class="registration_enter_label">
       <button type="submit" [disabled]="form.invalid || loading===1" class=" registration_button_position registration_button "
         (click)="register()">Перейти далі</button>

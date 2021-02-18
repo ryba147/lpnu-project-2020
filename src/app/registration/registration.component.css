@@ -87,7 +87,6 @@ select {
   position: absolute;
   z-index: 999;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-;
 }
 
 .autocomplete-item{
@@ -104,6 +103,15 @@ select {
 
 .autocomplete-item:hover{
   background-color:#f2f2f2;
+}
+
+.registration_loading_gif{
+  height: 31px;
+  width: 316px;
+  padding: 10px;
+  margin-bottom: 1px;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 
 .loading-image{
