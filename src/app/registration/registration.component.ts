@@ -51,18 +51,8 @@ export class RegistrationComponent {
       return;
     }
     this.autoCompleteChosen = 0;
-    this.selectedCities = [];
-    if (this.user.city.length >= 3) {
-      const cities = this.cityProvider.getCityList();
-      for (const city of cities) {
-        if (
-          city.substr(0, this.user.city.length).toLowerCase() ===
-          this.user.city.toLowerCase()
-        ) {
-          this.selectedCities.push(city);
-        }
-      }
-    }
+    this.autoCompleteActive = 1;
+    this.selectedCities = this.cityProvider.getCityList(this.user.city);
   }
 
   private createForm(): void {
@@ -131,11 +121,6 @@ export class RegistrationComponent {
         this.response = error.status;
       }
     );
-  }
-
-  // tslint:disable-next-line:typedef
-  show() {
-    alert(this.autoCompleteChosen);
   }
 
   setCity(city): void {
