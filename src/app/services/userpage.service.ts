@@ -9,10 +9,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UserpageService {
 
   constructor(private http: HttpClient) { }
+  private baseUrl = 'https://eventure-lpnu.herokuapp.com';
 
   public updateUser(newUser: User): Observable<object>{
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    return this.http.put('https://eventure-lpnu.herokuapp.com/users/', JSON.stringify(newUser), {headers : headers });
+    return this.http.put(`${this.baseUrl}/users/`, JSON.stringify(newUser), {headers : headers });
   }
 }
 
