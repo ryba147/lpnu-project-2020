@@ -24,14 +24,14 @@ export const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'one-event', component: OneEventComponent,
     children:[
-    {path: '', redirectTo: 'info-event', pathMatch: 'full'},  
+    {path: '', redirectTo: 'info-event', pathMatch: 'full'},
     { path: 'info-event', component: InfoEventComponent},
     { path: 'confirm-participation', component: ConfirmParticipationComponent},
     {path: 'comments-event', component: CommentsEventComponent}] },
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'about-us', component: AboutUsComponent},
-  { path: 'my', component: UserPageComponent},
+  { path: 'my-profile', component: UserPageComponent},
 ];
 
 @NgModule({
