@@ -157,12 +157,11 @@ button[type="submit"] {
   height: 25%;
 }
 
-a{
+.event-container a {
   text-decoration: none;
   color: #0e1111;
 }
 
-a:hover{
+.event-container a:hover {
   color: #636666;
 }
-

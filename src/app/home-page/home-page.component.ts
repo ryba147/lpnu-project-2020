@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Event } from '../interfaces/event.interface';
-import { EventsService } from '../services/events.service';
+import { HomePageService } from '../services/homepage.service';
 import { ResponsePage } from '../interfaces/response-page.interface';
 
 @Component({
@@ -10,7 +10,7 @@ import { ResponsePage } from '../interfaces/response-page.interface';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  constructor(private eventsService: EventsService) {}
+  constructor(private homePageService: HomePageService) {}
 
   events: Event[];
   next_page_num: number | null;
@@ -36,35 +36,41 @@ export class HomePageComponent implements OnInit {
 
   // if page with query number does not exist the {"results": ""} with status 404 will be returned
   reloadData(): void {
-    this.page_status = "loading";
-    this.eventsService.getPage(1).subscribe(response => {
-      this.setProperties(response);
-      this.page_status = "load_success";
-    }, error => { this.page_status = "load_failed"; }
+    this.page_status = 'loading';
+    this.homePageService.getPage(1).subscribe(
+      (response) => {
+        this.setProperties(response);
+        this.page_status = 'load_success';
+      },
+      (error) => {
+        this.page_status = 'load_failed';
+      }
     );
   }
 
   fetchPrevious(): void {
-    this.eventsService.getPage(this.previous_page_num).subscribe((response) => {
-      this.setProperties(response);
-    });
+    this.homePageService
+      .getPage(this.previous_page_num)
+      .subscribe((response) => {
+        this.setProperties(response);
+      });
   }
 
   fetchNext(): void {
-    this.eventsService.getPage(this.next_page_num).subscribe((response) => {
+    this.homePageService.getPage(this.next_page_num).subscribe((response) => {
       this.setProperties(response);
     });
   }
 
   /*
   reloadData() {
-    this.events = this.eventsService.getEventsList();
+    this.events = this.homePageService.getEventsList();
     console.log(this.events);
   }*/
 
   /*
   deleteCustomers() {
-    this.eventsService.deleteAll()
+    this.homePageService.deleteAll()
       .subscribe(
         data => {
           console.log(data);
