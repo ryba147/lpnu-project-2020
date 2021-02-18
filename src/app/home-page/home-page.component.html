@@ -2,10 +2,10 @@
   <div class="topnav">
     <div class="search-container">
       <form action="">
-        <input type="text" autofocus="autofocus" placeholder="Пошук подій" name="search">
+        <input type="text" [(ngModel)]="searchText" autofocus="autofocus" placeholder="Пошук подій" name="search">
         <button type="submit"><img
             src="https://res.cloudinary.com/hs2vpyvzv/image/upload/v1612568959/icons/search_uwsmjl.svg"
-            alt="" /></button>
+            alt="" (click)="search()" /></button>
       </form>
     </div>
   </div>

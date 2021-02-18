@@ -23,6 +23,13 @@ export class HomePageService {
     });
   }
 
+  public searchEvents(searchText: string): Observable<ResponsePage> {
+    searchText = searchText.toLowerCase();
+    return this.http.get<ResponsePage>(`${this.baseUrl}/events/search/?show=4`, {
+      params: new HttpParams().set('q', `${searchText}`),
+    });
+  }
+
   /*
   deleteAll(): Observable<any> {
     return this.http.delete(`${this.baseUrl}/`);

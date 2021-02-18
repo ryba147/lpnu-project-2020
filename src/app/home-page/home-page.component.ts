@@ -12,6 +12,8 @@ import { ResponsePage } from '../interfaces/response-page.interface';
 export class HomePageComponent implements OnInit {
   constructor(private homePageService: HomePageService) {}
 
+  searchText = '';
+
   events: Event[];
   next_page_num: number | null;
   previous_page_num: number | null;
@@ -58,6 +60,12 @@ export class HomePageComponent implements OnInit {
 
   fetchNext(): void {
     this.homePageService.getPage(this.next_page_num).subscribe((response) => {
+      this.setProperties(response);
+    });
+  }
+
+  search(): void {
+    this.homePageService.searchEvents(this.searchText).subscribe((response) => {
       this.setProperties(response);
     });
   }
