@@ -241,7 +241,7 @@ a.close-popup{
   font-style: normal;
   font-weight: normal;
   text-align: center;
-  color: #000000;
+  color: #696666;
   border: 1px solid #ccc;
   display: inline-block;
   padding: 6px 12px;
@@ -384,12 +384,12 @@ select{
   left: 250px;
   background: #DDBCCE;
   border-radius: 20px;
+  text-align: center;
   font-family: Emilys Candy;
   font-size: 25px;
-  line-height: 28px;
+  line-height: 30px;
   font-style: normal;
   font-weight: normal;
-  text-align: center;
   color: #696666;
 }
 
