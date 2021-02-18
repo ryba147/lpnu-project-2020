@@ -11,7 +11,8 @@
   </div>
 
   <div class="caption">Популярні</div>
-   <div class="event-container" *ngFor="let event of events">
+  <div class="content-container">
+    <div class="event-container" *ngFor="let event of events">
       <a href="one-event" >
         <img src="{{event.event_photo}}"
           onerror="this.src='https://media-exp1.licdn.com/dms/image/C560BAQHMnA03XDdf3w/company-logo_200_200/0/1519855918965?e=2159024400&v=beta&t=CrP5Le1mWICRcaxIGNBuajHcHGFPuyNA5C8DI339lSk'"
@@ -21,7 +22,7 @@
         <div class="event-name">{{event.event_name}}</div>
       </a>
       <div class="datetime">{{event.event_datetime_begin | date:'EEE, MMM d, HH:mm'}} -
-        {{event.event_datetime_end | date:'EEE, MMM d, HH:mm'}}</div>
+      {{event.event_datetime_end | date:'EEE, MMM d, HH:mm'}}</div>
 
       <div class="event-description">
         {{event.event_description}}
