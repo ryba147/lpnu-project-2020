@@ -17,17 +17,16 @@ export class HomePageService {
     return this.http.get<ResponsePage>(`${this.baseUrl}/events/`);
   }
 
-  public getPage(page_num: number): Observable<ResponsePage> {
-    return this.http.get<ResponsePage>(`${this.baseUrl}/events/?show=4`, {
+  public getPage(page_num: number, search_text: string): Observable<ResponsePage> {
+    if (search_text !== '') {
+      return this.http.get<ResponsePage>(`${this.baseUrl}/events/search/?show=1`, {
+      params: new HttpParams().set('page', `${page_num}`).set('q', `${search_text}`),
+    });
+    } else {
+      return this.http.get<ResponsePage>(`${this.baseUrl}/events/?show=4`, {
       params: new HttpParams().set('page', `${page_num}`),
     });
   }
-
-  public searchEvents(searchText: string): Observable<ResponsePage> {
-    searchText = searchText.toLowerCase();
-    return this.http.get<ResponsePage>(`${this.baseUrl}/events/search/?show=4`, {
-      params: new HttpParams().set('q', `${searchText}`),
-    });
   }
 
   /*
