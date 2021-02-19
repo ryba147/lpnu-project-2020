@@ -6,6 +6,9 @@ import { UserpageService } from '../services/userpage.service';
 import { HomePageService } from '../services/homepage.service';
 import { User } from '../interfaces/user.interface';
 import { Event } from '../interfaces/event.interface';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-user-page',
@@ -37,8 +40,12 @@ export class UserPageComponent implements OnInit {
     private userProvider: UserProvider,
     private cityProvider: CityProvider,
     private userPageService: UserpageService,
-    private homePageService: HomePageService
+    private homePageService: HomePageService,
+    private router: Router
   ) {
+    if(this.userProvider.getUser() === null){
+      this.router.navigate(['/login'])
+    }
     this.currentUser = this.userProvider.getUser();
     this.eventList = [];
     this.selectedCities = [];
