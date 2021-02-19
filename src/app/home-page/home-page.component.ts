@@ -12,8 +12,6 @@ import { ResponsePage } from '../interfaces/response-page.interface';
 export class HomePageComponent implements OnInit {
   constructor(private homePageService: HomePageService) {}
 
-  searchText = '';
-
   events: Event[];
   next_page_num: number | null;
   previous_page_num: number | null;
@@ -22,6 +20,7 @@ export class HomePageComponent implements OnInit {
   has_prev: boolean;
 
   page_status: string;
+  searchText = '';
 
   ngOnInit(): void {
     this.reloadData();
@@ -38,8 +37,10 @@ export class HomePageComponent implements OnInit {
 
   // if page with query number does not exist the {"results": ""} with status 404 will be returned
   reloadData(): void {
+    // this.searchText = '';
     this.page_status = 'loading';
-    this.homePageService.getPage(1).subscribe(
+
+    this.homePageService.getPage(1, this.searchText).subscribe(
       (response) => {
         this.setProperties(response);
         this.page_status = 'load_success';
@@ -52,20 +53,20 @@ export class HomePageComponent implements OnInit {
 
   fetchPrevious(): void {
     this.homePageService
-      .getPage(this.previous_page_num)
+      .getPage(this.previous_page_num, this.searchText)
       .subscribe((response) => {
         this.setProperties(response);
       });
   }
 
   fetchNext(): void {
-    this.homePageService.getPage(this.next_page_num).subscribe((response) => {
+    this.homePageService.getPage(this.next_page_num, this.searchText).subscribe((response) => {
       this.setProperties(response);
     });
   }
 
   search(): void {
-    this.homePageService.searchEvents(this.searchText).subscribe((response) => {
+    this.homePageService.getPage(1, this.searchText).subscribe((response) => {
       this.setProperties(response);
     });
   }
@@ -75,16 +76,4 @@ export class HomePageComponent implements OnInit {
     this.events = this.homePageService.getEventsList();
     console.log(this.events);
   }*/
-
-  /*
-  deleteCustomers() {
-    this.homePageService.deleteAll()
-      .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log('ERROR: ' + error));
-  }
-  */
 }

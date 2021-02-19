@@ -1,21 +1,20 @@
 <main>
   <div class="topnav">
     <div class="search-container">
-      <form action="">
+      <form action="" autocomplete="off">
         <input type="text" [(ngModel)]="searchText" autofocus="autofocus" placeholder="Пошук подій" name="search">
-        <button type="submit"><img
-            src="https://res.cloudinary.com/hs2vpyvzv/image/upload/v1612568959/icons/search_uwsmjl.svg"
-            alt="" (click)="search()" /></button>
+        <button type="submit"><img class="icon" src="./assets/images/search.svg" alt="" (click)="search()" /></button>
       </form>
     </div>
   </div>
 
   <div class="caption">Популярні</div>
+  <a href="/home">Повернутися на головну</a>
   <div class="content-container">
     <div class="event-container" *ngFor="let event of events">
       <a href="one-event">
         <img src="{{event.event_photo}}"
-          onerror="this.src='https://media-exp1.licdn.com/dms/image/C560BAQHMnA03XDdf3w/company-logo_200_200/0/1519855918965?e=2159024400&v=beta&t=CrP5Le1mWICRcaxIGNBuajHcHGFPuyNA5C8DI339lSk'"
+          onerror="this.src='./assets/images/noimage.png'"
           alt="">
       </a>
       <a href="one-event">

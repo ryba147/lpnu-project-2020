@@ -99,6 +99,10 @@
   border-radius: 5px 0 0 5px;
 }
 
+button {
+  outline: none;
+}
+
 button[type="submit"] img {
   margin-right: 10px;
   width: 16px;
@@ -112,6 +116,10 @@ button[type="submit"] {
   background-color: #FFE5F5;
 
   height: 44px;
+}
+
+img:hover {
+  fill: #DA4567;
 }
 
 .pagination-container {
