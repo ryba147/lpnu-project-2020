@@ -208,28 +208,6 @@ export class UserPageComponent implements OnInit {
     }
   }
 
-  calculateBeginEnd(event): string {
-    const beginEvent = new Date(event.event_datetime_begin);
-    const endEvent = new Date(event.event_datetime_end);
-    if (
-      beginEvent.getDay() === endEvent.getDay() &&
-      beginEvent.getMonth() === endEvent.getMonth() &&
-      beginEvent.getFullYear() === endEvent.getFullYear()
-    ) {
-      return (
-        beginEvent.toUTCString().substring(0, 22) +
-        ' - ' +
-        endEvent.toTimeString().substring(0, 5)
-      );
-    } else {
-      return (
-        beginEvent.toUTCString().substring(0, 22) +
-        ' - ' +
-        endEvent.toUTCString().substring(0, 22)
-      );
-    }
-  }
-
   pause(): void {
     alert(1);
   }

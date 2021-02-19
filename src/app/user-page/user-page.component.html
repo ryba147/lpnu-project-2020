@@ -39,7 +39,8 @@
               <span class="eventDuration">
                 <img src="./assets/images/clock_duration_icon.svg" alt="" class='icon' />
                             {{calculateDuration(ev)}}</span>
-              <span class="eventTime">{{calculateBeginEnd(ev)}}</span>
+              <span class="eventTime">{{ev.event_datetime_begin | date:'EEE, MMM d, HH:mm'}} -
+                {{ev.event_datetime_end | date:'EEE, MMM d, HH:mm'}}</span>
               <span class="eventLocation">
                 <img src="./assets/images/location_icon.svg" alt="" class='icon'/>
                 {{ev.event_location}}</span>
