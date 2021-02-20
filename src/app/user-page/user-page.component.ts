@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProvider } from '../services/user.provider';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { CityProvider } from '../services/city.provider';
 import { UserpageService } from '../services/userpage.service';
 import { HomePageService } from '../services/homepage.service';
@@ -17,13 +17,13 @@ import { Router } from '@angular/router';
 })
 export class UserPageComponent implements OnInit {
   // 0 - recent, 1 - user pages, 2 - settings
-  //Переробити під булеан
+  // Переробити під булеан
   status = 0;
   loading: boolean;
-  //Перекинути в конструкторі
+  // Перекинути в конструкторі
   currentUser: User;
   eventList: Event[];
-  //Забрати
+  // Забрати
   updatedUser: User;
   autoCompleteChosen: boolean;
   selectedCities: Array<string>;
@@ -43,8 +43,8 @@ export class UserPageComponent implements OnInit {
     private homePageService: HomePageService,
     private router: Router
   ) {
-    if(this.userProvider.getUser() === null){
-      this.router.navigate(['/login'])
+    if (this.userProvider.getUser() === null){
+      this.router.navigate(['/login']);
     }
     this.currentUser = this.userProvider.getUser();
     this.eventList = [];
@@ -61,10 +61,10 @@ export class UserPageComponent implements OnInit {
 
   readUrl(event: any) {
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      let reader = new FileReader();
 
       reader.onload = (event: ProgressEvent) => {
-        this.url = (<FileReader>event.target).result;
+        this.url = (event.target as FileReader).result;
       };
 
       reader.readAsDataURL(event.target.files[0]);
@@ -72,7 +72,7 @@ export class UserPageComponent implements OnInit {
   }
 
   public updateSelectedCities(): void {
-    if(this.formLoaded === false ){
+    if (this.formLoaded === false ){
       this.formLoaded = true;
       return;
     }
@@ -92,22 +92,16 @@ export class UserPageComponent implements OnInit {
     this.formLoaded = false;
     this.form = this.fb.group({
       profile_photo: [''],
-      firstname: [
-        '',
-        [Validators.required, Validators.pattern(this.stringPattern)],
-      ],
-      lastname: [
-        '',
-        [Validators.required, Validators.pattern(this.stringPattern)],
-      ],
-      city: ['', [Validators.required, Validators.pattern(this.stringPattern)]],
-      old_password: [''],
-      new_password: [''],
-      confirm_password: [''],
-      date: [''],
-      pets: [''],
-      sex: [''],
-      family_status: [''],
+      firstname: [ this.updatedUser.first_name, [Validators.required, Validators.pattern(this.stringPattern)]],
+      lastname: [ this.updatedUser.last_name, [Validators.required, Validators.pattern(this.stringPattern)]],
+      city: [this.updatedUser.city, [Validators.required, Validators.pattern(this.stringPattern)]],
+      old_password: [this.oldPass],
+      new_password: [this.newPass],
+      confirm_password: [this.confPass],
+      date: [this.updatedUser.birth_date],
+      pets: [this.updatedUser.pets],
+      sex: [this.updatedUser.sex],
+      family_status: [this.updatedUser.family_status],
     });
   }
 
@@ -131,6 +125,7 @@ export class UserPageComponent implements OnInit {
       this.autoCompleteChosen = true;
       this.updatedUser.city = city;
       this.autoCompleteActive = false;
+      this.selectedCities = [];
     }
   }
 
@@ -170,14 +165,17 @@ export class UserPageComponent implements OnInit {
     if (this.newPass.length > 0 && this.passwordMatcher() === true) {
       this.updatedUser.password = this.newPass;
     }
+    this.form.disable();
     this.userPageService.updateUser(this.updatedUser).subscribe(
       () => {
+        this.form.enable();
         this.loading = false;
         this.userProvider.setUser(this.updatedUser);
         this.currentUser = this.userProvider.getUser();
       },
       () => {
         this.loading = false;
+        this.form.enable();
       }
     );
   }
@@ -188,6 +186,11 @@ export class UserPageComponent implements OnInit {
 
   resetUser(): void {
     this.updatedUser = this.userProvider.getUser();
+    this.oldPass = '';
+    this.confPass = '';
+    this.newPass = '';
+    this.formLoaded = false;
+    alert(1);
   }
 
   calculateDuration(event): string {

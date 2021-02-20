@@ -71,8 +71,7 @@
               <!-- First name -->
               <p class="update_enter_label ">
                 <label for="firstname">Ім'я: </label>
-                <input autofocus type="text" id="firstname" [disabled]="loading===true" [(ngModel)]="updatedUser.first_name" formControlName="firstname"
-                       class="input_reg" />
+                <input autofocus type="text" id="firstname" formControlName="firstname" class="input_reg" />
               </p>
               <div *ngIf="f.firstname.touched && f.firstname.errors">
                 <div *ngIf="f.firstname.errors.required" class=" invalid-data"><small>Це поле обов'язкове для заповнення</small>
@@ -84,7 +83,7 @@
               <!-- Last name -->
               <p class="update_enter_label">
                 <label for="lastname">Прізвище: </label>
-                <input type="text" id="lastname" formControlName="lastname"  [disabled]="loading===true" [(ngModel)]="updatedUser.last_name" class="input_reg" />
+                <input type="text" id="lastname" formControlName="lastname" class="input_reg" />
               </p>
               <div *ngIf="f.lastname.touched && f.lastname.errors">
                 <div *ngIf="f.lastname.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div>
@@ -95,14 +94,14 @@
               <!-- Date of birth -->
               <p class="update_enter_label ">
                 <label for="date">Дата народження: </label>
-                <input type="date" id="date" formControlName="date"  [disabled]="loading===true"  [(ngModel)]="updatedUser.birth_date" class="input_reg " />
+                <input type="date" id="date" formControlName="date"  [(ngModel)]="updatedUser.birth_date" class="input_reg " />
               </p>
               <!--  -->
 
               <!-- City -->
               <div class="update_enter_label" >
                 <label for="city">Місто проживання: </label>
-                <input type="text" id="city" formControlName="city" class="input_reg"   [disabled]="loading===true"  [(ngModel)]="this.updatedUser.city" (focusin)="autoCompleteActive = true;" (ngModelChange)="updateSelectedCities();"/>
+                <input type="text" id="city" formControlName="city" class="input_reg" (focusin)="autoCompleteActive = true;" (ngModelChange)="updateSelectedCities();"/>
                 <div id="autocomplete-items" class="autocomplete-items" *ngIf="this.autoCompleteActive === true">
                   <div class="autocomplete-item-container" (focusin)="autoCompleteActive = true;" (focusout)=" autoCompleteActive = false;">
                     <div *ngFor="let city of selectedCities;" class="autocomplete-item" (click)='autoCompleteActive = true;setCity(city);' (focusout)="this.autoCompleteActive = false;" >
@@ -122,17 +121,17 @@
 
               <p class="update_enter_label ">
                 <label for="sex">Cтать:</label>
-                <select id="sex" [(ngModel)]="updatedUser.sex" formControlName="sex">
-                  <option (click)="updatedUser.sex = 'not_specified'" [value]="'not_specified'" >Не вказано</option>
-                  <option (click)="updatedUser.sex = 'male'" [value]="'male'" >Чоловіча</option>
-                  <option (click)="updatedUser.sex = 'female'" [value]="'female'" >Жіноча</option>
+                <select id="sex"  formControlName="sex">
+                  <option [value]="'not_specified'" >Не вказано</option>
+                  <option [value]="'male'" >Чоловіча</option>
+                  <option [value]="'female'" >Жіноча</option>
                 </select>
               </p>
 
               <!-- Old password -->
               <p class="update_enter_label">
                 <label for="old_password">Старий пароль(У разі зміни паролю) </label>
-                <input type="password" id="old_password" formControlName="old_password"  [disabled]="loading===true" (ngModelChange)="response = 0;" class="input_reg" [(ngModel)]="oldPass" />
+                <input type="password" id="old_password" formControlName="old_password" class="input_reg"  />
               </p>
               <div *ngIf="newPass!=='' && oldPass.length<8 ">
                 <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
@@ -143,7 +142,7 @@
               <!-- New password -->
               <p class="update_enter_label">
                 <label for="password">Введіть новий пароль: </label>
-                <input type="password" id="password" formControlName="new_password"  [disabled]="loading===true" class="input_reg" [(ngModel)]="newPass" />
+                <input type="password" id="password" formControlName="new_password" class="input_reg" />
               </p>
               <div *ngIf="newPass!='' && (newPass.length<8 || newPass.length>12)">
                 <!-- <div *ngIf="f.city.errors.required" class=" invalid-data">Це поле обов'язкове для заповнення</div> -->
@@ -154,7 +153,7 @@
               <!-- Confirm password -->
               <p class="update_enter_label">
                 <label for="confirm_password">Введіть новий пароль повторно: </label>
-                <input type="password" id="confirm_password" formControlName="confirm_password" [(ngModel)]="confPass"
+                <input type="password" id="confirm_password" formControlName="confirm_password"
                        class="input_reg" autocomplete="off"/>
               </p>
               <div *ngIf=" this.newPass.length>0 && this.newPass!==this.confPass">
@@ -167,13 +166,13 @@
 
               <p class="update_enter_label">
                 <label for="pets">Чи є у Вас домашні улюбленці, які ?</label>
-                <input type="text" id="pets" formControlName="pets" [(ngModel)]="updatedUser.pets" class="input_reg" /></p>
+                <input type="text" id="pets" formControlName="pets" class="input_reg" /></p>
               <p class="update_enter_label ">
                 <label for="family_status">Сімейний стан:</label>
-                <select id="family_status" [(ngModel)]="updatedUser.family_status" formControlName="family_status">
-                  <option (click)="updatedUser.family_status = 'single'" [value]="'single'" >Не одружений/не заміжня</option>
-                  <option (click)="updatedUser.family_status = 'married'" [value]="'married'" >Одружений/заміжня</option>
-                  <option (click)="updatedUser.family_status = 'in relationship'" [value]="'in relationship'" >В стосунках</option>
+                <select id="family_status" formControlName="family_status">
+                  <option [value]="'single'" >Не одружений/не заміжня</option>
+                  <option [value]="'married'" >Одружений/заміжня</option>
+                  <option [value]="'in relationship'" >В стосунках</option>
                 </select>
               </p>
 
