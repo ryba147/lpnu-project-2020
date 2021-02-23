@@ -1,8 +1,12 @@
-
+.text_login {
+  text-align: center;
+  font-size: 36px;
+  padding-top: 70px;
+  padding-bottom: 20px;
+}
 .login_page {
   margin: 0 auto;
   width:302px;
-  height: calc(100vh - 255px);
   font-family: Montserrat, serif;
   font-size: 18px;
   font-style: normal;
@@ -10,11 +14,6 @@
   line-height: 22px;
 }
 
-.text_login {
-  text-align: center;
-  font-size: 36px;
-  margin-top: 45px;
-}
 .registration_enter_label {
   font-size: 14px;
   padding-top: 35px;
@@ -29,7 +28,6 @@
   margin-top: 15px;
 
 }
-
 .login_page_button {
   width: 130px;
   height: 28px;
@@ -42,8 +40,8 @@
   font-weight: 400;
   line-height: 17px;
   text-align: center;
+  
 }
-
 .butt{
   display: block;
   margin: 0 auto;
@@ -61,7 +59,6 @@ a{
 .box_error{
 width:600px;
 }
-
 .text-danger{
 color:red;
 font-size:13px;
@@ -70,10 +67,10 @@ padding-top:10px;
   position: absolute;
   margin-top: 0px;
 }
-
 .loading-image{
   height: 31px;
-  width: 316px;
+  width: 300px;
   position: absolute;
+  justify-content: center;
  /* margin-left: 10px;*/
 }

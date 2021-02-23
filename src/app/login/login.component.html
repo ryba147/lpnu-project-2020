@@ -1,8 +1,8 @@
-<main class=" login_page container-fluid">
-  <p class="text_login ">Вхід</p>
-  <form [formGroup]="userEmails" class="login_page ">
-    <p class="registration_enter_label">
-      <label>1. Введіть електронну пошту</label>
+<main class="login_page">
+   <p class="text_login">Вхід</p>
+  <form [formGroup]="userEmails" >
+    <p class="registration_enter_label" >
+      <label class="text_width">1. Введіть електронну пошту</label>
       <input (ngModelChange)="response = 0" [class.is-invalid]="userEmails.get('loginEmail').invalid && userEmails.get('loginEmail').touched"
         type="email" id="login_email" class="input_login " formControlName="loginEmail"
         [(ngModel)]="email">
