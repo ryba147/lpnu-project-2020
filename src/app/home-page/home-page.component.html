@@ -9,13 +9,26 @@
   </div>
 
   <div class="caption">Популярні</div>
-  <a href="/home">Повернутися на головну</a>
+  
+  <!-- <div class="setup"> -->
+    <a id="return-button" href="/home">Повернутися на головну</a>
+    <!-- <select>
+      <option>Фільтрувати за</option>
+      <option>Дата</option>
+      <option>Місце проведення</option>
+    </select>
+
+    <select>
+      <option>Перегляд</option>
+      <option>Вітрина</option>
+      <option>Список</option>
+    </select>
+  </div>  -->
+  
   <div class="content-container">
     <div class="event-container" *ngFor="let event of events">
       <a href="one-event">
-        <img src="{{event.event_photo}}"
-          onerror="this.src='./assets/images/noimage.png'"
-          alt="">
+        <img src="{{event.event_photo}}" onerror="this.src='./assets/images/noimage.png'" alt="">
       </a>
       <a href="one-event">
         <div class="event-name">{{event.event_name}}</div>

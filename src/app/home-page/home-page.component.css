@@ -9,6 +9,20 @@
   color: #0e1111;
 }
 
+.setup {
+  background:red;
+}
+
+#return-button {
+  background-color: #FFE5F5;
+  color: #0e1111;
+  text-decoration: none;
+  transition: background-color .3s;
+  border-radius: 5px;
+  margin-left: 100px;
+  cursor: pointer;
+}
+
 .content-container {
   margin: 2%;
 }
@@ -162,7 +176,8 @@ img:hover {
 }
 
 .empty-page-error img {
-  height: 25%;
+  height: 50px;
+  margin: 0 0 40px;
 }
 
 .event-container a {

@@ -52,23 +52,40 @@ export class HomePageComponent implements OnInit {
   }
 
   fetchPrevious(): void {
+    this.page_status = 'loading';
+
     this.homePageService
       .getPage(this.previous_page_num, this.searchText)
-      .subscribe((response) => {
-        this.setProperties(response);
-      });
+      .subscribe(
+        (response) => {
+          this.setProperties(response);
+          this.page_status = 'load_success';
+        },
+        (error) => {
+          this.page_status = 'load_failed';
+        }
+      );
   }
 
   fetchNext(): void {
-    this.homePageService.getPage(this.next_page_num, this.searchText).subscribe((response) => {
-      this.setProperties(response);
-    });
+    this.page_status = 'loading';
+
+    this.homePageService.getPage(this.next_page_num, this.searchText).subscribe(
+      (response) => {
+        this.setProperties(response);
+        this.page_status = 'load_success';
+      },
+      (error) => {
+        this.page_status = 'load_failed';
+      }
+    );
   }
 
   search(): void {
     this.homePageService.getPage(1, this.searchText).subscribe((response) => {
       this.setProperties(response);
-    });
+    }
+    );
   }
 
   /*
