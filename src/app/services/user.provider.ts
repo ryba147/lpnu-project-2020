@@ -12,9 +12,10 @@ export class UserProvider {
   }
 
   public getUser(): User|null {
-    if(this.user === null)return null;
-    else
+    if (this.user === null || this.user === undefined) {return null; }
+    else {
     return JSON.parse(JSON.stringify(this.user));
+    }
   }
 
 }
