@@ -23,6 +23,7 @@ import { OneEventComponent } from './one-event/one-event.component';
 import  {UserPageComponent } from './user-page/user-page.component';
 import { InfoEventComponent } from './info-event/info-event.component';
 import { ConfirmParticipationComponent } from './confirm-participation/confirm-participation.component';
+import { LeaveCommentComponent } from './leave-comment/leave-comment.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ConfirmParticipationComponent } from './confirm-participation/confirm-p
     UserPageComponent,
     InfoEventComponent,
     ConfirmParticipationComponent,
+    LeaveCommentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,HttpClientModule, MaterialModule],
   providers: [],
