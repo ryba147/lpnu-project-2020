@@ -14,8 +14,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { AboutUsComponent } from './about-us/about-us.component'
 import { ConfirmParticipationComponent } from './confirm-participation/confirm-participation.component';
 import { CommentsEventComponent } from './comments-event/comments-event.component';
-
-
+import { LeaveCommentComponent } from './leave-comment/leave-comment.component'
 export const appRoutes: Routes = [
   { path: '', component: TitlePageComponent },
   { path: 'login', component: LoginComponent },
@@ -24,10 +23,12 @@ export const appRoutes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'one-event', component: OneEventComponent,
     children:[
-    {path: '', redirectTo: 'info-event', pathMatch: 'full'},
-    { path: 'info-event', component: InfoEventComponent},
+    { path: '', redirectTo: 'info-event', pathMatch: 'full'},
+    { path: 'info-event', component: InfoEventComponent},    
+    { path: 'comments-event', component: CommentsEventComponent},
     { path: 'confirm-participation', component: ConfirmParticipationComponent},
-    {path: 'comments-event', component: CommentsEventComponent}] },
+    { path: 'leave-comment', component: LeaveCommentComponent},
+  ]},
   { path: 'contact-us', component: ContactUsComponent},
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'about-us', component: AboutUsComponent},
