@@ -6,6 +6,7 @@
   position:absolute;
   top:auto;
   left: 400px;
+  height:503px;
 
 }
 .text_comment {
@@ -19,7 +20,7 @@
     font-size: 36px;
     line-height: 41px;    
     color: #000000;
-  } 
+} 
 
 .button{
   top: 100px;
@@ -30,41 +31,60 @@
 }  
 
 .emoji{
-  position: relative;
+  position: absolute;
   top: 130px;
   height: 60px;
   width: 60px;
   margin-right: 38px;
-  color: #6E80B3;
-  
+  transition: width 1s; height: 1s;
+}
+.nervous{
+
 }
 
-a:hover {
-  fill: #53424C;
+.sad{
+   left: 98px;
+}
+
+.surprised{
+  left: 196px;
+}
+
+.happy{
+  left: 294px;
+}
+
+.crying{
+  left: 392px;
+}
+
+img:hover {
+  width:70px;
+  height: 70px;
 }
 
 .border{
-  position: relative;
+  position: absolute;
   text-align: left;
-  top: 180px;
+  top: 260px;
   font-style: bold;
   font-family: Emilys Candy;
-  font-size: 32px;
+  font-size: 30px;
+  width: 460px;
   color: #53424C;
 }
-
 .pborder{
   position: absolute;
-  top: 210px;
+  top: 220px;
   width: 460px;
   border-bottom: 8px dotted #528DAC;
 }
 
 textarea{
-  position: relative;
+  position: absolute;
   width: 460px;
   height: 154px;
-  top: 210px;
+  top: 303px;
   background: #F9E6F0;
   border: 2px solid #DDBCCE;
   font-size: 17px;
