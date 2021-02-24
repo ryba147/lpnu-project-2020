@@ -53,6 +53,13 @@ a:hover {
   color: #53424C;
 }
 
+.pborder{
+  position: absolute;
+  top: 210px;
+  width: 460px;
+  border-bottom: 8px dotted #528DAC;
+}
+
 textarea{
   position: relative;
   width: 460px;
