@@ -1,0 +1,99 @@
+*{
+    box-sizing:border-box;
+}
+
+.container{
+  position:absolute;
+  top:auto;
+  left: 400px;
+
+}
+.text_comment {
+    position: absolute;
+    width: 491px;
+    height: 35px;
+    top: 70px;    
+    font-family: Georgia;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 41px;    
+    color: #000000;
+  } 
+
+.button{
+  top: 100px;
+  left: 400; 
+  margin: auto;
+  display: block;
+  
+}  
+
+.emoji{
+  position: relative;
+  top: 130px;
+  height: 60px;
+  width: 60px;
+  margin-right: 38px;
+  color: #6E80B3;
+  
+}
+
+a:hover {
+  fill: #53424C;
+}
+
+.border{
+  position: relative;
+  text-align: left;
+  top: 170px;
+  font-style: bold;
+  font-family: Emilys Candy;
+  font-size: 32px;
+  color: #53424C;
+}
+
+textarea{
+  position: relative;
+  width: 460px;
+  height: 154px;
+  top: 210px;
+  background: #F9E6F0;
+  border: 2px solid #DDBCCE;
+  font-size: 17px;
+  color:#000000;
+  justify-content: top;
+  margin-top: 2px;
+  resize:none;
+}
+
+.butt{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min-content;
+  margin-bottom: 80px;
+ }
+
+ .leavecomment_button{
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  top: 427px;
+  left: 470px;
+  text-align: center;
+  font-family: Emilys Candy;
+  font-size: 20px;
+  line-height: 20px;
+  font-style: normal;
+  font-weight: normal;
+  background: #FFE5F5;
+  border: 2px solid #DDBCCE;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  
+ 
+}
+  
