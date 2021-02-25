@@ -1,5 +1,18 @@
+.text_oneevent {
+  position: relative;
+  width: 491px;
+  height: 35px;
+  left: 400px;
+  top: 53px;    
+  font-family: Georgia;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 41px;    
+  color: #000000;
+} 
 .infobox_oneevent{
-  position: absolute;
+  position: relative;
   width: 498px;
   height: 157px;
   left: 400px;
