@@ -1,19 +1,19 @@
 .gridWrapper{
   display: grid;
-  grid-template-columns: minmax(max-content,500px) calc(100% - 560px);
+  grid-template-columns: minmax(max-content,500px) calc(100% - 320px);
 }
 
 .userData{
-  margin: 24px;
+  margin: 40px;
 }
 
 .userImage{
-  height: 500px;
-  width: 500px;
+  height: 200px;
+  width: 200px;
 }
 
 .nameData{
-  font-size: 36px;
+  font-size: 26px;
   margin-top: 10px;
   font-weight: bolder;
   display: block;
@@ -22,20 +22,30 @@
 .otherData{
   display: block;
   margin-top: 5px;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .accordeon{
-  margin: 24px;
+  margin-top: 26px;
+  margin-bottom: 26px;
+}
+.accordeonItemList{
+  margin-left: 45px;
+  justify-content: center;
+  display: flex;
+  margin-right: 355px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .accordeonItem{
-  font-size: 48px;
+  font-size: 38px;
   font-family: Montserrat, serif;
   margin: 10px;
   cursor: pointer;
   margin-left: 0;
   margin-right: 30px;
+  
 }
 
 .eventListItem{
@@ -43,6 +53,9 @@
   border-radius: 10px;
   height: 85px;
   margin-top: 20px;
+}
+.eventList{
+  margin-right: 60px;
 }
 
 .eventPhoto{
@@ -93,16 +106,23 @@
   margin-right: 10px;
   color: #E554AE;
 }
-
+label{
+  float: left;
+  padding-right: 10px;
+}
 .userUpdateForm{
-  width: 370px;
+  width: 1250px;
   margin: auto;
+  justify-content: center;
 }
 
+/* tyt */
 .userUpdateFormInputs{
-  max-height: 52vh;
-  overflow-y: auto;
-  margin-top: 10px;
+  /* margin-top: 10px;
+  float: left; */
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 ::-webkit-scrollbar {
@@ -126,15 +146,21 @@
   background: #999;
   border-radius: 10px;
 }
+.grid-profile{
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1em;
+    display: flex;
+    flex-direction: column;
+  }
 
 .updatePhoto{
-  height: 316px;
-  width: 316px;
+  height: 150px;
+  width: 150px;
   margin-left: 20px;
 }
 
 .updatePhotoButton{
-  width: 316px;
+  width: 216px;
   height: 27px;
   font-family: Montserrat, serif;
   margin-top: 10px;
@@ -144,6 +170,10 @@
 }
 
 .updatePhotoInput{
+  opacity: 0;
+  display: none;
+}
+input[type="file" i]{
   display: none;
 }
 
@@ -154,16 +184,18 @@
 }
 
 .update_enter_label {
+  clear:both; 
+  text-align:right;
   font-size: 14px;
-  padding: 10px;
-  margin-bottom: 1px;
-  margin-top: 20px;
-  margin-left: 10px;
+  line-height: 40px;
+  margin-bottom: 5px;
 }
-
+.cont1{
+  width: 400px;
+}
 .input_reg {
   line-height: 1.5;
-  width: 316px;
+  width: 216px;
   height: 27px;
   background: #E3F2FF;
   border-color: transparent;
@@ -175,7 +207,7 @@
 select {
   margin-top: 10px;
   background: #E3F2FF;
-  width: 316px;
+  width: 216px;
   height: 27px;
   border-color: transparent;
   font-family: Montserrat,serif;
@@ -188,11 +220,19 @@ select {
   padding-left: 10px;
 }
 
-.update_button_position{
-  width: 316px;
-  margin: 0 auto;
+.wrapp{
+  margin: auto;
+  width: 220px;
+  display: flex;
+  justify-content: center;
+  margin-left: 355px;
 }
-
+/* .update_button_position{
+  width: 216px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+} */
 .update_button {
   font-family: Montserrat, serif;
   text-align: center;
@@ -201,19 +241,18 @@ select {
   height: 40px;
   border-radius: 20px;
   border-color: transparent;
-  margin-left: 49px;
-  margin-bottom: 8px;
+  margin-top: 15px;
 }
-
 .butt{
   margin-bottom: 50px;
 }
 
 .invalid-data {
+  position: fixed;
   color: red;
   font-size:12px;
   width: 316px;
-  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .autocomplete-items{
@@ -225,7 +264,11 @@ select {
   z-index: 999;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
+.container{
+  display: flex;
+  flex-direction: row;
+  width: 990px;
+}
 .autocomplete-item{
   cursor: pointer;
   /* margin-top: 10px; */
@@ -252,9 +295,7 @@ select {
   .gridWrapper{
     grid-template-columns: inherit;
   }
-
   .userData{
-    margin: 0 auto;
     margin-top: 20px;
   }
 
@@ -344,7 +385,11 @@ select {
   }
 
 }
-
+.loader{
+  justify-content: center;
+  display: flex;
+  margin-right: 328px;
+}
 @media screen and (max-width: 1000px){
 
   .eventListItem{
@@ -387,4 +432,3 @@ select {
     font-size: 26px;
   }
 }
-
